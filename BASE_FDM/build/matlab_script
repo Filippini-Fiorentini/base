@@ -1,0 +1,6 @@
+#!/bin/bash
+cd ./matlab
+/usr/local/bin/matlab -r -nosplash -nodesktop ../matlab/exe6.m
+cd ..
+#Next command is way faster but plot won't be able to work
+#/usr/local/bin/matlab -r -nosplash -nodisplay -nodesktop -nojvm exe6

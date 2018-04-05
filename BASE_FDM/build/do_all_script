@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source load_script
+make distclean
+make run
+make clean
+#source matlab_script
+cd ../Matlab
+/usr/local/bin/matlab -r -nosplash -nodesktop 'matlab_function('../output/n_def_exact.csv')'
