@@ -1,0 +1,3 @@
+#input_fdm_2d.txt
+Lx=1.0
+Ly=1.0
