@@ -1,7 +1,7 @@
 #ifndef _HH_INTERFACE_FEM_2D
 #define _HH_INTERFACE_FEM_2D
 
-#include "fem_2d_solver.hpp"
+#include "mesh_2d.hpp"
 #include "GetPot"
 
 namespace fem

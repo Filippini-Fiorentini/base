@@ -36,6 +36,7 @@ namespace fem
 		
 		std::size_t get_nln (void) const {return nln;}
 		
+		std::size_t n_triangles(void) const {return tr_indices.size(); } 
 		const std::vector<std::size_t> & get_vector_idx (const std::size_t &k) const
 		                                        {return tr_indices[k];}
 		

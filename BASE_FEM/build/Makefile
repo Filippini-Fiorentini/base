@@ -2,10 +2,10 @@ CXXFLAGS += -Wall -Wextra -std=c++11 -O3
 CPPFLAGS += -I${mkEigenInc} -DNDEBUG -I ../include
 LDFLAGS += 
 M = main
-OBJ = main.o mesh_2d.o node_2d.o fdm_2d_solver.o interface_fdm_2d.o
+OBJ = main.o mesh_2d.o node_2d.o triangle.o interface_fem_2d.o
 
 OUTPUT_PATH = ../output/
-INPUT_FILE = ../input_files/nput_fdm_2d.txt
+INPUT_FILE = ../input_files/nput_fem_2d.txt
 LOAD_SCRIPT = load_script
 SHELL:=/bin/bash
 .PHONY: all build run clean distclean

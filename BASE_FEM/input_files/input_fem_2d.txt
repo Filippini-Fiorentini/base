@@ -1,6 +1,7 @@
 #input_fem_2d.txt
 OUT_ERR = ''output/n_def_out_err.txt''
 DBG = ''output/n_def_dbg.txt''
+MESH = ''output/n_def_mesh.txt''
 IN = ''input_data.txt''
 SOL = ''output/n_def_sol.csv''
 EXACT = ''output/n_def_exact.csv''

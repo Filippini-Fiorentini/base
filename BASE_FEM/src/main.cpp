@@ -22,11 +22,20 @@ int main (int argc, char* argv [])
     fem::Real Ly = fem::read_value(files[fem::IN], "Ly", 10.0);
     
     fem::Mesh_2d mesh(Lx,Ly);
-        
-    std::ofstream dbg(files[fem::DBG]);
-        
-    mesh.print(dbg);
+       
+    // Print mesh info on simple debug file
+    std::ofstream mesh_fstream(files[fem::MESH]);
+    mesh.print(mesh_fstream);
     
+    // Print triangles info on simple debug file
+    std::ofstream tri_fstream(files[fem::DBG]);
+    std::size_t n_tri = mesh.n_triangles();
+    for ( std::size_t i = 0; i < n_tri; ++i)
+	    {
+	    const std::vector<std::size_t> temp = mesh.get_vector_idx(i);
+	    tri_fstream << temp[0] << " " << temp[1] << " " << temp[2] << std::endl; 
+	    }
+    /*
     // SOLVER TEST    
 	std::vector<std::function<fem::Real(fem::Real, fem::Real)>> vect_functions;
 	vect_functions.emplace_back(f1());
@@ -49,4 +58,6 @@ int main (int argc, char* argv [])
 	
 	write_solution_file(mesh, u, files[fem::SOL]);
 	write_solution_file(mesh, exact_solution, files[fem::EXACT]);
+	*/
+	return 0;
 	}

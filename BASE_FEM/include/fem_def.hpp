@@ -69,12 +69,13 @@ namespace fem
 	    return {0., 1.};
 	    }    
 	    
-	typedef enum Files_enum { OUT_ERR, DBG, IN, SOL, EXACT };
-	const std::size_t N_FILES = 5;
+	typedef enum Files_enum { OUT_ERR, DBG, MESH, IN, SOL, EXACT };
+	const std::size_t N_FILES = 6;
 	const std::string output_path = "../output/";
 	const std::string input_path = "../input_files/";
 	const std::string DEF_OUT_ERR = output_path + "def_out_err.txt";
 	const std::string DEF_DBG = output_path + "def_dbg.txt";
+	const std::string DEF_MESH = output_path + "def_mesh.txt";
 	const std::string DEF_IN = input_path + "input_data.txt";
 	const std::string DEF_SOL = output_path + "def_sol.csv";
 	const std::string DEF_EXACT = output_path + "def_exact.csv";
