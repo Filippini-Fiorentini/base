@@ -22,7 +22,9 @@ namespace fem
 		
 		void set_x(const Real& x_1);
 		void set_y(const Real& x_2);
-		
+		void make_boundary(void) {is_bd = true;};
+		void make_intern(void) {is_bd = false;};
+
 		bool is_boundary (void) const {return is_bd;} 
 		
 		virtual void print(void) const;

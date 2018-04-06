@@ -16,13 +16,13 @@ void Node_2d::set_y(const Real& x_2)
 void Node_2d::print(void) const
 	{
 	std::cout << "Point: " << x << " " << y;
-	std::cout << "is boundary? " << (is_bd==1 ? "YES" : "NO") << std::endl;
+	std::cout << " is boundary? " << (is_bd==1 ? "YES" : "NO") << std::endl;
 	}
 	
 void Node_2d::print(std::ofstream &ofs) const 
     {
     ofs << "Point: " << x << " " << y;
-	ofs << "is boundary? " << (is_bd==1 ? "YES" : "NO") << std::endl;;
+	ofs << " is boundary? " << (is_bd==1 ? "YES" : "NO") << std::endl;;
     }
 
 }

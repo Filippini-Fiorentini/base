@@ -4,8 +4,8 @@ namespace fem
 {
 
 Mesh_2d::Mesh_2d(Real limit_x, Real limit_y): 
-    L_x(limit_x), L_y(limit_y), nodes(PTS_MESH_X*PTS_MESH_Y), nr_rows(PTS_MESH_Y), 
-    nr_cols(PTS_MESH_X), h_x(limit_x/PTS_MESH_X), h_y(limit_y/PTS_MESH_Y), tr_indices( 2 * (PTS_MESH_X - 1)  * (PTS_MESH_Y - 1))
+    L_x(limit_x), L_y(limit_y), nodes(PTS_MESH_X*PTS_MESH_Y), tr_indices( 2 * (PTS_MESH_X - 1)  * (PTS_MESH_Y - 1)),
+    nr_rows(PTS_MESH_Y), nr_cols(PTS_MESH_X), h_x(limit_x/PTS_MESH_X), h_y(limit_y/PTS_MESH_Y)
     {
     nln = (degree+1)*(degree+2)/2;  
     // Building the nodes 
@@ -15,6 +15,8 @@ Mesh_2d::Mesh_2d(Real limit_x, Real limit_y):
         std::size_t x_idx = i % PTS_MESH_X;
         nodes[i].set_x(x_idx * h_x);
         nodes[i].set_y(y_idx * h_y);
+        if(x_idx == 0 or x_idx == PTS_MESH_X-1 or y_idx == 0 or y_idx == PTS_MESH_Y-1)
+            nodes[i].make_boundary();
         }
     std::size_t counter_tri = 0;
     // Building the triangles 

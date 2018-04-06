@@ -39,32 +39,32 @@ namespace fem
 	typedef 	std::function<Real(Real,Real)> Real_function_2d;
 	typedef 	std::function<std::pair<Real,Real>(Real,Real)> Vect_function_2d;
 		
-	Real_function_2d phi1 = [](Real x, Real y)->Real
+	static Real_function_2d phi1 = [](Real x, Real y)->Real
 	    {
 	    return 1-x-y;
 	    };
 	    
-	Vect_function_2d grad_phi1 = [](Real x, Real y)->std::pair<Real,Real>
+	static Vect_function_2d grad_phi1 = [](Real x, Real y)->std::pair<Real,Real>
 	    {
 	    return {-1., -1.+ 0*x*y};
 	    };
 	
-	Real_function_2d phi2 = [](Real x, Real y)->Real
+	static Real_function_2d phi2 = [](Real x, Real y)->Real
 	    {
 	    return x + 0*y;
 	    };
 	    
-	Vect_function_2d grad_phi2 = [](Real x, Real y)->std::pair<Real,Real>
+	static Vect_function_2d grad_phi2 = [](Real x, Real y)->std::pair<Real,Real>
 	    {
 	    return {1., 0*x*y};
 	    };   
 	    
-	Real_function_2d phi3 = [](Real x, Real y)->Real
+	static Real_function_2d phi3 = [](Real x, Real y)->Real
 	    {
 	    return y + 0*x;
 	    };
 	    
-	Vect_function_2d grad_phi3 = [](Real x, Real y)->std::pair<Real,Real>
+	static Vect_function_2d grad_phi3 = [](Real x, Real y)->std::pair<Real,Real>
 	    {
 	    return {0*x*y, 1.};
 	    };   
@@ -81,5 +81,6 @@ namespace fem
 	const std::string DEF_EXACT = output_path + "def_exact.csv";
 	
 	}
+
 
 #endif /* _HH_FEM_DEF */

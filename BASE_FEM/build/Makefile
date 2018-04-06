@@ -14,6 +14,7 @@ SHELL:=/bin/bash
 
 all: build
 
+#Should check before if output_path exists and if it is not the case it creates the directory
 build: $(M)
 	mkdir $(OUTPUT_PATH)
 
