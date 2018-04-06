@@ -35,7 +35,6 @@ read_value(const std::string& filename, const std::string& name, Real default_va
 	return value;
 	}
 	
-	
 /*
 std::function<fem::Real(fem::Real, fem::Real) 
 read_2d_function(const std::string& filename, const std::string& name);

@@ -28,8 +28,8 @@ Mesh_2d::Mesh_2d(Real limit_x, Real limit_y):
     }
 
 Mesh_2d::Mesh_2d(Real limit_x, Real limit_y, const std::vector<Node_2d>& mesh, std::size_t rows, std::size_t cols, std::size_t deg):
-	L_x(limit_x), L_y(limit_y), nodes(mesh), nr_rows(rows>= 2 ? rows:2), nr_cols(cols>= 2 ? cols : 2), h_x(limit_x/nr_cols), 
-	        h_y(limit_y/nr_rows), degree(deg) 
+	L_x(limit_x), L_y(limit_y), nodes(mesh), nr_rows(rows>= 2 ? rows:2), nr_cols(cols>= 2 ? cols : 2), h_x(limit_x/(nr_cols-1)), 
+	        h_y(limit_y/(nr_rows-1)), degree(deg) 
 	{
 	nln = (degree+1)*(degree+2)/2;
 	}

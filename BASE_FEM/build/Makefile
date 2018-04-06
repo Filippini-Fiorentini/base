@@ -16,9 +16,9 @@ all: build
 
 #Should check before if output_path exists and if it is not the case it creates the directory
 build: $(M)
-	mkdir $(OUTPUT_PATH)
 
 run: build $(M)
+	mkdir $(OUTPUT_PATH)
 	./$(M) -f $(INPUT_FILE)
 
 #LOADING MODULES
