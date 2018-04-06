@@ -18,7 +18,7 @@ namespace fem
 			std::vector<Real> get_x() const;
 			std::vector<Real> get_y() const;
 
-			set_coord(Real x, Real y, std::size_t i);
+			void set_coord(Real x, Real y, std::size_t i);
 		};
 	}
 

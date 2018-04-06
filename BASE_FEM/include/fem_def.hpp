@@ -69,7 +69,7 @@ namespace fem
 	    return {0*x*y, 1.};
 	    };   
 	    
-	typedef enum Files_enum { OUT_ERR, DBG, MESH, IN, SOL, EXACT };
+	typedef enum Files_enum { OUT_ERR, DBG, MESH, IN, SOL, EXACT } File_codes;
 	const std::size_t N_FILES = 6;
 	const std::string output_path = "../output/";
 	const std::string input_path = "../input_files/";

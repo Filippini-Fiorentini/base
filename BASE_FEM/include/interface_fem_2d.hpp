@@ -2,13 +2,16 @@
 #define _HH_INTERFACE_FEM_2D
 
 #include "mesh_2d.hpp"
+#include <Eigen/Sparse>
+#include <Eigen/Dense>
+#include <Eigen/SparseLU>
 #include "GetPot"
 
 namespace fem
 {
 
 void 
-write_solution_file(const Mesh_2d& mesh, const Eigen::Matrix<fdm::Real, Eigen::Dynamic, 1>& vect, const std::string& filename);
+write_solution_file(const Mesh_2d& mesh, const Eigen::Matrix<fem::Real, Eigen::Dynamic, 1>& vect, const std::string& filename);
 
 Real 
 read_value(const std::string& filename, const std::string& name, Real default_value);

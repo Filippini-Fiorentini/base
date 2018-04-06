@@ -13,15 +13,15 @@ Mesh_2d::Mesh_2d(Real limit_x, Real limit_y):
         {
         std::size_t y_idx = i / PTS_MESH_X;
         std::size_t x_idx = i % PTS_MESH_X;
-        nodes(i).set_x(x_idx * h_x);
-        nodes(i).set_y(y_idx * h_y);
+        nodes[i].set_x(x_idx * h_x);
+        nodes[i].set_y(y_idx * h_y);
         }
     std::size_t counter_tri = 0;
     // Building the triangles 
     for(std::size_t i = 0; i < (PTS_MESH_X-1) * (PTS_MESH_Y-1); ++i)
         {
-        tr_indices(counter_tri++) = {i,     i + 1,              i + PTS_MESH_X};
-        tr_indices(counter_tri++) = {i + 1, i + 1 + PTS_MESH_X, i + PTS_MESH_X};
+        tr_indices[counter_tri++] = {i,     i + 1,              i + PTS_MESH_X};
+        tr_indices[counter_tri++] = {i + 1, i + 1 + PTS_MESH_X, i + PTS_MESH_X};
         }
     }
 
@@ -36,16 +36,16 @@ void Mesh_2d::print (void) const
 	{
     std::cout << "Lx: " << L_x << std::endl;
     std::cout << "Ly: " << L_y << std::endl;
-    for (const std::shared_ptr<Node_2d> &nd : nodes)
-        nd->print();
+    for (const Node_2d &nd : nodes)
+        nd.print();
 	}
 
 void Mesh_2d::print (std::ofstream &ofs) const
 	{
     ofs << "Lx: " << L_x << std::endl;
     ofs << "Ly: " << L_y << std::endl;
-    for (const std::shared_ptr<Node_2d> &nd : nodes)
-        nd->print(ofs);
+    for (const Node_2d &nd : nodes)
+        nd.print(ofs);
 	}
 
 }
