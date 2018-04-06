@@ -27,7 +27,7 @@ namespace fem
 		                            std::size_t rows, std::size_t cols, std::size_t deg);
 		~Mesh_2d(void) = default;
 		
-		const Node_2d& get_node(std::size_t i) const {return *nodes[i];}
+		const Node_2d get_node(std::size_t i) const {return nodes[i];}
 		
 		std::size_t get_n_nodes (void) const {return nodes.size();}
 		

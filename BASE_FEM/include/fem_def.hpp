@@ -24,7 +24,7 @@ namespace fem
 		{
 			Real operator()(Real x, Real y)
 			{
-			return (Real) 0.0;
+			return (Real) 0.0*x*y;
 			}
 		};
 	
@@ -32,7 +32,7 @@ namespace fem
 		{
 			Real operator()(Real x, Real y)
 			{
-			return (Real) 1.0;
+			return (Real) 1.0 + 0.0*x*y;
 			}
 		};
 		
@@ -42,32 +42,32 @@ namespace fem
 	Real_function_2d phi1 = [](Real x, Real y)->Real
 	    {
 	    return 1-x-y;
-	    }
+	    };
 	    
-	Vect_function_2d grad_phi1 = [](Real x, Real y)->Real
+	Vect_function_2d grad_phi1 = [](Real x, Real y)->std::pair<Real,Real>
 	    {
-	    return {-1., -1.};
-	    }
+	    return {-1., -1.+ 0*x*y};
+	    };
 	
 	Real_function_2d phi2 = [](Real x, Real y)->Real
 	    {
-	    return x;
-	    }
+	    return x + 0*y;
+	    };
 	    
-	Vect_function_2d grad_phi2 = [](Real x, Real y)->Real
+	Vect_function_2d grad_phi2 = [](Real x, Real y)->std::pair<Real,Real>
 	    {
-	    return {1., 0.};
-	    }    
+	    return {1., 0*x*y};
+	    };   
 	    
 	Real_function_2d phi3 = [](Real x, Real y)->Real
 	    {
-	    return y;
-	    }
+	    return y + 0*x;
+	    };
 	    
-	Vect_function_2d grad_phi2 = [](Real x, Real y)->Real
+	Vect_function_2d grad_phi3 = [](Real x, Real y)->std::pair<Real,Real>
 	    {
-	    return {0., 1.};
-	    }    
+	    return {0*x*y, 1.};
+	    };   
 	    
 	typedef enum Files_enum { OUT_ERR, DBG, MESH, IN, SOL, EXACT };
 	const std::size_t N_FILES = 6;
