@@ -10,17 +10,10 @@ namespace fem {
     class Reference {
     
         private:
-        
-            // functions phi on the reference element
-            Real_function_2d Phi1 = phi1;
-            Real_function_2d Phi2 = phi2;
-            Real_function_2d Phi3 = phi3;
-            // gradients of the functions phi on the reference element
-            Vect_function_2d GradPhi1 = grad_phi1;
-            Vect_function_2d GradPhi2 = grad_phi2;
-            Vect_function_2d GradPhi3 = grad_phi3;
             // number of local nodes
             std::size_t nln = 0;
+            // Real triangle
+            Triangle tri_k;
             //    
 		    Eigen::Matrix<Real,2,2> BJ;
 		    //    
@@ -34,11 +27,6 @@ namespace fem {
         
             // constructor with no parameters
             Reference (void) = default;
-            // constructor with all parameters (except for matrices)
-            Reference (const Real_function_2d &f1, const Real_function_2d &f2, 
-                        const Real_function_2d &f3, const Vect_function_2d &gf1,
-                        const Vect_function_2d &gf2, const Vect_function_2d &gf3,
-                        const std::size_t &n, const Triangle &t);
             // constructor            
             Reference (const std::size_t &n, const Triangle &t);            
             
@@ -46,11 +34,17 @@ namespace fem {
             ~Reference (void) = default;
             
             // get local stiffness
-            Eigen::Matrix<Real, Eigen::Dynamic, Eigen::Dynamic>
+            Eigen::Matrix<Real, 3, 3>
             build_Aloc (void) const;
             
+            //Eigen::Matrix<Real, 3, 3> build_Adv1_loc (void) const;
+            
+            //Eigen::Matrix<Real, 3, 3> build_Adv2_loc (void) const;
+            
+            //Eigen::Matrix<Real, 3, 3> build_Mloc (void) const;
+            
             // get local load factor
-            Eigen::Matrix<Real, Eigen::Dynamic, 1>
+            Eigen::Matrix<Real, 3, 1>
             build_bloc (void) const;
             
             //

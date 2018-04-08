@@ -2,6 +2,7 @@
 #define _HH_QUADRATURE
 
 #include "fem_def.hpp"
+#include <cstdlib>
 
 namespace fem {
 
@@ -30,6 +31,9 @@ namespace fem {
             
             std::vector<Node_2d> 
             eval (const Vect_function_2d &f) const;
+            
+            std::vector<Real> 
+            eval (const Real_function_2d &f) const;
     
     };
 

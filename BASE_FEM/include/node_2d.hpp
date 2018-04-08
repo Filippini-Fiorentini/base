@@ -15,6 +15,7 @@ namespace fem
 	public:
 		Node_2d(void) = default;
 		Node_2d(const Real &x_1, const Real &x_2, bool b): x(x_1), y(x_2), is_bd(b) {}
+		Node_2d(const std::pair<Real,Real>& val): x(val.first), y(val.second), is_bd(false) {}
 		~Node_2d(void) = default;
 		
 		Real get_x() const {return x;}

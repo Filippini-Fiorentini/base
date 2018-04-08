@@ -2,15 +2,11 @@
 
 namespace fem {
 
-// constructor with all parameters (except for matrices)
-Reference::Reference (const Real_function_2d &f1, const Real_function_2d &f2, 
-                      const Real_function_2d &f3, const Vect_function_2d &gf1,
-                      const Vect_function_2d &gf2, const Vect_function_2d &gf3,
-                      const std::size_t &n, const Triangle &t):
-    Phi1(f1), Phi2(f2), Phi3(f3), GradPhi1(gf1), GradPhi2(gf2), GradPhi3(gf3), nln(n)
+// constructor            
+Reference::Reference (const std::size_t &n, const Triangle &t): nln(n), tri_k(t)
     {
-    std::vector<Real> xt = t.get_x();
-    std::vector<Real> yt = t.get_y();
+    std::vector<Real> xt = tri_k.get_x();
+    std::vector<Real> yt = tri_k.get_y();
     BJ(0,0) = xt[1] - xt[0];
     BJ(0,1) = xt[2] - xt[0];
     BJ(1,0) = yt[1] - yt[0];
@@ -29,16 +25,12 @@ Reference::Reference (const Real_function_2d &f1, const Real_function_2d &f2,
         } 
     }
 
-// constructor            
-Reference::Reference (const std::size_t &n, const Triangle &t): nln(n)
-    {
-    
-    }
-    
 // compute local stiffness and local load factor
-void
-Reference::local_assembly (const Quadrature &quadrature)
+Eigen::Matrix<Real, 3, 3> 
+    Reference::build_Aloc (void) const
     {
+    Eigen::Matrix<Real, 3, 3> Aloc;
+    Aloc.setZero();
     std::size_t Nq = quadrature.get_Nq();
     std::vector<std::vector<Node_2d>> Grad(nln);
     Grad[0] = quadrature.eval(GradPhi1);
@@ -54,6 +46,15 @@ Reference::local_assembly (const Quadrature &quadrature)
                 }
             }
         }
+    return Aloc;
     }
 
+Eigen::Matrix<Real, 3, 1>
+    Reference::build_bloc (void) const
+    {
+    Eigen::Matrix<Real, 3, 1> bloc;
+    bloc.setZero();
+    return bloc;
+    }
+            
 }
