@@ -31,6 +31,7 @@ Eigen::Matrix<Real, 3, 3>
     {
     Eigen::Matrix<Real, 3, 3> Aloc;
     Aloc.setZero();
+    Quadrature quadrature(3);
     std::size_t Nq = quadrature.get_Nq();
     std::vector<std::vector<Node_2d>> Grad(nln);
     Grad[0] = quadrature.eval(GradPhi1);
@@ -42,7 +43,7 @@ Eigen::Matrix<Real, 3, 3>
             {
             for (std::size_t n=0; n<Nq; n++)
                 {
-                Aloc(j,k) += 
+                Aloc(j,k) += detBJ * quadrature.get_Quadrature_weight(n) * Grad[k][n] * Grad[j][n];
                 }
             }
         }

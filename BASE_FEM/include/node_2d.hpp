@@ -21,6 +21,7 @@ namespace fem
 		Real get_x() const {return x;}
 		Real get_y() const {return y;}
 		
+		Real operator * (const Node_2d& rhs) {return x*rhs.x + y*rhs.y;}
 		void set_x(const Real& x_1);
 		void set_y(const Real& x_2);
 		void make_boundary(void) {is_bd = true;};
