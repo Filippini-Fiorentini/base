@@ -3,8 +3,6 @@
 
 #include "quadrature.hpp"
 
-#include <Eigen/Dense>
-
 namespace fem {
 
     class Reference {

@@ -43,7 +43,9 @@ Eigen::Matrix<Real, 3, 3>
             {
             for (std::size_t n=0; n<Nq; n++)
                 {
-                Aloc(j,k) += detBJ * quadrature.get_Quadrature_weight(n) * ( (invBJ_t*Grad[k][n]) * (Grad[j][n] * invBJ_t));
+                Eigen::Matrix<Real, 2, 1> g1 = Grad[k][n];
+                Eigen::Matrix<Real, 2, 1> g2 = Grad[j][n];
+                Aloc(j,k) += detBJ * quadrature.get_Quadrature_weight(n) * ( (invBJ_t*g1) * ( g2.transposeInPlace()*invBJ_t.transposeInPlace()).);
                 }
             }
         }

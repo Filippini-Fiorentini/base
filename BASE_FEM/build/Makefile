@@ -4,6 +4,7 @@ LDFLAGS +=
 M = main
 OBJ = main.o mesh_2d.o node_2d.o triangle.o interface_fem_2d.o quadrature.o reference.o
 
+ERROR_BUILD_FILE = error_build.txt
 OUTPUT_PATH = ../output/
 INPUT_FILE = ../input_files/nput_fem_2d.txt
 LOAD_SCRIPT = load_script
@@ -34,12 +35,13 @@ $(M): $(OBJ)
 #COMPILATION
 
 %.o: ../src/%.cpp   
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $^
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $^ >>& $(ERROR_BUILD_FILE)
 
 #CLEANING
 
 clean:
 	$(RM) $(OBJ)
+	$(RM) $(ERROR_BUILD_FILE)
 	$(RM) *.gch
 
 distclean: clean

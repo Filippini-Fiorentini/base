@@ -1,6 +1,7 @@
 #include <cmath>	
 #include "interface_fem_2d.hpp"
 #include "reference.hpp"
+#include <Eigen/Dense>
 
 struct f1
 	{
@@ -39,9 +40,9 @@ int main (int argc, char* argv [])
 
 	// TEST on the Reference
 	fem::Reference ref(3, {mesh, {0,1,5} });
-    Eigen::Matrix<Real, 3, 3> Aloc = ref.build_Aloc();
-    Eigen::Matrix<Real, 3, 1> bloc = build_bloc(f1());
-    fem::Triangle tri  = get_pphys_2d();
+    Eigen::Matrix<fem::Real, 3, 3> Aloc = ref.build_Aloc();
+    Eigen::Matrix<fem::Real, 3, 1> bloc = ref.build_bloc(f1());
+    fem::Triangle tri  = ref.get_pphys_2d();
 
     std::cout << "Aloc:" << Aloc << std::endl;
     std::cout << "bloc:" << bloc << std::endl;

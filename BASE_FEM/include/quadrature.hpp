@@ -1,7 +1,7 @@
 #ifndef _HH_QUADRATURE
 #define _HH_QUADRATURE
 
-#include "fem_def.hpp"
+#include "triangle.hpp"
 #include <cstdlib>
 
 namespace fem {

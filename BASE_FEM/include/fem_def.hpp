@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <functional>
+#include <Eigen/Dense>
 
 namespace fem
 	{

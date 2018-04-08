@@ -2,6 +2,10 @@
 
 namespace fem
 {
+Node_2d::operator()Eigen::Matrix<Real,2,1>
+	{
+	return {x, y};
+	}
 
 void Node_2d::set_x(const Real& x_1)
 	{
