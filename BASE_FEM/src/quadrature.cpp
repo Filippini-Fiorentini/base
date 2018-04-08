@@ -43,7 +43,7 @@ Quadrature::eval (const Real_function_2d &f) const
     {
     std::vector<Real> values(Nq);
     for (std::size_t j=0; j<Nq; j++)
-        values[j] = f(nodes[j].get_x(), nodes[j].get_y());
+        values[j] = f( nodes[j].get_x(), nodes[j].get_y() );
     return values;
     }
 }

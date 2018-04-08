@@ -55,12 +55,17 @@ Eigen::Matrix<Real, 3, 1>
     {
     Eigen::Matrix<Real, 3, 1> load;
     load.setZero();
+    Quadrature quadrature(3);
+    std::size_t Nq = quadrature.get_Nq();
+    std::vector<std::vector<Real>> phi(nln);
+    phi[0] = quadrature.eval(phi1);
+    phi[1] = quadrature.eval(phi2);
+    phi[2] = quadrature.eval(phi3);
     for (std::size_t i=0; i<nln; i++)
         for (std::size_t n=0; n<Nq; n++)
             {
-            load[i][0] += detBJ*quadrature.get_Quadrature_weight(n) * * f(pphys_2d[i].get_x(), pphys_2d[i].get_y());
+            load[i][0] += detBJ*quadrature.get_Quadrature_weight(n) * phi[i][n] * f(pphys_2d[i].get_x(), pphys_2d[i].get_y());
             }
     return load;
-    }
-            
+    }           
 }
