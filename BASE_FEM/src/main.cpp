@@ -1,5 +1,6 @@
 #include <cmath>	
 #include "interface_fem_2d.hpp"
+#include "reference.hpp"
 
 struct f1
 	{
@@ -35,6 +36,16 @@ int main (int argc, char* argv [])
 	    const std::vector<std::size_t> temp = mesh.get_vector_idx(i);
 	    tri_fstream << temp[0] << " " << temp[1] << " " << temp[2] << std::endl; 
 	    }
+
+	// TEST on the Reference
+	fem::Reference ref(3, {mesh, {0,1,5} });
+    Eigen::Matrix<Real, 3, 3> Aloc = ref.build_Aloc();
+    Eigen::Matrix<Real, 3, 1> bloc = build_bloc(f1());
+    fem::Triangle tri  = get_pphys_2d();
+
+    std::cout << "Aloc:" << Aloc << std::endl;
+    std::cout << "bloc:" << bloc << std::endl;
+    std::cout << "Triangle" << "Devo ancora stamparlo" << std::endl;
     /*
     // SOLVER TEST    
 	std::vector<std::function<fem::Real(fem::Real, fem::Real)>> vect_functions;

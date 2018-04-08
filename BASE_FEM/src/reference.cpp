@@ -51,7 +51,7 @@ Eigen::Matrix<Real, 3, 3>
     }
 
 Eigen::Matrix<Real, 3, 1>
-    Reference::build_bloc (void) const
+    Reference::build_bloc (const Real_function_2d& f) const
     {
     Eigen::Matrix<Real, 3, 1> load;
     load.setZero();
