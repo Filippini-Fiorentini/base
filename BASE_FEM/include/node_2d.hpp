@@ -21,7 +21,6 @@ namespace fem
 		Real get_x() const {return x;}
 		Real get_y() const {return y;}
 		
-		Real operator * (const Node_2d& rhs) {return x*rhs.x + y*rhs.y;}
 		void set_x(const Real& x_1);
 		void set_y(const Real& x_2);
 		void make_boundary(void) {is_bd = true;};
@@ -29,8 +28,24 @@ namespace fem
 
 		bool is_boundary (void) const {return is_bd;} 
 		
+		friend Node_2d operator * (const Eigen::Matrix<Real,2,2>& A, const Node_2d& V);
+		friend Node_2d operator * (const Node_2d& V, const Eigen::Matrix<Real,2,2>& A);
+		friend Real operator * (const Node_2d& lhs, const Node_2d& rhs);
+
 		virtual void print(void) const;
 		virtual void print(std::ofstream &) const;
 	};
+
+inline Node_2d operator * (const Eigen::Matrix<Real,2,2>& A, const Node_2d& V)
+	{
+	return {A[0][0]*V.x +  A[0][1]*V.y, A[1][0]*V.x +  A[1][1]*V.y}
+	}
+
+inline Node_2d operator * (const Node_2d& V, const Eigen::Matrix<Real,2,2>& A)
+	{return A*V;}
+
+inline Real operator * (const Node_2d& lhs, const Node_2d& rhs)
+	{return lhs.x * rhs.x + lhs.y * rhs.y;}
+
 }
 #endif

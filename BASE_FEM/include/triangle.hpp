@@ -17,7 +17,8 @@ namespace fem
 
 			std::vector<Real> get_x() const;
 			std::vector<Real> get_y() const;
-
+			Node_2d& operator[](std::size_t i) {return vect[i];};
+			Node_2d operator[](std::size_t i) const {return vect[i];}
 			void set_coord(Real x, Real y, std::size_t i);
 		};
 	}

@@ -45,7 +45,7 @@ namespace fem {
             
             // get local load factor
             Eigen::Matrix<Real, 3, 1>
-            build_bloc (void) const;
+            build_bloc (const Real_function_2d& f) const;
             
             //
             Triangle

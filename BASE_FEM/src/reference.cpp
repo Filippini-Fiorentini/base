@@ -43,7 +43,7 @@ Eigen::Matrix<Real, 3, 3>
             {
             for (std::size_t n=0; n<Nq; n++)
                 {
-                Aloc(j,k) += detBJ * quadrature.get_Quadrature_weight(n) * Grad[k][n] * Grad[j][n];
+                Aloc(j,k) += detBJ * quadrature.get_Quadrature_weight(n) * ( (invBJ_t*Grad[k][n]) * (Grad[j][n] * invBJ_t));
                 }
             }
         }
@@ -53,9 +53,14 @@ Eigen::Matrix<Real, 3, 3>
 Eigen::Matrix<Real, 3, 1>
     Reference::build_bloc (void) const
     {
-    Eigen::Matrix<Real, 3, 1> bloc;
-    bloc.setZero();
-    return bloc;
+    Eigen::Matrix<Real, 3, 1> load;
+    load.setZero();
+    for (std::size_t i=0; i<nln; i++)
+        for (std::size_t n=0; n<Nq; n++)
+            {
+            load[i][0] += detBJ*quadrature.get_Quadrature_weight(n) * * f(pphys_2d[i].get_x(), pphys_2d[i].get_y());
+            }
+    return load;
     }
             
 }
