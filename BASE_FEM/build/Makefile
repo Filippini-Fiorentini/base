@@ -35,7 +35,7 @@ $(M): $(OBJ)
 #COMPILATION
 
 %.o: ../src/%.cpp   
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $^ >>& $(ERROR_BUILD_FILE)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $^ >& $(ERROR_BUILD_FILE)
 
 #CLEANING
 

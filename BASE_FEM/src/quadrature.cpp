@@ -1,4 +1,4 @@
-#include "quadrature.h"
+#include "quadrature.hpp"
 
 namespace fem {
 

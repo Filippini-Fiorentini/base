@@ -2,7 +2,7 @@
 
 namespace fem
 {
-Node_2d::operator()Eigen::Matrix<Real,2,1>
+Node_2d::operator Eigen::Matrix<Real,2,1>() const
 	{
 	return {x, y};
 	}
