@@ -38,9 +38,9 @@ class Fdm_2d_solver
 		void set_g(Real_function_2d g1);
 		void set_exact(Real_function_2d g1);
 		void assembly(void);
-		void load_factor(void);
 		Eigen::Matrix<Real, Eigen::Dynamic, 1> solve(void);
 		Eigen::Matrix<Real, Eigen::Dynamic, 1> exact_sol(void); 
+		
 	};
 }
 #endif
