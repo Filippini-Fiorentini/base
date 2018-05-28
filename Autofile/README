@@ -1,0 +1,24 @@
+Nella cartella automatic/ c'è il programma che genera automaticamente
+header files, source files, Makefile e file .txt (a seconda dei parametri
+specificati; in particolare, il default prevede header file di una classe
+e relativo source file)
+
+Nota che l'intento è di utilizzare il programma non direttamente attraverso
+./main <parametri>
+per quanto questo sia possibile, ma di chiamarlo attraverso lo script
+autofile: 
+source autofile <parametri>
+
+Tuttavia, questo script è concepito per funzionare se è stata
+fissata una environment variable, chiamata $AUTOFILE, che contiene il path 
+della cartella automatic/
+
+Nota anche che, se il programma è eseguito direttamente con
+./main <parametri>
+anziché tramite autofile, è necessario creare prima le cartelle
+include
+src
+build
+data
+se queste sono necessarie, ossia se si richiede un header file, un source file,
+un Makefile con attributo make=inbuild e un file txt

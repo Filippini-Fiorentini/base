@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#The script allows to use the program stored in $AUTOFILE/ (see ~/startworking for the
+#relative path) in order to create files from scratch
+#It automatically generates a directory include/ and a directory src/ if they are needed
+
+#Run
+#source ~/auto_script -h
+#for information about the parameters you can pass to the program
+
+FOLDER1=$PWD
+FOLDER=$PWD
+needInclude=1
+needSrc=1
+needData=0
+needBuild=0
+
+for input in $@
+  do
+    if [ "$input" = "header=n" ]
+      then
+      needInclude=0
+    elif [ "$input" = "source=n" ]
+      then
+      needSrc=0
+    elif [ "$input" = "isdata=y" ] 
+      then
+      needData=1 
+    elif [ "$input" = "make=inbuild" ] 
+      then
+      needBuild=1
+    fi
+    sub=${input:0:6}   
+    if [ "$sub" = "folder" ] 
+      then
+      FOLDER=${input:7} 
+    fi
+  done
+
+if [ "$needInclude" -eq 1 ] && ! [ -e $FOLDER/include ]
+  then
+  mkdir $FOLDER/include
+fi
+
+if [ "$needSrc" -eq 1 ] && ! [ -e $FOLDER/src ]
+  then
+  mkdir $FOLDER/src
+fi
+
+if [ "$needData" -eq 1 ] && ! [ -e $FOLDER/data ]
+  then
+  mkdir $FOLDER/data
+fi
+
+if [ "$needBuild" -eq 1 ] && ! [ -e $FOLDER/build ]
+  then
+  mkdir $FOLDER/build
+fi
+
+(cd $AUTOFILE &&  ./main $@)
+
+cd $FOLDER1 
