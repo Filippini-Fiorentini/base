@@ -1,0 +1,130 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+% dimensione caratteri 11pt
+% foglio A4
+% stampa fronte/retro
+% numero equazioni stampato sulla destra
+% inizio capitoli sempre sulla pagina destra
+\usepackage[latin1]{inputenc} % codifica
+\usepackage{amsmath} % ambienti per le equazioni
+\usepackage{amsfonts}
+\usepackage{amssymb} % simboli matematici
+\usepackage[english]{babel} % lingua
+\usepackage{subfigure}
+\usepackage{graphicx} % per inserire le immagini
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\bigskip
+\noindent \textbf{Slide 14 - convex combination:}
+
+\noindent $\lambda_1$ ... $\lambda_n$ looks like mixed strategies
+
+
+\bigskip
+\noindent \textbf{Slide 15}
+
+\noindent A set is convex iff every convex combination of two
+elements belonging to the set is in the set
+$=>$
+The same holds if you consider $n$ elements instead of two.
+(The proof is done by induction)
+
+\noindent Idea: I want the smallest convex set containing C; the intersection
+of convex sets is convex $=>$ I can consider the intersection
+and it is the smallest convex set containing C.
+
+\bigskip
+\noindent \textbf{Slide 16}
+
+\noindent $p$ is the point at minimum distance; I'm minimizing a continuous 
+function in a closed set $=>$ I'm sure that $p$ exists. In finite
+dimensions, the existence of $p$ does not depend on convexity, but 
+convexity is needed for $1!$ and for the characterizations:
+\begin{itemize}
+\item $p \in C$
+\item $<x-p, c-p> \leq 0 \forall c \in C$
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Slide 17}
+
+\noindent Separation means I'm able to decide how to define a plane s.t. it
+separates two sets $=>$ the intersection of the interior of the sets 
+is empty. 
+A "weaker" definition of separation allows the sets to share some
+points (the sets cannot be open, since they have to share points
+on the boundary...they cannot share points in the interior, otherwise
+I cannot speak about separation)
+
+\noindent Consider the case in which I want to separate a set C from a point
+$\bar{x}$, which belongs to the closure of the complement (REMEMBER:
+THE CLOSURE OF $C^c$ contains the boundary of C)
+
+\noindent First case: $\bar{x} \in int(C^c)$
+
+\noindent The point $\bar{x}$ is outside from the set, then it cannot coincide
+with the projector.
+
+\[\langle x^*,c \rangle \geq \langle x^*, \bar{x} \rangle \forall c \in C\]
+
+\noindent Remark: in the relation 
+\[\langle x^*,c \rangle \geq b \geq \langle x^*, \bar{x} \rangle 
+\forall c \in C\]
+we can replace $x^*$ with $y^* = ax^*, a > 0$
+
+\noindent Now consider $\bar{x}$ and any sequence $\bar{x_n} \in int(C^c)$. I apply the previous step to $\bar{x_n}$.
+Indeed, exists $x_n^*$ whose norm is 1 and s.t. exists $b_n$ and
+$\langle x_n^*,c \rangle \geq b_n \geq
+ \langle x_n^*, \bar{x_n} \rangle \forall c \in C$
+
+\noindent Therefore $x_n^*$ converges to $x^*$ up to subsequences, the norm of
+$x^*$ is 1, $\bar{x_n} \rightarrow \bar{x}$ and the same for $b_n$.
+
+\bigskip
+\noindent \textbf{Slide 19}
+The theorem allows you to separate two sets as long as they are closed,
+convex.
+Remark: I don't make assumptions on the interior of B: it can have an
+empty interior (ex. I can separate a plane and a line in $\mathbb{R}^2$, even
+if the line has empty interior in $\mathbb{R}^2$)
+
+\noindent Remark: $0 \in int(A)-C \iff 0 = a-c$ for $a \in int(A)$ and 
+$c \in C$, but
+this means that $a = c$, i.e. $c \in int(A)$, which is not possible since
+the intersection between C and $int(A)$ in empty.
+$=>$
+I can separate 0 from $int(A)-C$
+$=>$
+exists $x^*$ different from 0 s.t.
+$\langle x^*,u \rangle \geq \langle x^*,0 \rangle ~\forall u \in int(A)-C$
+$=>$
+$\langle x^*, a-c  \rangle \geq 0 ~\forall a,c$ s.t. $u=a-c$
+$=>$
+$\langle x^*,a \rangle \geq \langle x^*,c \rangle ~\forall a \in int(A),
+c \in C$
+
+\noindent \textbf{Slide 20 - proof of VN theorem}
+Let P be a matrix s.t. $P_{ij} > 0 \forall i,j$ and let $p_1...p_m$
+be the columns of P.
+I want to find a solution for the game represented by P, which means
+that I want to find $\bar{x}$ and $\bar{y}$ s.t. $f(\bar{x},y) \geq v~
+\forall y$ and $f(x,\bar{y}) \leq v ~\forall x$, where $f(x,y) = 
+x^TPy$.
+
+% Mi dà enormemente fastidio il suo livello di "diseallinamento"
+% (cravatta, bottoni camicia, passante cintura, etc)
+
+\noindent REMEBER: once you fix $x$, $x^TPy$ is linear in $y$, which means that
+the utility function of the second player is linear in $y$ given a
+value for $x$.
+
+\noindent Question: what happens if the bisector of the $1^{st},3^{rd}$ 
+quadrant does not intersect the "polygon" of the possible outcomes?
+A similar situation happens only if the first row strictly dominates
+the second (or viceversa), then you know for sure which row you will
+play.
+
+\end{document} 
