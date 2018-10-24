@@ -1,0 +1,80 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\section{General Notes}
+
+\begin{itemize}
+	\item[-] \textbf{Number of pure strategies} for player $i$:
+		\[
+			\prod_{j \in P_i}{\left(number~of~children 
+			~at~node~j\right)}
+		\]
+		where $P_i$ is the set of all the decision steps for 
+		player $i$.
+	\item[-] \textbf{Mixed strategies} are probability distributions 
+		over the pure strategies.
+	\item[-] \textbf{Behavioral strategies} are probability 
+		distributions over the actions at each decision step.
+
+		\noindent They are meaningful only if the game is given in 
+		extensive form.
+	\item[-] A mixed strategy and a behavioral strategy are equivalent 
+		if they lead with the same probability to the same node.
+	\item[-] \textbf{Theorem:} for every behavioral strategy of player 
+		$i$, there exists an equivalent mixed strategy for player 
+		$i$ iff each information 
+		set of player $i$ intersects a path from the root of the 
+		tree at most once (i.e. the play is reasonable).
+
+		\noindent \underline{Counterexample:} when a player does 
+		not remember his previous choice, a path from the origin 
+		intersects the tree in more than one point (for example 
+		in two points); in this case, you can find a behavioral 
+		strategy which does not have an equivalent mixed strategy.
+	\item[-] \textbf{Theorem:} If player $i$ has perfect recall in the 
+		game, then for every mixed strategy there exists an 
+		equivalent behavioral strategy.
+
+		\noindent \textbf{Note:} we say that a player has 
+		\textbf{perfect recall} if each of his information sets 
+		intersects a path from the origin at most once and, if 
+		you have two different paths bringing to the same 
+		information set (let's call it $S$), then these paths must 
+		pass through the same information sets at the previous step 
+		and you must arrive in $S$, following each one of the paths, 
+		performing the same actions.
+
+		\noindent When the information sets are singletons (i.e. 
+		single nodes), then all the players have perfect recall.
+	\item[-] By combining the two theorems, we have that, if player $i$ 
+		has perfect recall, mixed strategies and behavioral 
+		strategies are equivalent.
+	\item[-] \textbf{Indifference principle:} at the equilibrium of the 
+		game, all the strategies that are played with positive 
+		probability must give you the same value $v$.
+
+		\noindent For example, if player1 plays $\left(p,1-p\right)$ 
+		and player2 plays $\left(q,1-q\right)$ (and all these 
+		values are strictly $>~0$, which means that both players 
+		choose mixed strategies, not pure ones), then what the first 
+		player receives from the first row should be equal to what he 
+		receives from the second row, whatever is the choice of the 
+		second player (and viceversa). In other words, the outcome 
+		which player1 has from the first row when player2 plays 
+		$\left(q,1-q\right)$ should be equal to the outcome he has 
+		from the second row when player2 plays $\left(q,1-q\right)$ 
+		and this outcome must be equal to the value of the game.
+\end{itemize}
+
+\end{document}
