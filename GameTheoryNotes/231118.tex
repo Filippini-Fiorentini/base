@@ -1,0 +1,106 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\noindent {\huge Bargaing problem}
+
+\bigskip
+\noindent \textbf{Slide 4}
+
+\noindent If player2 has the possibility to make a counteroffer, then player1 
+is in his hands. The last one who can make an offer is the winner of the game.
+
+\bigskip
+\noindent \textbf{Slide 6}
+
+\noindent Suppose that in every day a player makes an offer. Then you have a 
+discount factor for every day. In Life::real, it is not very natural to 
+assume a stopping time for bargaining; however, let's suppose that for every 
+day we have a discount factor. The discount factor is different for 
+every player. 
+
+\noindent If you reject my offer, which is (1,0), you will propose (0,1): you 
+want to have everything. But now your utility is $1 \times \delta_2$: the 
+maximum you can get is $\delta_2$. Then I can make you accept an offer by 
+simply proposing you $\delta_2$: by refusing, you cannot get more. 
+
+\bigskip
+\noindent \textbf{Slide 8 - 9}
+
+\noindent A play, in the game, is a series of offers. It is possible that the 
+game is endless: everybody rejects the offer. In turn, it is possible that the 
+offer is accepted at a certain time $T$. The utilities in these cases, 
+considering that we are in a discount situation, we have:
+\begin{enumerate}
+	\item In the first case, we have (0,0)
+	\item In the second case, we have an utility which depends on the discount 
+	factor. The point is: the more you remain in the bargain situation, the 
+	less is your outcome. If you postpone the decision, you will get less.
+\end{enumerate}
+
+\noindent In this context, we cannot speak about backward induction: we need 
+the game to be finite (i.e. there is a stopping rule, which in this case we 
+do not have). However, we can express backward induction in finite games by 
+considering each node of the tree as the root of a smaller subgame; we can 
+define backw. ind. by saying that its strategy is a str. s.t. its restriction 
+to every subgame is a Nash equilibrium for the subgame itself.
+
+\noindent With this definition, we do not care any more that the game must be 
+finite: what is important is that the subgame, even if infinite, is actually 
+a game and it has a Nash equilibrium.
+
+\noindent \textbf{Remark:} consideriamo il gioco in cui la madre può comprare o 
+non comprare il gelato e il figlio può piangere o no. L'equilibrio di Nash del 
+gioco è (buy,cry). Se restringiamo l'osservazione al subgame di destra, per 
+cui la madre non ha possibili scelte e il figlio può piangere o non piangere, 
+notiamo che "cry" non è un equilibrio di Nash per il figlio: per lui è meglio 
+non piangere $\implies$ un equilibrio di Nash può imporre decisioni irrazionali 
+ai giocatori nei rami decisionali che all'atto pratico non verranno mai 
+raggiunti (infatti, se la mamma compra il gelato, il bambino non piange).
+
+\bigskip
+\noindent \textbf{Slide 11}
+
+\noindent Idea: un giocatore propone, ad esempio (60,40), ma è pronto ad 
+accettare anche se l'altro propone (50,50) (e viceversa). Occorre trovare 
+un equilibrio tra le due proposte. 
+
+\bigskip
+\noindent \textbf{Slide 19}
+
+\noindent We forget alternate offers and strategies, we only speak about 
+utilities. The set $C$ is the set of all the possible distributions of utilities; 
+in principle we do not know how these utilities are obtained.
+
+\noindent Disagreement point $d$: utility if we do not reach an agreement.
+
+\noindent This is a Non Transferrable Utility cooperative game.
+
+\bigskip
+\noindent \textbf{Slide 20}
+
+\noindent \textbf{Remark:} this approach is possible only with two players.
+
+\noindent Assumptions:
+\begin{enumerate}
+	\item This is obvious: we always take closed sets, otherwise we could 
+	miss existence.
+	\item Oh, be'
+	\item This means that players can reach an agreement s.t. their utility 
+	is greater than what they get in case of disagreement. If this assumption 
+	were not fullfilled, then there would be at least one player for which 
+	there is not reason to bargain. Iot have an interesting bargaining, 
+	players must have the possibility to meet somewhere.
+\end{enumerate}
+
+\end{document}

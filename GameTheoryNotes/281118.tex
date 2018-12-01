@@ -1,0 +1,85 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\noindent {\huge The Bargaining problem}
+
+\bigskip
+\noindent \textbf{RIPASSO}
+
+\noindent First idea is: player1 makes an offer and player2 can only accept or 
+refuse the offer.
+
+\noindent The idea of Nash eq. can be seen as a necessary condition of 
+rationality: a player cannot accept a proposal which is not a Nash eq.
+
+\noindent The game has perfect information $\implies$ we can apply backward 
+induction iot analyse the game.
+
+\noindent Second possibility: we can consider alternating offers from player1 
+and player2. If there is a stopping cryterion (ex. we can make only 10 offers), 
+then the equilibrium is: one player offers "I keep all and you takes nothing" 
+and the other accepts.
+
+\noindent Third possibility: players are impatient $\implies$ we apply to the 
+offers a discount factor for any day they spend in bargaining. In this case, 
+player1 should offer to player2 exactly his discount factor $\delta_2$, so that 
+he accepts because at an hypothetical second stage he cannot get more than this.
+
+\noindent What are the strategies of the game? We have to tell what the players 
+would do at any node, not only in the equilibrium path!\\
+$\implies$\\
+Strategies: see slide 7.
+
+\noindent Possible generalization: infinite number of stages (i.e. there is not 
+a stopping rule). We can have an infinite play, in the sense that a player makes 
+an offer and the other always refuses, or a finite game, in the sense that, 
+after a certain number of offers and counteroffers, one player accepts. In 
+the first case, utilities are zero, while in the second case we have the 
+strategies given in slide 8, where $T$ is the time at which the offer is 
+accepted.
+
+\noindent We cannot apply backward induction if the length of the game is 
+infinite. However, backward induction has the following property: if we 
+consider a node which is not the root and we take it as root for a subgame, 
+the subgame itself is a game $\implies$ the restriction to the subgame of the 
+players' strategies produces a Nash equilibrium at the root of the subgame, if 
+we apply backward induction.
+
+\noindent Nash equilibria can prescribe an irrational choice to a player in 
+some parts of the tree, which actually are not reached by the game, while 
+this is not possible with backward induction (example: the mother and the son).
+
+\noindent Good solution for infinite games with perfect information: subgame 
+perfect Nash equilibrium profile (see slide 9).
+
+\noindent If at the $1^{st}$ stage I am player1 (I make an offer) and you are 
+player2, at the second stage the game is exactly the same (same preferences 
+and same rules), but for the fact that now you are player1 and I am player2. In 
+the third game, we return exactly to the situation of the first day etc. This 
+means that in day3 I should offer exactly the same I offered in day1.
+
+\noindent In Life::real, it may happen that I offer in the first day (80,20) and 
+finally we agree for (60,40), but this is possible because I actually do not 
+know your utility function and I have to try to say something and see your 
+reaction! In our model, we assume to have perfect information and such a 
+behaviour is not necessary.
+
+\bigskip
+\noindent \textbf{Slide 15}
+
+\noindent I must prove that it is a subgame perfect NEp $\implies$ I must 
+analyse any subgame and see what happens.
+
+
+\end{document}

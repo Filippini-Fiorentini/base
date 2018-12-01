@@ -1,0 +1,262 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\noindent {\huge Shapley value and power indices}
+
+\noindent The core solution is a multifunction from the set of the game to 
+real values. Nucleulus is not a multifunction: it attaches 1! value to the 
+vectors of all the players.
+
+\noindent The Shapley value is another solution concept; it is a solution 
+function, not a multifunction: you only have one distribution of utilities.
+
+\bigskip
+\noindent \textbf{Slide 3}
+
+\begin{enumerate}
+	\item Efficiency: the sum of the utilities that $\phi$ distributes 
+	coincides with $v(N)$.
+	
+	\item Symmetry: $i,j$ are players s.t. if A is a coalition that does not 
+	cointain neither $i$ nor $j$, then, adding $i$ or $j$ to A gives exactly 
+	the same result.
+	\textbf{Example:} in a Parliament, two parties with exactly the same 
+	number of seats.
+
+	\item Suppose that player $i$ is useless: you do not increase (or decrease) 
+	the utility of a coalition by adding the player $i$. Then, to that player, 
+	you should assign utility (or cost) equal to zero.
+
+	\item Additivity: remember that v and w are vectors and you know how to 
+	sum vectors. Problem: we do not actually know what's the meaning of a game 
+	which is defined as the sum of two games. We still consider this property 
+	because it is useful iot define a solution.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Slide 5}
+
+\noindent If you believe that a function should fullfill all the properties of 
+slide 3, then you are obliged to consider $\sigma$, since it is the only 
+function that fullfills these properties.
+
+\noindent $v(S \cup \{i\} - v(S))$: I can say that the difference is what 
+player $i$ brings as marginal contribution to the coalition $S \cup \{i\}$.
+
+\noindent The Shapley solution of player $i$ is a weighted sum of all the 
+marginal contributions of player $i$. 
+
+\noindent What's the meaning of the coefficient? 
+
+\noindent \textbf{Notation:} $s = |S|$: small s is the number of elements in 
+the coalition S.
+
+\noindent Suppose that a group of players arrange to meet and suppose that 
+the order of arrivals is random. Coefficient: probability that player $i$ 
+enters the room and finds there only the players of coalition S. Indeed, the 
+number of possible arrival orders is given by all the possible permutations of 
+players, i.e. it is $n!$. Player $i$ makes a coalition with S only if all the 
+people in S are already there when he enters the room. Of course, the internal 
+ordering of players in S does not matter: he will consider all the possible 
+permutations of the elements in S. Analogously, also the ordering of all the 
+players who will arrive after $i$ does not matter, which means that you 
+consider $s!$ and $(n-s-1)!$.
+
+\noindent Consider the example of \textbf{slide 11} for the interpretation of 
+the coefficient.
+
+\noindent First column: list of all the possible arrival orderings (example: 
+first row: they arrive in order "player1 - player2 - player3").
+
+\noindent In the first row, player1 makes a coalition with no one, therefore 
+his marginal contribution is $v(\{1\}) = 0$. Player2 makes a coalition with 
+player1, therefore his marginal contribution is $v(\{1,2\}) - v(\{1\}) = 4 - 0$. 
+Etc.
+
+\noindent Comment: there are repeated values over each column; this is obvious 
+because there are multiple situations in which, for example, player1 is the 
+first to arrive. 
+
+\noindent All the coalitions that do not contain player1 are:
+\[
+	\emptyset,~ \{2\},~ \{3\},~ \{2,3\}
+\]
+therefore marginal values are:
+$v(1) - v(\emptyset)$\\
+$v(\{1,2\}) - v(2)$\\
+$v(\{1,3\}) - v(3)$\\
+$v(N) - v(\{2,3\})$.
+
+\bigskip
+\noindent \textbf{Slide 7, 8, 9 - proof of Shapley theorem}
+
+\begin{enumerate}
+	\item Efficiency: I write in $\sum_{i=1}^n{\sigma_i(v)}$ the definition 
+	of $\sigma_i$ given by the Shapley theorem. $v(N)$ appears in the sum 
+	only when $S = N - {i}$, because the internal sum is defined over S s.t. 
+	$S \subseteq N - {i}$. 
+	We consider any coalition A and we prove that v(A) appears with coefficient 
+	zero (because it appears sometimes with positive and sometimes with negative 
+	coefficient, therefore, overall, its contribution is zero). 
+	We have positive coefficient when $A = S \cup \{i\}$, i.e. when $i$ belongs 
+	to A. If $A = S \cup \{i\}$, the caridinality of A, which is a, is 
+	given by $s-1$. 
+	We have the negative coefficient when player $i$ does not belong to A, i.e. 
+	it appears $n-a$ times, exactly when $A = S$.
+
+	\item Symmetry: I should prove that $\sigma_i(v) = \sigma_j(v)$. 
+	Remember: these are two different sums: in $\sigma_i$ I consider coalitions 
+	that do not contain $i$, but of course they may contain $j$ (and viceversa). 
+	I proceed by splitting the sum between the coalitions that do not contain 
+	neither $i$ nor $j$ and then I add what I need. Therefore, in the second 
+	term of $\sigma_1$, for example, the index is S (which does not contain 
+	neither $i$ nor $j$), but the actual coalition is $S \cup \{j\}$. 
+	With this trick, the two formulas are exactly the same, I only have to 
+	interchange $i$ and $j$. Since the union is symmetric and since in each 
+	sum I have the same coefficients, I have exactly that $\sigma_1 = \sigma_2$, 
+	which corresponds to symmetry.
+
+	\item Null player property means that $v(S \cup \{i\}) - v(S)$ is always 
+	zero, which of course entails that $\sigma_i$ is always zero (I can have 
+	whatever coefficient).
+
+	\item Additivity: also here the coefficients do not matter. I only have to 
+	apply distributive law (it. raccoglimento a fattor comune).
+\end{enumerate}
+
+\noindent What we still did not prove is uniqueness of $\sigma$. Remember the 
+unanimity game, which is a basis for the set of games $\mathcal{G}(N)$. It is 
+enough to prove that if I consider the game $Cu_A$, where $C$ is a constant 
+(remember: a game is a vector and I can always multiply a vector by a 
+constant), then the function must be the Shapley value. 
+What happens is the following:
+\begin{itemize}
+	\item players inside A are symmetric (they are all necessary to make 
+	the coalition winning)
+
+	\item players outside A are null players, because if A is a winning 
+	coalition it has value 1 and this value remains 1 no matter how many 
+	players I add.
+\end{itemize}
+Therefore players inside A must take 0 and players outside A must take all the 
+same value. But the game is efficient $\implies$ players outside A must take 
+$\frac{C}{n}$.
+
+\bigskip
+\noindent \textbf{Slide 10}
+
+\noindent Simple games are the one in which the value of a coalition is either 
+0 or 1. In this case, it is easy to compute marginal contributions: they can 
+only be given by $1-1$, $0 - 0$ or $1 - 0$. The only important case is the 
+last one: to add a player to a winning coalition does not change anything and 
+to add a player to a losing coalition does not tell anything interesting if 
+the new coalition is still losing. 
+The case $0 - 1$ cannot occur: if I add a player to a winning coalition, it 
+cannot become a losing coalition.
+
+\noindent Iot compute $\sigma_i$, we must count the number of times in which 
+player $i$ is crucial for a coalition.
+
+\bigskip
+\noindent \textbf{Slide 12}
+
+\noindent The game: player1 only need 1km truck, player2 needs 2km and player3 
+needs 3km. The total cost is $c_3$. How to share this cost among the players? 
+
+\noindent For player2, we have:
+$v(2) - v(\emptyset) = c_2$\\
+$v(\{1,2\}) - v(1) = c_2 - c_1$\\
+$v(\{2,3\}) - v(3) = 0$\\
+$v(N) - v(\{1,3\}) = 0$\\
+The last two differences are zero because if we have player3 we must build 
+3km and therefore the arrival of player2 does not change anything (we do not 
+have kms to add only because player2 has joint the coalition). 
+Therefore $\sigma_2 = \frac{c_2}{3} - \frac{c_2-c_1}{6}$
+
+\bigskip
+\noindent \textbf{Slide 13}
+
+\noindent In simple games, the main goal is to divide coalitions in winning 
+and losing ones. The interpretation of a solution is not utility: what is 
+important is the fact that, for example, if two parties are strong enough to 
+get the majority, they have a lot of power. The game is not expressed in terms 
+of utility. Shapley values express the fraction of power owned by every player, 
+rather than their utility.
+
+\noindent \textbf{Example:} consider two different situations. You have 
+four players and each one of them owns a portion of the stocks of a 
+company. In the first case, we have that their percentages are:\\
+$\{10, 20, 30, 40\}$\\
+while in the second case we have: \\
+$\{10, 21, 30, 39\}$.
+
+\noindent The two situations appears to be almost the same, but in fact they are 
+not: in the first case, sometimes player1 is crucial iot build a winning 
+coalition, since a coalition is winning iff it owns more than $50\%$. 
+In the second case, actually, player1 is the null player: all the other 
+can make winning coalitions without him.
+
+\noindent On the other hand, a third situation\\
+$\{11, 20, 30, 39\}$\\
+turns out to be almost equal to the first one. The point are not numbers, but 
+the real meaning of those numbers.
+
+\noindent \textbf{Remark:} when I'm measuring the power of the players, what 
+actually means is the ratio: it is the fact, for example, that my fraction 
+of power is twice the yours. In this context, efficiency is not a 
+requirement I must have.
+
+\bigskip
+\noindent \textbf{Slide 14}
+
+\noindent Remember: $s$ is the cardinality of coalition $S$. What I am saying 
+is that the probability to make a coalition with coalition A is equal to 
+the probability to make a coalition with B, if both A and B have the same 
+cardinality. This assumption is not reasonable, for example, in a parliament, 
+when I do not make coalitions with some parties only because they have the 
+right number of seats {\huge ma certo XD}.
+
+\bigskip
+\noindent \textbf{Slide 15}
+
+\noindent Banzhaf value: it says that the number of players in a coalition 
+does not matter when I have to decide to which coalition I want to belong. 
+Every coalition is equally likely. This is sometimes reasonable, when I 
+know that players aggregate no matter the number they are.
+
+\noindent I use dictatorial value when I have the feeling that people might 
+aggregate in coalitions, but this is unlikely.
+
+\bigskip
+\noindent \textbf{Slide 16}
+
+\noindent All non-veto players are symmetric and all veto players are 
+symmetric $\implies$ I only have to compute one Shapley value and then 
+apply symmetry and additivity. Calculations should be equal for non-veto 
+players. A non-veto player is crucial if he joins a coalition where we already 
+have 5 veto players and 3 non-veto players. To be in this situation, I have 
+nine players (the remaining non-veto players when I am considering player 
+$i$) and I have to take 3.
+
+\noindent On the other hand, a veto player is crucial when I have 4 veto 
+players and at least 4 non-veto players.
+
+\noindent The ratio between the Banzhaf of non-veto and the Banzhaf of 
+veto players is almost 10, while for Shapley it is almost 100 $\implies$ 
+there is a factor of 10 among them.
+
+\noindent Properties of semivalues: if you consider Shapley, they fullfill 
+all the properties of Shapley but for efficiency.
+
+\end{document}
