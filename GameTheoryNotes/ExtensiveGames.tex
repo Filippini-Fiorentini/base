@@ -1,0 +1,306 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\noindent \textbf{Remark:}
+\begin{itemize}
+	\item \textbf{Complete knowledge:} any player knows all the options, all the 
+	preference relations and all the utility functions of the other players.
+	\item \textbf{Perfect knowledge:} any player know the past history of the 
+	game and its possible developments (i.e. he knows what he does and what the 
+	other players do at any step).
+\end{itemize}
+
+\noindent \textbf{Finite directed graph:} it is a pair (V,E), where V is a 
+finite set of vertices and $E \subset V \times V$ is a set of ordered pairs of 
+vertices which represent the edges of the graph.
+
+\noindent A \textbf{path} between two vertices $v_1$ and $v_k$ is a finite 
+sequence of pairs vertex-edge $v_1,e_1,v_2,e_2,...,v_{k-1},e_{k-1},v_k,e_k$ 
+s.t. $e_i \neq e_j$ if $i \neq j$ and $e_j = (v_j,v_{j+1})$. The number of 
+edges connecting $v_1$ and $v_k$ (i.e. $k-1$) is called the length of the path.
+
+\noindent \textbf{Tree:} it is a triple (V,E,$x_0$), where (V,E) is a directed 
+graph and $x_0$ is a vertex in $V$, called root of the tree, s.t. there exists 
+a path from $x_0$ to any $x \in V$.
+
+\noindent Given a vertex $v$, any vertex $x$ is a child of $v$ if $(v,x) \in E$; 
+in this case, we can also say that the vertex $x$ follows the vertex $v$. 
+A vertex is called a leaf if it has no children.
+
+\bigskip
+\noindent \textbf{Extensive form game with perfect information:} it is a way to 
+represent a game by a tree. In particular, it is constituted by:
+\begin{itemize}
+	\item a finite set of players $N = \{1,2,...,n\}$
+	\item a tree (V,E,$x_0$), where the nodes represent the decision points for 
+	the players, the edges represent their possible actions and the root is the 
+	initial situation of the game
+	\item a partition made by the sets $P_1,P_2,...,P_{n+1}$ of the vertices 
+	that are not leaves. In particular, $P_i$, for $i=1:n$ is the set of the 
+	nodes where it is player $i$'s turn to make a choice, while $P_{n+1}$ 
+	represents a possible random choice (it can be $\emptyset$)
+	\item a probability distribution for each vertex in $P_{n+1}$, defined on 
+	the edges going from this vertex to its children.
+	\item an n-dimensional vector attached to each leaf, representing the 
+	outcomes of the players. Notice that when $P_{n+1}=\emptyset$ the players 
+	need only to have their lists of preferences on the leaves: utility 
+	functions are not required.
+\end{itemize}
+We define the length of the game as the length of the longest path in the game 
+itself.
+
+\bigskip
+\noindent \textbf{Backward induction:} it is a procedure that allows to solve 
+a game of any finite length by applying the rationality assumptions. In 
+particular, decision theory allows to solve games of length 1 (i.e. it allows 
+to determine what players do in positions leading to leaves). Since this is 
+known to all the other players, they can use this information iot solve games 
+of length $i+1$, once the games of length at most $i$ are solved.
+
+\noindent Backward induction allows to determine the optimal path over the tree. 
+This method can be applied because any vertex $v$ can be considered the root of 
+a subgame made by all the followers of $v$ in the original tree.
+
+\noindent \textbf{Note:} in backward induction, a move must be specified at any 
+node.
+
+\bigskip
+\noindent \textbf{First rationality theorem:} the rational outcomes of a finite 
+game with perfect information are those given by the procedure of backward 
+induction.
+
+\noindent \textbf{Note:} uniqueness is not granted. For example, it does not 
+hold when a player is indifferent to a particular choice.
+
+\bigskip
+\noindent \textbf{Zermelo's theorem:} in the game of the chess, one and only 
+one of the following alternatives holds: {\huge Every time I see the Zermelo's 
+alternative, I miss the Fredholm's one -.-"}
+\begin{enumerate}
+	\item The white has a way to win, no matter what the black does.
+	\item The black has a way to win, no matter what the white does.
+	\item The white has a way to force at least a draw, not matter what the 
+	black does, and viceversa.
+\end{enumerate}
+This theorem applies to every finite game with perfect information 
+that can end with either the victory of one player or a tie.
+
+\noindent \textbf{Note:} this theorem does not applies to games in which a 
+fourth alternative can hold: player1 has a way to win no matter what player2 
+does AND player2 has a way to win no matter what player1 does (which 
+happens, for example, in \textit{rock/scissor/paper} game, where actually 
+the players play at the same instant, which means that there is no difference 
+between player1 and player2, besides their name).
+
+\bigskip
+\noindent \textbf{Proof} (based on backward induction): let $2K$ be the length 
+of the game, so that any player has $K$ choices to make. Let $a_i$ be the 
+choice of the white player at his stage $i$ and let $b_i$ be the one of the 
+black player. Alternative (1) can be represented by:
+\[
+	\exists~a_1: ~\forall b_1, ~\exists~a_2: ~\forall b_2,...
+	~\exists~a_k: ~\forall b_k, white~wins
+\]
+Suppose that this proposition is not true. Then, the converse must be true, 
+i.e.
+\[
+	\forall~a_1, ~\exists b_1: ~\forall~a_2, ~\exists b_2:...
+	~\forall~a_k, ~\exists b_k: white~does~not~win
+\]
+which means that black has the possibility to get at least a draw.
+
+\noindent To sum up, if white does not have a way to win no matter what black 
+does, than black has the possibility to get at least the draw. Symmetrically, 
+if black does not have a way to win no matter what white does, than white has 
+the possibility to get at least the draw. This means that if both alternative 
+(1) and alternative (2) do not hold, then alternative (3) must be true.
+
+\bigskip
+\noindent \textbf{Corollary} (in case the tie is not allowed): in every finite 
+game with perfect information whose end can be only the victory of one player, 
+one and only one of the following alternatives holds:
+\begin{enumerate}
+	\item Player1 has a way to win, no matter what player2 does.
+	\item Player2 has a way to win, no matter what player1 does.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Types of solutions:}
+\begin{itemize}
+	\item Very weak solution: the game has a single rational outcome, which is 
+	inaccessible (ex. chess).
+	\item Weak solution: the outcome of the game is known, but we do not know 
+	how to reach it.
+	\item Solution: it is possible to provide an algorithm to find the rational 
+	outcome of the game.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Impartial combinatorial game:} it is a game such that:
+\begin{enumerate}
+	\item there are two players moving in alternate order
+	\item there is a finite number of positions
+	\item both players must follow the same rules
+	\item the game ends where no possible moves are available
+	\item chance is not present
+	\item (classical version): the player who leaves the other with no 
+	available moves is the winner OR
+	\item (misere version): the player who leaves the other with no 
+	available moves is the loser.
+\end{enumerate}
+The set of all the possible positions is partitioned in two subsets: the 
+subset of the P-positions and the one of the N-positions, applying the following 
+rules:
+\begin{itemize}
+	\item[-] terminal positions (from which the players do not have any 
+	available move, in the classical version) are P-positions
+	\item[-] from a P-position, only N-positions can be reached
+	\item[-] from an N-position, it is always possible to go to a P-position.
+\end{itemize}
+$\implies$ the player in an N-position is winning. Indeed, he can always lead 
+the other player in a P-position, from which he cannot exit (he can only move 
+to an N-position, so that all is repeated).
+
+\bigskip
+\noindent \textbf{Nim game:} it is defined as $(n_1,n_2,...,n_k)$ where 
+$n_i \in \mathbb{N}\setminus\{0\} ~\forall i$. A player has to take one and only 
+one $n_i$ and substitute it with $\bar{n_i} < n_i$. The winner is the player 
+arriving at the position (0,0,...,0).
+
+\noindent \textbf{Nim sum:} it is an operation $\oplus$ defined on $\mathbb{N}$ 
+in the following way: for $n_1,n_2 \in \mathbb{N}$,
+\begin{enumerate}
+	\item write $n_1$ and $n_2$ in their binary form $[n]_2$
+	\item write the sum $[n_1]_2 \oplus [n_2]_2$ in binary form, where $\oplus$ 
+	is the usual sum without carry
+	\item write the result in decimal form
+\end{enumerate}
+
+\noindent \textbf{Group:} a set $A$ with an operation $\cdot$ such that:
+\begin{enumerate}
+	\item $a \cdot b \in A ~\forall a,b \in A$
+	\item $\cdot$ is associative: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+	\item $\exists$ the identity element: $\exists e \in A$ s.t. 
+	$a \cdot e = e \cdot a ~\forall a \in A$.
+	\item $\exists$ the inverse element: $\forall a \in A, ~\exists b \in A$ 
+	s.t. $a \cdot \b = b \cdot a = e$.
+\end{enumerate}
+\textbf{Abelian group:} a group s.t. $\cdot$ is commutative.
+
+\noindent \textbf{Proposition:} if $(A,\cdot)$ is a group, then the cancelation 
+law holds: $a \cdot b = a \cdot c \implies b = c$.
+
+\noindent $\implies$ un gruppo è il minimo ambiente in cui è possibile risolvere 
+una equazione.
+
+\noindent \textbf{Proposition:} $(\mathbb{N},\oplus)$ is an abelian group.
+
+\noindent \textbf{Proof:} the identity element is 0, while the inverse of $n$ 
+is $n$ itself.
+
+\bigskip
+\noindent \textbf{Bouton's theorem:} a position $(n_1,...,n_k)$ in the Nim game 
+is a P-position iff $n_1 \oplus n_2 \oplus ... \oplus n_k = 0$.
+
+\noindent \textbf{Proof:}
+
+\bigskip
+\noindent \textbf{Strategies:}
+\begin{itemize}
+	\item A \textbf{pure strategy} for player $i$ is a function defined on the 
+	set $P_i$ that associates to any $v \in P_i$ a child $w$ (or, equivalently, 
+	the edge (v,w) which represents the decision taken by the player).
+	\item A \textbf{mixed strategy} is a probability distribution over the set 
+	of the pure strategies.
+
+	\noindent If, for example, a player has $n$ pure strategies, the set of his 
+	mixed strategies is $\Sigma_n = \{p = (p_1,...,p_n): p_i \geq 0 
+	~\forall i ~and~ \sum{p_i} = 1\}$.
+\end{itemize}
+The number of strategies for player $i$ when $P_i = \{v_1,...,v_k\}$ and $v_j$ 
+has $n_j$ children is $n_1 \cdot n_2 \cdot ... \cdot n_k$.
+
+\bigskip
+\noindent \textbf{Zermelo's theorem in terms of strategies:} in the chess game, 
+one of the following alternatives holds:
+\begin{enumerate}
+	\item the white has a winning strategy
+	\item the black has a winning strategy
+	\item both players have a strategy leading them at least to tie
+\end{enumerate}
+The case excluded by Zermelo's theorem is represented by the matrix:\\
+T \hspace{.6cm} B \hspace{.6cm}	W\\
+W \hspace{.6cm} T \hspace{.6cm} B\\
+B \hspace{.6cm}	W \hspace{.6cm}	T\\
+where, in all rows and columns, both white and black have the possibility to 
+win, to lose or to get a tie.
+
+\bigskip
+\noindent \textbf{Information set:} an information set for player $i$ is a pair 
+$(U_i,A(U_i))$ with the following properties:
+\begin{enumerate}
+	\item $U_i \subset P_i$ is a nonempty set of vertices $v_1,...,v_k$.
+	\item each $v_j \in U_i$ has the same number of children.
+
+	\noindent We need this property, otherwise we would have a way to 
+	distinguish between two vertices, while player $i$, even if he knows he is 
+	in $U_i$, must not know in which vertex he is.
+
+	\item $A_i(U_i)$ is a partition of the children of $v_1 \cup v_2 \cup ... 
+	\cup v_k$ s.t. each element of the partition contains exactly one child of 
+	each vertex $v_j$.
+
+	\noindent This means that every set of the partition represents an available 
+	move for the player.
+\end{enumerate}
+
+
+\bigskip
+\noindent \textbf{Extensive form game with imperfect information:} it is 
+constituted by:
+\begin{itemize}
+	\item a finite set of players $N = \{1,2,...,n\}$
+	\item a tree (V,E,$x_0$), where the nodes represent the decision points for 
+	the players, the edges represent their possible actions and the root is the 
+	initial situation of the game
+	\item a partition made by the sets $P_1,P_2,...,P_{n+1}$ of the vertices 
+	that are not leaves. In particular, $P_i$, for $i=1:n$ is the set of the 
+	nodes where it is player $i$'s turn to make a choice, while $P_{n+1}$ 
+	represents a possible random choice (it can be $\emptyset$)
+	\item a partition $U_i^j$, where $j=1:k_i$, of the set $P_i$ for all i, 
+	with $(U_i^j,A(U_i^j))$ being an information set for all $i$ and for all $j$.
+	\item a probability distribution for each vertex in $P_{n+1}$, defined on 
+	the edges going from this vertex to its children.
+	\item an n-dimensional vector attached to each leaf, representing the 
+	outcomes of the players. Notice that when $P_{n+1}=\emptyset$ the players 
+	need only to have their lists of preferences on the leaves: utility 
+	functions are not required.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Strategies in an imperfect information game:}
+\begin{itemize}
+	\item a \textbf{pure strategy} for player $i$ is a function defined on the 
+	collection $\mathcal{U}$ of his information sets which assigns to each 
+	$U_i \in \mathcal{U}$ an element of the partition $A(U_i)$
+	\item a \textbf{mixed strategy} is a probability distribution over the set 
+	of the pure strategies.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Remark:} a perfect information game can be seen as a 
+particular imperfect information game where all the information sets are 
+singletons.
+
+\end{document}

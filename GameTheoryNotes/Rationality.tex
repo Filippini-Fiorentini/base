@@ -1,0 +1,92 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\noindent \textbf{Game:} process that can be described by:
+\begin{enumerate}
+	\item a set $N$ of players s.t. $|N| > 1$
+	\item an initial situation
+	\item the list of the possible actions of the players
+	\item the list of all the possible final situations
+	\item the preferences of all the players on the set of the final 
+	situations.
+\end{enumerate}
+
+\noindent \textbf{Crucial assumptions on the players:} they are
+\begin{enumerate}
+	\item egoistic: they only care about their own preferences
+	\item rational: there are five rationality assumptions that must hold if 
+	we want to define a game.
+	\begin{enumerate}
+		\item The agents are able to provide a \textbf{preference relation} 
+		(i.e. either a total preorder\footnote{We call \textbf{total preorder} 
+		or \textbf{ranking} a reflexive, transitive and total binary relation 
+		over a set X; we call \textbf{total order} a total preorder which is 
+		also antisymmetric.} 
+		or a total order) over the outcomes of the game.
+
+		\noindent The fact that the preference relation (i.e. the ordering) 
+		must be total means that players cannot refuse to make a choice.
+
+		\noindent Notice that two alternatives have the same rate if the player 
+		is indifferent to choose among them.
+
+		\item The agents are able to provide an \textbf{utility function} 
+		representing their preference relations, whenever necessary.
+
+		\noindent Given a set $X$ and a preference relation $\succeq$ over $X$, 
+		an utility function is a function $u:~X\rightarrow~\mathbb{R}$ 
+		such that $u(x) \geq u(y) \iff x \succeq y ~\forall x,y \in X$.
+
+		\noindent Notice that an utility function always exists if the set $X$ 
+		is finite (: you can always assing a rating to a finite number of 
+		alternatives). Moreover, if an utility function exists, then there are 
+		infinitely many: utility functions are equivalent up to strictly 
+		increasing transformations.
+
+		\noindent In general, we also assume that any player knows the 
+		preference relations that hold for the other players and their 
+		utility functions (\textbf{complete knowledge}).
+
+		\item Players use consistently the probability laws; in particular, 
+		they are consistent wrt the computation of expected utilities and 
+		they can update probabilities according to the Bayes 
+		rule\footnote{Idea of the Bayes rule is the following: you start to 
+		analyse a problem $\implies$ you get some information $\implies$ you 
+		update the probabilities associated to different events according to 
+		those information $\implies$ etc.}.
+
+		\item The players are able to evaluate the consequences of all the 
+		actions and the consequence of this information on any other player.
+
+		\item Players are able to apply decision theory, whenever it is 
+		possible, i.e., given a set of alternatives $X$ and an utility function 
+		$u$, any player looks for an $\bar{x} \in X$ s.t. 
+		$u(\bar{x}) \geq u(x) ~\forall x \in X$.
+	\end{enumerate}	
+\end{enumerate}
+
+\noindent \textbf{Elimination of strictly dominated actions:} this principle 
+holds as a consequence of the assumptions described above. In particular, 
+supposing that player1 can choose among actions $x \in X$ and player2 can 
+choose among actions $y \in Y$,we say that $x$ is strictly dominated by 
+$x^* \in X$ if $u(x^*,y) > u(x,y) ~\forall y \in Y$. The principle states that 
+a player does not take an action $x$ if there is an admissible action $x^*$ s.t. 
+$x^*$ provides him a strictly better result than $x$, no matter what the other 
+players do.
+
+\noindent \textbf{Remark:} we can also state a principle of weakly dominated 
+actions, but this is not always acceptable because to keep weakly dominated 
+actions can lead to an overall better outcome for the players.
+
+\end{document}
