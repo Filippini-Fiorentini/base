@@ -1,0 +1,176 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\noindent {\huge Arrow's Theorem}
+
+\bigskip
+\noindent \textbf{Notation:}
+\begin{itemize}
+	\item [-] $N$: set of agents
+	\item [-] $O$: set of outcomes (i.e. set of candidates on which the agents 
+	must express their preference), with $|O| \geq 3$.
+	\item [-] $L$: set of all possible strict preference orderings over $O$.
+	\item [-] $\succ_i$: a preference ordering for the agent $i$.
+	\item [-] $W$: social welfare function.
+	\item [-] $\succ_W$: preference ordering selected by the social welfare 
+	function $W$.
+
+	\noindent In particular, we denote by $\succ_{W_{([\succ'])}}$ the social 
+	order selected by $W$ when it receives as input $[\succ']$.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Pareto Efficiency (PE) - Unanimity property}
+
+\noindent A social welfare function $W$ is Pareto efficient if for any $o_1, o_2 
+\in O$, $\forall~i \in N$, $o_1 \succ_i o_2$ implies $o_1 \succ_W o_2$.
+
+\bigskip
+\noindent \textbf{Independence of irrelevant alternatives (IIA)}
+
+\noindent $W$ is independent of irrelevant alternatives if, for any $o_1,o_2 
+\in O$ and two preference profiles $[\succ']$ and $[\succ''] \in L^n$, 
+$\forall~i \in N$ ($o_1 \succ' \o_2$ if and only if $o_1 \succ'' o_2$) implies 
+that ($o_1 \succ_{W_{[\succ']}} o_2$ if and only if $o_1 \succ_{W_{[\succ'']}} 
+o_2$).
+
+\noindent This means that the selected ordering between two outcomes depends 
+only on their relative ordering given by the agents.
+
+\noindent \textit{NOTE:} the fact that we assumed $|O| \geq 3$ depends on the 
+fact that the IIA property is not meaningful in the case of only two outcomes.
+
+\bigskip
+\noindent \textbf{Non-dictatorship (ND)}
+
+\noindent $W$ is non-dictatorial if it does not have a dictator, i.e. 
+$\nexists ~i \in N$ s.t. $\forall ~o_1,o_2 \in O$, $o_1 \succ_i o_2 \implies 
+o_1 \succ_W o_2$.
+
+\bigskip
+\noindent \textbf{Arrow's Theorem}
+
+\noindent Any social welfare function $W$ that is Pareto efficient and 
+independent of irrelevant alternatives is dicatorial.
+
+\bigskip
+\noindent \textbf{Proof:}
+
+\noindent The proof of the Arrow's theorem is subdivided into four steps:
+\begin{enumerate}
+	\item \textit{If every voter puts an outcome $b$ at either the very top or 
+	the very bottom of his preference list, then $b$ must be at either the very 
+	top or the very bottom of $\succ_W$ as well}.
+
+	\noindent Consider an arbitrary preference profile $[\succ]$ in which every 
+	voter ranks some $b \in O$ either at the very bottom or at the very top and 
+	assume by contradiction that the assumption above does not hold. Then, there 
+	must exist some pair $a,c \in O$ s.t. $a \succ_W b \succ_W c$.
+
+	\noindent Let's modify $[\succ]$ so that every voter moves $c$ just above 
+	$a$ in his preference list and let's call this new preference profile 
+	$[\succ']$. \textbf{IIA} entails that, if we want $a \succ_W b$ or $b 
+	\succ_W c$ to change, we need the pairwise relationship between $a$ and $b$ 
+	and/or the one between $b$ and $c$ must change as well. However, since $b$ 
+	occupies an extremal position for all the voters, the relative position 
+	between $a$ and $c$ can be changed without modifying the one of $b$. Thus, 
+	in preference profile $[\succ']$ it is also the case that $a \succ_W b 
+	\succ_W c$. By transitivity, we have that $a \succ_W c$. However, in 
+	$[\succ']$ every voter ranks $a$ better than $c$ and then \textbf{PE} 
+	requires $c \succ_W a$.
+
+	\noindent $\implies$ CONTRADICTION.
+
+	\item \textit{There is some voter $n^*$ who is \textbf{extremely pivotal}, 
+	in the sense that, by changing his vote at some profile, he can move a 
+	given output $b$ from the bottom to the top of the social ranking}.
+
+	\noindent Consider a preference profile $[\succ]$ n which every voter ranks 
+	$b$ at the very bottom of his preference list, while all the other 
+	preferences are arbitrary. By \textbf{PE}, also $W$ must rank $b$ last.
+
+	\noindent Now let voters from 1 to $n$ successively modify $[\succ]$ by 
+	moving $b$ from the bottom to the top, preserving all the other relative 
+	rankings. Denote as $n^*$ the first voter whose change causes the social 
+	ranking of $b$ to change. This $n^*$ exists for sure: when all the voters 
+	rank $b$ at the top of their preference list, by \textbf{PE} $b$ must be 
+	ranked at the top also by the social welfare function.
+
+	\noindent Let's denote by $[\succ^1]$ the preference profile just before 
+	$n^*$ changes the position of $b$ and let's denote by $[\succ^2]$ the 
+	preference profile just after this change. In $[\succ^1]$, $b$ is at the 
+	bottom in $\succ_W$. In $[\succ^2]$ $b$ has changed its position in 
+	$\succ_W$. Since also in $[\succ^2]$ all the voters rank $b$ either at the 
+	top or at the bottom of their preference lists, by \textbf{step1} $b$ must 
+	be ranked at the top in $\succ_W$.
+
+	\noindent $\implies$ Q.E.D.
+
+	\item \textit{$n^*$ is a dictator over any pair $a,c$ not involving $b$}
+
+	\noindent First of all, we choose the element $a$ from the pair $a,c$ (of 
+	course, we can choose it without loss of generality). Then, we construct a 
+	new preference profile $[\succ^3]$ from $[\succ^2]$ by making the following 
+	changes:
+	\begin{itemize}
+		\item We move $a$ to the top of $n^*$'s preference list, leaving all 
+		the others unchanged, so that $a \succ_{n^*} b \succ_{n^*} c$.
+		\item We arbitrarily rearrange he relative rankings of $a$ and $c$ for 
+		all the agents but $n^*$, while leaving $b$ in its extremal position.
+	\end{itemize}
+	In $[\succ^1]$ we had $a \succ_W b$ since $b$ was at the bottom of 
+	$\succ_W$. When we compare $[\succ^1]$ and $[\succ^3]$, relative rankings 
+	for $a$ and $b$ are the same for all voters. Thus, by \textbf{IIA}, we must 
+	have $a \succ_W b$ also in $[\succ^3]$.
+
+	\noindent In $[\succ^2]$ we had $b \succ_W c$, since $b$ was at the very top 
+	of the ranking. Relative rankings between $b$ and $c$ are the same in 
+	$[\succ^2]$ and $[\succ^3]$, which entails that $b \succ_W c$ in $[\succ^3]$.
+
+	\noindent By transitivity, it must be $a \succ_W c$ in $[\succ^3]$.
+
+	\noindent Now we construct one more preference profile $[\succ^4]$ by 
+	changing $[\succ^3]$ in two ways:
+	\begin{itemize}
+		\item We arbitrarily change the position of $b$ in each voter's ordering 
+		while keeping all other relative preferences the same.
+		\item We move $a$ to an arbitrary position in $n^*$'s preference list, 
+		with the only constraint that $a \succ_{n^*} c$.
+	\end{itemize}
+	Observe that all voters but $n^*$ have entirely arbitrary references in 
+	$[\succ^4]$, while $n^*$'s preferences are arbitrary but for the fact that 
+	$a \succ_{n^*} c$.
+
+	\noindent In $[\succ^3]$ and $[\succ^4]$ all agents have the same relative 
+	preferences between $a$ and $c$. Thus, since $a \succ_W c$ in $[\succ^3]$ 
+	and by \textbf{IIA}, $a \succ_W c$ in $[\succ^4]$. 
+
+	\noindent $\implies$ we determined the social ranking between $a$ and $c$ 
+	by assuming only that $a \succ_{n^*} c$ $\implies$ Q.E.D.
+
+	\item \textit{$n^*$ is a dictator over all the pairs $a,b$}
+
+	\noindent Consider an arbitrary outcome $c$. By the argument in 
+	\textbf{step2}, there is a voter $n^{**}$ who is extremely pivotal for $c$. 
+	By the argument in \textbf{step3}, $n^{**}$ is a dictator over all the pairs 
+	$\alpha,\beta$ not involving $c$. Of course, the pair $a,b$ is one of such 
+	pairs $\alpha,\beta$. We have already observed that $n^*$ is able to affect 
+	$W$'s $a,b$ ranking (for example, when $n^*$ was able to change 
+	$a \succ_{W_{([\succ^1])}} b$ in $b \succ_{W_{([\succ^2])}} a$). Hence $n^*$ and 
+	$n^{**}$ must be the same agent.
+
+	\noindent $\implies$ Q.E.D.
+\end{enumerate}
+
+\end{document}

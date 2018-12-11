@@ -1,0 +1,127 @@
+\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings,lstautogobble}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\noindent {\huge Social Choice}
+
+\bigskip
+\noindent It is a mathematical model that looks for a way to aggregate 
+individual preferences in social preferences. We want to derive a good social 
+ranking given individual rankings (example: elections).
+
+\noindent Problem: there is not an individual way to define fairness. A property 
+that should be fullfilled is that if we agree on a list of preferences, there 
+is no reason to change them (unanimity property). There other properties that 
+we must agree on iot define a solution for the problem.
+
+\noindent Remember: a social choice function only needs to determine a winner: 
+we do not care about the second (example: elezione del Papa).
+
+\bigskip
+\noindent \textbf{Slides 13 - 15}
+
+\noindent Properties:
+
+\begin{itemize}
+\item Meaning of independence from irrelevant alternatives: suppose that 
+people give me a ranking and then they change their mind and they give me a 
+different ranking. If, in both the rankings, agent $x$ is ranked better than 
+agent $y$. Then I do not care if in the first ranking $x$ is the first and $y$ 
+the last, while in the second ranking $x$ is the first and $y$ is the second: 
+other agents do not matter, the only important thing is their relative position 
+in the ranking. Any time you assign scores to your position (ex. sport: you make 
+a mutual comparison between two soccer teams, you assign a certain amount 
+of points to the winner or another to a tie and then you sum all the points) 
+this assumption is not fullfilled: maybe Milan wins over Inter, but its position 
+in the final ranking is worse.
+
+\item Dictator: no matter what all the other individuals say, the ranking 
+for the society is decided only by one player. Remember: this is only an 
+\textit{a priori} analysis, which means that the society does what I decide, no 
+matter what it is.
+
+\noindent This means that the function $F$ turns out to be a projection: it 
+selects, among the vector of preferences, the one related to the choice of the 
+dictator.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Slide 24}
+
+\noindent Example: we are three people and we want to select a tv program to 
+watch together. We are only interested to decide who is the winner, we are not 
+interested in a full ranking (for the society: of course any player has his 
+own full ranking). With more than two alternatives, this is relevant (with only 
+two alternatives, once you have the winner you also have the full ranking): we 
+are requiring less...are we in the same situation of the Arrow theorem or can 
+we get something more? Of course we have to change some properties, for example 
+the irrelevant alternative: since I do not have to write a full ranking for the 
+society, this property is useless.
+
+\bigskip
+\noindent \textbf{Slide 25}
+
+\noindent Properties:
+\begin{enumerate}
+	\item We are not decreasing the level of ranking of $x$ among different 
+	players. Suppose that I have a ranking $\succ$ s.t.\\
+	A \hspace{.6cm} C \hspace{.6cm} C\\
+	B \hspace{.6cm} B \hspace{.6cm} A\\
+	C \hspace{.6cm} A \hspace{.6cm} B\\
+	and a function $f$ that selects A as the winner. If I have another ranking 
+	$\supset$ s.t.\\
+	A \hspace{.6cm} C \hspace{.6cm} A\\
+	C \hspace{.6cm} A \hspace{.6cm} B\\
+	B \hspace{.6cm} B \hspace{.6cm} C\\
+	Then, if $f$ is monotonic, it must select again A as the winner.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Slide 27}
+
+\noindent Suppose that I have a ranking $\succ_1$ s.t.\\
+A \hspace{.6cm} C \hspace{.6cm} C\\
+B \hspace{.6cm} B \hspace{.6cm} B\\
+C \hspace{.6cm} A \hspace{.6cm} A\\
+and a function $f$ that selects C as the winner.
+
+\noindent Now suppose that I change my ranking in $supset_1$ getting\\ 
+B \hspace{.6cm} C \hspace{.6cm} C\\
+A \hspace{.6cm} B \hspace{.6cm} B\\
+C \hspace{.6cm} A \hspace{.6cm} A\\
+and that now the function $f$ selects B as the winner. This means that the 
+function is manipulable: player1 can lie and submit the ranking $\supset$ iot 
+get a result (B) which is better for him in the true ranking $succ$.
+
+\noindent Of course, this precise situation cannot happen in Life::real: it is 
+based on the assumption that player1 knows the ranking of other players and 
+they do not know his ranking (otherwise he could not lie). However, true 
+manipulation can occur when I have strong feelings on what you could choose.
+
+\bigskip
+\noindent \textbf{Slide 28 - proof of the GS theorem}
+
+\noindent If I prove that non-manipulability $\implies$ monotonicity, then I can 
+use the previous theorem (that required monotonicity and unanimity), since 
+I have unanimity also here. I go by contradiction: monotonicity would imply 
+that the winner is $a$ with both the rankings $\succ$ and $supset$, since it is 
+always better than $c$.
+
+%\noindent \textbf{Remark:} with "minimal", I mean that only one player is 
+%changing his preferences list, while all the others remain fixed.
+
+\noindent \textbf{Claim:} by only claiming that the change is minimal, I want 
+to prove that, coming back to the previous situation, I get again $a$ as the 
+winner.
+
+\end{document}
