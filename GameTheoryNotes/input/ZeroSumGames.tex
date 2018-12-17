@@ -1,0 +1,121 @@
+%\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+%\usepackage[latin1]{inputenc}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage[english]{babel}
+%\usepackage{subfigure}
+%\usepackage{graphicx}
+%\usepackage{float}
+%\usepackage{listings,lstautogobble}
+%\usepackage[T1]{fontenc}
+
+%\begin{document}
+
+%!TeX root = ./GameTheoryNotes.tex
+
+\noindent \textbf{Zero sum game:} a two players zero sum game in strategic form 
+is described by the triplet $(X,Y,~f:~X \times Y \rightarrow \mathbb{R})$, 
+where $X$ is the strategy space for player1, $Y$ is the strategy space for 
+player2 and $f(x,y)$ is what player1 gets from player2 when they play $x$ and 
+$y$, respectively. As a consequence, $f$ is the utility function of player1, 
+while the utility function for player2 is $g = -f$.
+
+\noindent In the finite case $X = \{1,2,...,n\}$ and $Y = \{1,2,...,m\}$, 
+a zero sum game is described by the payoff matrix 
+$P \in \mathbb{R}^{n \times m}$, where player1 selects row $i$ and player2 
+selects column $j$. In general, $p_{ij}$ is what player2 pays to player1 
+when they select column $j$ and row $i$, respectively.
+
+\bigskip
+\noindent \textbf{Conservative values} $v_1, v_2$ are what player1 and player2 
+can guarantee (almost) to themselves. They are defined as:
+\[
+	v_1 = \sup_x\left\{\inf_y f(x,y)\right\}
+\]
+\[
+	v_2 = \inf_y\left\{\sup_x f(x,y)\right\}
+\]
+If $v_1 = v_2 = v$, we define $v$ as the \textbf{value of the game}.
+
+\noindent If $P$ is the payoff matrix of a zero sum game, we can define the 
+conservative values of the players as:
+\[
+	v_1 = \max_i\left\{\min_j p_{ij}\right\}
+\]
+\[
+	v_2 = \min_j\left\{\max_i p_{ij}\right\}
+\]
+meaning that player1 can guarantee himself to get at least $v_1$, while player2 
+can guarantee himself to pay no more than $v_2$.
+
+\bigskip
+\noindent \textbf{Optimality:} suppose that:
+\begin{enumerate}
+	\item $v_1 = v_2 = v$
+	\item $\exists ~\bar{x} \in X$ s.t. $f(\bar{x},y) \geq v ~\forall y \in Y$
+	\item $\exists ~\bar{y} \in Y$ s.t. $f(x,\bar{y}) \leq v ~\forall x \in X$
+\end{enumerate}
+Then:
+\begin{enumerate}
+	\item v is the rational outcome of the game
+	\item $\bar{x}$ is an optimal strategy for player1, because it maximizes 
+	the function $\alpha(x) = \inf_y f(x,y)$ (there are no strategies that can 
+	guarantee player1 to get more than $v$; $\alpha(x)$ is the optimal choice 
+	of player2 if he knows that player1 plays $x$).
+	\item $\bar{y}$ is an optimal strategy for player2, because it minimizes 
+	the function $\beta(y) = \sup_x f(x,y)$ (there are no strategies that can 
+	guarantee player2 to pay less than $v$; $\beta(y)$ is the optimal choice 
+	of player1 if he knows that player2 plays $y$).
+\end{enumerate}
+
+\noindent In the case of a zero sum game described by the payoff matrix $P$, 
+the concepts of optimal strategies can be defined as follows: under the 
+assumptions that 
+\begin{enumerate}
+	\item $v_1 = v_2 = v$
+	\item $\exists$ a row $\bar{i}$ s.t. $p_{\bar{i}j} \geq v ~\forall j$
+	\item $\exists$ a column $\bar{j}$ s.t. $p_{i\bar{j}} \leq v ~\forall i$
+\end{enumerate}
+we have that 
+\begin{enumerate}
+	\item $v = p_{\bar{i}j} = p_{i\bar{j}}$ is the rational outcome of the game
+	\item $\bar{i}$ is an optimal strategy for player1 because he cannot get 
+	more than $v$, being $v = v_2$ the conservative value of player2. Moreover, 
+	$\bar{i}$ maximizes the function $\alpha(i) = \min_j p_{ij}$
+	\item $\bar{j}$ is an optimal strategy for player2 because he cannot pay 
+	less than $v$, being $v = v_1$ the conservative value of player1. Moreover, 
+	$\bar{j}$ minimizes the function $\beta(j) = \max_i p_{ij}$
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Proposition:} let $X,Y$ be nonempty sets and let 
+$f: X \times Y \rightarrow \mathbb{R}$ be an arbitrary real valued function. 
+Then
+\[
+	\sup_x \{ \inf_y f(x,y)\} \leq \inf_y \{ \sup_x f(x,y)\}
+\]
+Which entails that in every game $v_1 \leq v_2$.
+
+\noindent \textbf{Remark:} the value of the game does not necessarily exists! 
+There are situations in which $v_1 < v_2$ is a strict inequality.
+
+\bigskip
+\noindent \textbf{Case $v_1 < v_2$:} {\huge aggiungi: slide schifosa}
+
+\bigskip
+\noindent \textbf{Existence of a rational outcome:} iot prove the existece of 
+a rational outcome, we need to prove:
+\begin{enumerate}
+	\item $v_1 = v_2$
+	\item $\exists \bar{x} \in X$ fulfilling $v_1 = \inf_y\{f(\bar{x},y)\}$
+	\item $\exists \bar{y} \in Y$ fulfilling $v_2 = \sup_x\{f(x,\bar{y})\}$
+\end{enumerate}
+In the finite case, $\bar{x}$ and $\bar{y}$ always exist; thus the existence is 
+equivalent to the coincidence of the conservative values.
+
+\bigskip
+\noindent \textbf{Von Neumann theorem:} a two player, zero sum game described by 
+the payoff matrix $P$ has always a rational outcome.
+
+%\end{document}

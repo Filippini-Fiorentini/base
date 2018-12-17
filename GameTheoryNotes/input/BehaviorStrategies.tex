@@ -1,0 +1,91 @@
+%\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+%\usepackage[latin1]{inputenc}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage[english]{babel}
+%\usepackage{subfigure}
+%\usepackage{graphicx}
+%\usepackage{float}
+%\usepackage{listings,lstautogobble}
+%\usepackage[T1]{fontenc}
+
+%\begin{document}
+
+%!TeX root = ./GameTheoryNotes.tex
+
+\noindent A \textbf{behavior strategy} for a player in an extensive form game 
+is a map defined on the collection of his information sets and providing 
+to each one of them a probability distribution over the actions of the player.
+
+\noindent Idea of the different kind of strategies:
+\begin{itemize}
+	\item Pure strategies: they specify what a player would do in any possible 
+	situation in which he has to make a decision.
+	\item Mixed strategies give a probability distribution over the pure 
+	strategies, which is necessary at any time we do not have a pure strategy 
+	which is worth to be played despite of all the other posssibilities.
+	\item Since a randomization over all the pure strategies can be difficult 
+	when those strategies are many, it may be convenient to randomize over the 
+	decision steps, which leads to the idea of behavior strategies.
+\end{itemize}
+Of course, we would like to have an equivalence between the different kind of 
+strategies, i.e. we would like they lead to the same result.
+
+\bigskip
+\noindent \textbf{Equivalence of strategies:} if two strategies are equivalent, 
+they must lead the players to the same results. Let $p(x; \sigma)$ be the 
+probability that the vertex $x$ is reached under the strategy $\sigma$. 
+
+\noindent Two strategies $\sigma_i$ and $b_i$ are equivalent for player $i$ if 
+the probability to reach a certain vertex $x$ using $\sigma_i$ or $b_i$ is 
+the same, once we have fixed every possible choice of the other players.
+
+\noindent We denote by $\sigma_{-i}$ the choice of all the players but player 
+$i$.  
+
+\noindent The strategies mixed/behavior $\sigma_i$ and $b_i$ are equivalent for 
+player $i$ if for every strategy $\sigma_{-i}$ (that can be formed by either 
+behavior or mixed strategies) of the other players it holds
+\[
+	p(x; \sigma_i, \sigma_{-i}) = p(x; b_i, \sigma_{-i})
+\]
+Notice that this equivalence can be checked only on the leaves.
+
+\bigskip
+\noindent \textbf{Theorem:} let $s = (s_1,...,s_n)$ be a mixed strategies 
+equilibrium profile. Let $b_i$ be a behavior strategy for player $i$ equivalent 
+to $s_i$. Then for every player $j$ it is $u_j(s) = u_j(b)$, where 
+$b = (b_i,s_{-i})$.
+\noindent $\implies$ using equivalent strategies provides the players the same 
+outcome. 
+
+\bigskip
+\noindent \textbf{Theorem:} let $\Gamma$ be a game in extensive form such that 
+every vertex which is not a leaf has at least two children. The every behavior 
+strategy has an equivalent mixed strategy iff each information set of player $i$ 
+intersects every path starting at the root at most once.
+
+\bigskip
+\noindent Player $i$ has \textbf{perfect recall} if:
+\begin{itemize}
+	\item every path from the root to a leaf intersects every information set of 
+	player $i$ at most once.
+	\item every pair of paths from the root ending in the same information set 
+	passes through the same information sets of $i$ and in the same order; 
+	moreover, in each information set the two paths takes the same actions
+\end{itemize}
+
+\noindent \textbf{Remark:} a game has perfect recall if all the players have 
+perfect recall.
+
+\bigskip
+\noindent \textbf{Theorem:} let $\Gamma$ be a game. If player $i$ has perfect 
+recall, then every mixed strategy for player $i$ has an equivalent behavior 
+strategy.
+
+\bigskip
+\noindent \textbf{Corollary:} in a game with perfect recall, the equilibria with 
+mixed and behavior strategies are the same.
+
+%\end{document}
