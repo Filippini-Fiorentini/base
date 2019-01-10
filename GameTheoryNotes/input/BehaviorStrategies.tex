@@ -18,13 +18,14 @@
 is a map defined on the collection of his information sets and providing 
 to each one of them a probability distribution over the actions of the player.
 
+\bigskip
 \noindent Idea of the different kind of strategies:
 \begin{itemize}
 	\item Pure strategies: they specify what a player would do in any possible 
 	situation in which he has to make a decision.
 	\item Mixed strategies give a probability distribution over the pure 
 	strategies, which is necessary at any time we do not have a pure strategy 
-	which is worth to be played despite of all the other posssibilities.
+	that is worth to be played despite of all the other posssibilities.
 	\item Since a randomization over all the pure strategies can be difficult 
 	when those strategies are many, it may be convenient to randomize over the 
 	decision steps, which leads to the idea of behavior strategies.
@@ -57,12 +58,12 @@ Notice that this equivalence can be checked only on the leaves.
 equilibrium profile. Let $b_i$ be a behavior strategy for player $i$ equivalent 
 to $s_i$. Then for every player $j$ it is $u_j(s) = u_j(b)$, where 
 $b = (b_i,s_{-i})$.
-\noindent $\implies$ using equivalent strategies provides the players the same 
+\noindent $\implies$ to use equivalent strategies provides the players the same 
 outcome. 
 
 \bigskip
 \noindent \textbf{Theorem:} let $\Gamma$ be a game in extensive form such that 
-every vertex which is not a leaf has at least two children. The every behavior 
+every vertex which is not a leaf has at least two children. Then every behavior 
 strategy has an equivalent mixed strategy iff each information set of player $i$ 
 intersects every path starting at the root at most once.
 
@@ -73,7 +74,7 @@ intersects every path starting at the root at most once.
 	player $i$ at most once.
 	\item every pair of paths from the root ending in the same information set 
 	passes through the same information sets of $i$ and in the same order; 
-	moreover, in each information set the two paths takes the same actions
+	moreover, in each information set the two paths do the same actions
 \end{itemize}
 
 \noindent \textbf{Remark:} a game has perfect recall if all the players have 

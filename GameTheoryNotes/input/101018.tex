@@ -1,41 +1,86 @@
-\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
-\usepackage[latin1]{inputenc} 
-\usepackage{amsmath} 
-\usepackage{amsfonts}
-\usepackage{amssymb} 
-\usepackage[english]{babel} 
-\usepackage{subfigure}
-\usepackage{graphicx} 
-\usepackage{float}
-\usepackage{listings,lstautogobble}
-\usepackage[T1]{fontenc}
+%\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+%\usepackage[latin1]{inputenc} 
+%\usepackage{amsmath} 
+%\usepackage{amsfonts}
+%\usepackage{amssymb} 
+%\usepackage[english]{babel} 
+%\usepackage{subfigure}
+%\usepackage{graphicx} 
+%\usepackage{float}
+%\usepackage{listings,lstautogobble}
+%\usepackage[T1]{fontenc}
 
-\begin{document}
+%\begin{document}
 
-\bigskip
-\noindent \textbf{Slide 14 - convex combination:}
-
-\noindent $\lambda_1$ ... $\lambda_n$ looks like mixed strategies
-
+%!TeX root = ./GameTheoryNotes.tex
 
 \bigskip
-\noindent \textbf{Slide 15}
+\noindent \textbf{Convex set:} a set $C \in \mathbb{R}^n$ is said to be convex 
+if
+\[
+	\lambda x + (1 - \lambda)y \in C
+\]
+$\forall x,y \in C$ and $\forall \lambda \in [0,1]$, i.e. a set is convex iff 
+every convex combination of two elements belonging to the set is in the set.
 
-\noindent A set is convex iff every convex combination of two
-elements belonging to the set is in the set
-$=>$
-The same holds if you consider $n$ elements instead of two.
-(The proof is done by induction)
+\noindent \textbf{Remarks:}
+\begin{enumerate}
+	\item The empty set is convex.
+	\item The intersection of an arbitrary family of convex sets is convex.
+	\item A closed convex set with nonempty interior coincides with the closure 
+	of its internal points.
+\end{enumerate}
 
-\noindent Idea: I want the smallest convex set containing C; the intersection
+\bigskip
+\noindent \textbf{Convex combination:} the vector $x$ is the convex combination 
+of $x_1,...,x_n$ if 
+\[x = \lambda_1x_1 + ... + \lambda_nx_n\]
+with $\lambda_i \geq 0 ~\forall i$ and $\sum_{i=1}^n{\lambda_i} = 1$.
+
+\noindent \textbf{Remark:} $\lambda_1$ ... $\lambda_n$ looks like mixed 
+strategies.
+
+\bigskip
+\noindent \textbf{Proposition:} a set $C$ is convex iff for every $\lambda,...,
+\lambda_n \geq 0$ s.t. $\sum_{i=1}^n{\lambda_i} = 1$, for every $c_1,...,c_n 
+\in C$, for all $n$, then $\sum_{i=1}^n{\lambda_ic_i} \in C$.
+
+\noindent $\implies$ the fact that a set is convex iff every convex combination 
+of two elements is contained in the set holds also if you consider $n$ elements 
+instead of two. (The proof is done by induction)
+
+\bigskip
+\noindent Idea: Given a generic set $C$, which may be not convex, I want the 
+smallest convex set containing $C$; the intersection
 of convex sets is convex $=>$ I can consider the intersection
-and it is the smallest convex set containing C.
+and it is the smallest convex set containing $C$.
 
 \bigskip
-\noindent \textbf{Slide 16}
+\noindent \textbf{Convex hull:} the convex hull of a set $C$, denoted by $coC$, 
+is
+\[
+	coC = \bigcup_{A \in \mathcal{C}}A
+\]
+where $\mathcal{C} = \{A: C \subset A \wedge \text{A is convex}\}$
 
+\bigskip
+\noindent \textbf{Proposition:} given a set $C$, then
+\[
+	coC = \{\sum_{i=1}^n{\lambda_ic_i}: \lambda_i\geq0,
+	        \sum_{i=1}^n{\lambda_i} = 1, c_i \in C ~\forall i,n \in 
+	        \mathbb{N}\}
+\]
+
+\bigskip
+\noindent \textbf{Theorem:} given a closed convex set $C$ and a point $x 
+\notin C$, $\exists ! p \in C$ s.t. $||p-x|| \leq ||c-x|| ~\forall c \in C$.
+
+\noindent Moreover, $p \in C$ and $\langle x-p, c-p \rangle \leq 0 ~\forall c 
+\in C$.
+
+\bigskip
 \noindent $p$ is the point at minimum distance; I'm minimizing a continuous 
-function in a closed set $=>$ I'm sure that $p$ exists. In finite
+function in a closed set $\implies$ I'm sure that $p$ exists. In finite
 dimensions, the existence of $p$ does not depend on convexity, but 
 convexity is needed for $1!$ and for the characterizations:
 \begin{itemize}
@@ -43,83 +88,169 @@ convexity is needed for $1!$ and for the characterizations:
 \item $<x-p, c-p> \leq 0 \forall c \in C$
 \end{itemize}
 
-\bigskip
-\noindent \textbf{Slide 17}
+\subsection*{Separation Results}
 
 \noindent Separation means I'm able to decide how to define a plane s.t. it
-separates two sets $=>$ the intersection of the interior of the sets 
+separates two sets $\implies$ the intersection of the interior of the sets 
 is empty. 
 A "weaker" definition of separation allows the sets to share some
 points (the sets cannot be open, since they have to share points
 on the boundary...they cannot share points in the interior, otherwise
-I cannot speak about separation)
-
-\noindent Consider the case in which I want to separate a set C from a point
-$\bar{x}$, which belongs to the closure of the complement (REMEMBER:
-THE CLOSURE OF $C^c$ contains the boundary of C)
-
-\noindent First case: $\bar{x} \in int(C^c)$
-
-\noindent The point $\bar{x}$ is outside from the set, then it cannot coincide
-with the projector.
-
-\[\langle x^*,c \rangle \geq \langle x^*, \bar{x} \rangle \forall c \in C\]
-
-\noindent Remark: in the relation 
-\[\langle x^*,c \rangle \geq b \geq \langle x^*, \bar{x} \rangle 
-\forall c \in C\]
-we can replace $x^*$ with $y^* = ax^*, a > 0$
-
-\noindent Now consider $\bar{x}$ and any sequence $\bar{x_n} \in int(C^c)$. I apply the previous step to $\bar{x_n}$.
-Indeed, exists $x_n^*$ whose norm is 1 and s.t. exists $b_n$ and
-$\langle x_n^*,c \rangle \geq b_n \geq
- \langle x_n^*, \bar{x_n} \rangle \forall c \in C$
-
-\noindent Therefore $x_n^*$ converges to $x^*$ up to subsequences, the norm of
-$x^*$ is 1, $\bar{x_n} \rightarrow \bar{x}$ and the same for $b_n$.
+I cannot speak about separation).
 
 \bigskip
-\noindent \textbf{Slide 19}
-The theorem allows you to separate two sets as long as they are closed,
-convex.
-Remark: I don't make assumptions on the interior of B: it can have an
+\noindent \textbf{Theorem:} let $C$ be a convex proper subset of the euclidean 
+space $\mathbb{R}'$, let $\bar{x} \in \bar{C^c}$. Then there is an element 
+$x^* \in \mathbb{R}, x^* \neq 0$, s.t. $\langle x^*,c \rangle \geq
+\langle x^*,\bar{x}\rangle ~\forall c \in C$.
+
+\bigskip
+\noindent \textbf{Proof:} I want to separate a set $C$ from a point $\bar{x}$, 
+which belongs to the closure of the $C^c$ (REMEMBER: the closure of $C^c$ 
+contains the boundary of C).
+
+\noindent We proceed in two steps:
+\begin{enumerate}
+	\item Suppose that $\bar{x} \in int(C^c)$, i.e. $\bar{x} \notin \bar{C}$.
+
+	\noindent The point $\bar{x}$ is outside from the set, then it cannot 
+	coincide with the projector.
+
+	\noindent Call $p$ the projection of $\bar{x}$ on $\bar{C}$. Then 
+	$\langle \bar{x}-p, c-p\rangle \leq 0 ~\forall c \in C$.
+
+	\noindent Define $x^* = p - \bar{x} \neq 0$. Then 
+	$\langle x^*, c-\bar{x}\rangle \geq ||x^*||^2$, which implies 
+	$\langle x^*,c \rangle \geq \langle x^*,\bar{x} \rangle ~\forall c \in C$.
+
+	\noindent Remark: in the relation 
+	\[
+		\langle x^*,c \rangle \geq b \geq \langle x^*, \bar{x} \rangle 
+		\forall c \in C
+	\]
+	we can replace $x^*$ with $y^* = ax^*, a > 0$
+
+	\noindent We can choose $x^*$ s.t. $||x^*|| = 1$.
+
+	\item If $\bar{x} \in \bar{C} \setminus C$, consider a sequence $\{x_n\}
+	\subset C^c$ such that $x_n \rightarrow \bar{x}$.
+
+	\noindent From the first step, we can find $x^*_n$ s.t. $||x^*_n|| = 1$ 
+	and $\langle x^*_n,c \rangle \geq \langle x^*_n,x_n \rangle ~\forall c \in 
+	C$.
+
+	\noindent Therefore $x_n^*$ converges to $x^*$ up to subsequences, the norm 
+	of $x^*$ is 1 and we pass to the limit in the above inequality, recovering 
+	$\langle x^*,c \rangle \geq \langle x^*,\bar{x} \rangle ~\forall c \in C$.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Corollary:} let $C$ be a closed convex set in an Euclidean 
+space and let $x \in \partial C$. Then there is an hyperplane, called the 
+hyperplane supporting $C$ at $x$, containing $x$ and leaving all of $C$ in one 
+of the halfspaces determined by the hyperplane.
+
+\bigskip
+\noindent \textbf{Corollary:} let $C$ be a closed convex set in an Euclidean 
+space. Then $C$ is the intersection of all halfspaces containing it.
+
+\bigskip
+\noindent \textbf{Theorem:} let $A, C$ be closed convex subsets of $\mathbb{R}'$ 
+s.t. the interior of $A$ is not empty and $int(A) \cap C = \emptyset$. Then 
+there exists $x^* \neq 0$ and $b \in \mathbb{R}$ s.t. 
+$\langle x^*,a \rangle \geq b \geq \langle x^*,c \rangle ~\forall a \in A, 
+~\forall c \in C$.
+
+\bigskip
+\noindent The theorem allows you to separate two sets as long as they are 
+closed and convex.
+
+\noindent Remark: I don't make assumptions on the interior of C: it can have an
 empty interior (ex. I can separate a plane and a line in $\mathbb{R}^2$, even
 if the line has empty interior in $\mathbb{R}^2$)
 
-\noindent Remark: $0 \in int(A)-C \iff 0 = a-c$ for $a \in int(A)$ and 
+\bigskip
+\noindent \textbf{Proof:} $0 \in int(A)-C \iff 0 = a-c$ for $a \in int(A)$ and 
 $c \in C$, but
 this means that $a = c$, i.e. $c \in int(A)$, which is not possible since
-the intersection between C and $int(A)$ in empty.
-$=>$
-I can separate 0 from $int(A)-C$
-$=>$
-exists $x^*$ different from 0 s.t.
-$\langle x^*,u \rangle \geq \langle x^*,0 \rangle ~\forall u \in int(A)-C$
-$=>$
-$\langle x^*, a-c  \rangle \geq 0 ~\forall a,c$ s.t. $u=a-c$
-$=>$
+the intersection between C and $int(A)$ in empty.\\
+$\implies$\\
+I can separate 0 from $int(A)-C$\\
+$\implies$\\
+exists $x^* \neq 0$ s.t. 
+$\langle x^*,u \rangle \geq \langle x^*,0 \rangle ~\forall u \in int(A)-C$\\
+$\implies$\\
+$\langle x^*, a-c  \rangle \geq 0 ~\forall a,c$ s.t. $u=a-c$\\
+$\implies$\\
 $\langle x^*,a \rangle \geq \langle x^*,c \rangle ~\forall a \in int(A),
-c \in C$
+c \in C$\\
+$\implies$\\
+$\langle x^*,a \rangle \geq \langle x^*,c \rangle ~\forall a \in cl(int(A)),
+c \in C$ and the closure of $int(A)$ is equal to A, thus the theorem is proven.
 
-\noindent \textbf{Slide 20 - proof of VN theorem}
-Let P be a matrix s.t. $P_{ij} > 0 \forall i,j$ and let $p_1...p_m$
-be the columns of P.
-I want to find a solution for the game represented by P, which means
-that I want to find $\bar{x}$ and $\bar{y}$ s.t. $f(\bar{x},y) \geq v~
-\forall y$ and $f(x,\bar{y}) \leq v ~\forall x$, where $f(x,y) = 
-x^TPy$.
+\bigskip
+\noindent $H = \{x: \langle x^*,x \rangle = b\}$ is called the 
+\textbf{separating hyperplane}: A and C are contained in two different 
+halfspaces generated by H.
+
+\bigskip
+\subsection*{Proof of VN theorem}
+
+\noindent \textbf{Proof:} let P be a matrix s.t. $P_{ij} > 0 
+~\forall i,j$. This can be done without losses of generality because in any 
+case, if an entry is negative, I can decide to add 
+a constant everywhere iot recover positive outcomes without changing the 
+game (from the point of view of optimal strategies). Indeed, if I pass 
+from $P_{ij}$ to $P_{ij}+10 ~\forall i,j$, I get that $f(x,y)=f(x,y)+10$.
+
+\noindent Let $p_1...p_m$ be the columns of P.
+
+\noindent \textbf{Idea:} I want to find a solution for the game represented 
+by P, which means that I want to find $\bar{x}$ and $\bar{y}$ s.t. 
+$f(\bar{x},y) \geq v~\forall y$ and $f(x,\bar{y}) \leq v ~\forall x$, where 
+$f(x,y) = x^TPy$ (by definition, since I'm considering mixed strategies).
 
 % Mi dà enormemente fastidio il suo livello di "diseallinamento"
 % (cravatta, bottoni camicia, passante cintura, etc)
 
-\noindent REMEBER: once you fix $x$, $x^TPy$ is linear in $y$, which means that
-the utility function of the second player is linear in $y$ given a
+\noindent Geometrically, the proof is represented by the case where I have $2m$ 
+strategies: the first player only has two strategies, while the second player 
+has $m$ strategies (the number of columns). Therefore the columns of the matrix 
+are $m$ 2D vectors inside the first orthant (they are inside for sure, since all 
+the components are positive by assumption).
+
+\noindent Now I can consider the convex hull of these vectors. Every element in 
+the set $C$ is given by $\lambda_1p_1 + ... + \lambda_mp_m$ with $\lambda_i 
+\geq 0$ and $\sum{\lambda_i} = 1$ because it is a convex combination of the 
+points $p_1,...,p_m$.
+
+\noindent This means that every point in $C$ is a possible mixed strategy on the 
+columns. Once this is known, player1 can compute his expected values and he can 
+choose the best outcome for him: if player2 uses $\lambda_1...\lambda_n$ as 
+mixed str., this generates the vector $\lambda_1p_1...\lambda_np_n$ (which is a 
+vector inside the polytop since it is a convex combination of the vertexes).
+But, knowing the choice of player2, player1 looks at the possible outcomes 
+and he chooses the best for him. The goal for player2 is to choose the convex 
+combination that provides him the best outcome (i.e. the smaller amount to pay).
+
+\noindent It is possible to show that, if there is an optimal strategy for 
+player2, then it is the intersection between the polytop and the bisector of the 
+$1^{st}$ quadrant.
+
+\noindent What about the first player? If there is a solution of the game, then 
+no one of the players must have an incentive to change (: we are in an 
+equilibrium). This entails that the optimal strategy for player1, who knows that 
+player2 plays $\bar{y}$, must have a direction orthogonal to the optimal 
+strategy for player2.
+
+\noindent REMEBER: once you fix $x$, $x^TPy$ is linear in $y$, which means that 
+the utility function of the second player is linear in $y$ given a 
 value for $x$.
 
 \noindent Question: what happens if the bisector of the $1^{st},3^{rd}$ 
-quadrant does not intersect the "polygon" of the possible outcomes?
+quadrant does not intersect the polytop of the possible outcomes?
 A similar situation happens only if the first row strictly dominates
 the second (or viceversa), then you know for sure which row you will
 play.
 
-\end{document} 
+%\end{document} 

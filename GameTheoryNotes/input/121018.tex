@@ -1,94 +1,79 @@
-\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
-\usepackage[latin1]{inputenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[english]{babel}
-\usepackage{subfigure}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{listings,lstautogobble}
-\usepackage[T1]{fontenc}
+%\documentclass[pt11,a4paper,twoside,reqno,openright]{paper}
+%\usepackage[latin1]{inputenc}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage[english]{babel}
+%\usepackage{subfigure}
+%\usepackage{graphicx}
+%\usepackage{float}
+%\usepackage{listings,lstautogobble}
+%\usepackage[T1]{fontenc}
 
-\begin{document}
+%\begin{document}
 
-\noindent Solution:
-Exists $v,\bar{x}$ and $\bar{y}$ s.t. $f(x,\bar{y})\leq v ~\forall x$ and 
-$f(\bar{x},y)\geq x ~\forall y$.
-
-\noindent If player2 uses $\lambda_1...\lambda_n$ as mixed str., this 
-generates the 
-vector $\lambda_1p_1...\lambda_np_n$ (which is a vector inside the polytop 
-since it is a convex combination of the vertexes).
-But knowing the choice of player2, player1 looks at the possible outcomes 
-and he chooses the best for him.
-
-\noindent \section{Proof of Neumann theorem - slide 20,21}
+%!TeX root = ./GameTheoryNotes.tex
 
 {\huge God help us}
 
-\noindent Suppose that $P_{ij}>0 \forall i,j$. This can be done without 
-issues because in any case, if an entry is negative, I can decide to add 
-a constant everywhere iot recover positive outcomes without changing the 
-game (from the point of view of optimal strategies). Indeed, if I pass 
-from $P_{ij}$ to $P_{ij}+10 ~\forall i,j$, I get that $f(x,y)=f(x,y)+10$.
-
-\noindent Let $p_1...p_m$ the cols of $P$ and let C be the convex hull 
-of the cols.
-
-\noindent Let $Q_t = {x \in \mathbb{R}^n ~s.t.~ x_i\leq t ~\forall i}$.
-
-\noindent $Q_0$ does not intersect C, but $Q_t$ intersects C for $t$ large 
-enough.
-
-\noindent Let $v = \sup{t: Q_t \bigcap C = \emptyset}$.
-
-\noindent $C \bigcap int(Q_v) = \emptyset$.
-
-\noindent $\exists x^* \neq 0$ and $b \in R$ s.t.
+\noindent Let $C$ be the convex hull of the vectors $p_1,...,p_m$ and define
 \[
-	\langle \bar{x},u \rangle \leq b \leq \langle \bar{x},w\rangle 
-	~\forall u\in Q_v~ and~ w \in C
+	Q_t = \{x \in \mathbb{R}^n: x_i \leq t\} ~\text{and}~ v = \sup\{t \geq 0: 
+	Q_t \cap C = \emptyset\}
 \]
-
-\noindent Remarks: $\bar{x_i} \geq 0 \forall i$.
-
-\noindent Since the vector is not 0, I cannot have all the components 
-equal to 0 and therefore I can assume, for example, $\sum_i{\bar{x_i}}=1$.
-
-\noindent I want the sum to be 1 iot recover the optimal strategy for the 
-first player.
-
-\noindent Remember:
+Since $int(Q_v) \cap C = \emptyset$, $Q_v$ and $C$ ca be separated by an 
+hyperplane, i.e. there are coefficients $\bar{x_1},...,\bar{x_n}$, not all 
+zero, and $b \in \mathbb{R}$ s.t., for all $u = (u_1,...,u_n) \in Q_v$ and 
+for all $w = (w_1,...,w_n) \in C$,
 \[
-	\langle \bar{x},u \rangle \leq b \leq \langle \bar{x},w\rangle 
+	\sum_{i=1}^n{\bar{x_i}u_i} = \langle \bar{x},u \rangle \leq 
+	b \leq \sum_{i=1}^n{\bar{x_i}w_i} = \langle \bar{x},w \rangle
 \]
-
-\noindent Now I claim $b=v$. 
-
-\noindent $Q_{v+a} \bigcap C = \emptyset$ because they are separated 
-by $b$. But this is impossible because $v+a > v$ and $v$ is defined 
-as the supremum of the numbers for which $Q_t \bigcap C = \emptyset$.
-
-\noindent Other remark: $Q_v \bigcap C \neq \emptyset$
-
-\noindent This means that they must have at least one point in common. 
-We can call $\bar{w} \in Q_v \bigcap C$. This means that $\bar{w}\in C$ 
-and therefore $\exists \bar{y_1}...\bar{y_n} s.t. w=\sum{\bar{y_j}p_j}$ 
-and $\bar{y_j}\geq0 \forall j$ and $\sum{\bar{y_j}}=1$.
-
-\noindent I want to prove that v is the value of the game, i.e. the 
-conservative values of the players are the same and $\bar{x},\bar{y}$ 
-are optimal for player1 and player2, respectively.
-
+It holds:
 \begin{enumerate}
-	\item $f(x,y)\geq v \forall y \in \Sigma_m$. 
-		I know that $w=\sum{y_jp_j} \in C$. 
-	\item $f(x,\bar{y})\leq v \forall x \in \Sigma_n$. 
-		\textbf{NOTE: in slide 21 we have $\bar{\beta}$ instead of 
-		$\bar{y}$}.
+	\item $\bar{x_i} \geq 0 ~\forall i$ and, since they cannot be zero, we can 
+	assume $\sum{\bar{x_i}} = 1$ (I will need this in order to recover the 
+	optimal strategy for the first player).
+
+	\item $b = v$. Indeed, first of all, since $\bar{v} = (v,...,v) \in Q_v$, 
+	from $\langle \bar{x},\bar{v} \rangle = v$ we get $b \geq v$.
+
+	\noindent Now suppose $b > v$ and take $a > 0$ so small that $b > v+a$. 
+	Then $\sup\{\sum_{i=1}^n{\bar{x_i}u_i}: u \in Q_{v+a}\} < b$ and this 
+	implies $Q_{v+a} \cap C = \emptyset$ which is in contradiction with the 
+	definition of $v$.
+
+	\item $Q_v \cap C \neq \emptyset$. Indeed, let $w \in Q_v \cap C$. Then 
+	$\bar{w} = \sum_{j=1}^m{\bar{y_j}p_j}$ for some $\bar{y} = (\bar{y_1},...,
+	\bar{y_m}) \in \Sigma_m$. Observe that, since $\bar{w} \in Q_v$, then 
+	$\bar{w_i} \leq v ~\forall i$.
 \end{enumerate}
 
+\noindent Now we can prove that $\bar{x}$ is optimal for the first player, that 
+$\bar{y}$ is optimal for the second player and that $v$ is the value of the 
+game.
+
+\noindent First of all, let $y \in \Sigma_m$ be a mixed strategy for the second 
+player and let $w = \sum_{j=1}^m{y_jp_j} \in C$ (thus $w_i = \sum_{j=1}^m
+{y_jp_{ij}}$). Thus
+\[
+	f(\bar{x},y) = \sum_{i,j}{\bar{x}y_jp_{ij}} = \sum_{i=1}^n{\bar{x_i}w_i} 
+	\geq v
+\]
+This shows that, by playing $\bar{x}$, the first player is able to guarantee 
+himself at least $v$.
+
+\noindent Consider now $\sum_{j=1}^m{\bar{y_j}p_j} = \bar{w} \in Q_v \cap C$ 
+as before. For every mixed strategy $x \in \Sigma_n$ of the first player, we 
+get
+\[
+	f(x,\bar{y}) = \sum_{ij}{x_i\bar{y_j}p_{ij}} = \sum_i{x_i\bar{w_i}} \leq 
+	v\sum_i{x_i} = v
+\]
+which means that the second player is able, by playing $\bar{y}$ to pay no 
+more than $v$.
+
+\bigskip
 \noindent \textbf{Example}\\
 Consider the matrix:\\
 4	3	1\\
@@ -109,6 +94,7 @@ ossia $\bar{y}=(\frac{2}{3},0,\frac{1}{3})$, il che significa che il giocatore
 probabilità  0 etc. Guardando la matrice, verifichiamo che non può
 effettivamente pagare più di $v=3$.
 
+\bigskip
 \noindent To understand the proof of vN theorem, I can solve games...
 apparently! Actually, this works only if one player has at most two 
 strategies. If both players have more than two str., it is not possible 
@@ -118,37 +104,143 @@ a line, a plane or whatever.
 
 \noindent How can I solve a zero-sum-game in general?
 
-\noindent Player1 must choose a mixed strategy with the characteristics 
-listed in \textbf{slide22}. Notice that $p_{11}...p_{m1}$ is the 
+\noindent Player1 must choose a mixed strategy, i.e. a probability distribution 
+$x = (x_1,...,x_n) \in \Sigma_n$, s.t.\\
+$x_1p_{11} + ... + x_np_{n1} \geq v$\\
+...\\
+$x_1p_{1j} + ... + x_np_{nj} \geq v$\\
+...\\
+$x_1p_{1m} + ... + x_np_{nm} \geq v$\\
+where $v$ must be as large as possible.
+
+\noindent Notice that $[p_{11},...,p_{m1}]$ is the 
 first col of the payoff matrix $P$. This means that I want to get at least 
-v by playing every column of the matrix.
+$v$ by playing every column of the matrix.
 
 \noindent Remember: the utiliy function is $x^TPy$ and player2 chooses in 
 $\Sigma_m$. Given x, the minimum of the utility function is linear in y. 
 
-\noindent \textbf{I always check your strategy in the vertexes of your 
+\noindent \textbf{I always check your strategy in the vertices of your 
 simplex: maybe the minimum is on a face, but even in that case its value 
-can be seen in the vertexes}.
+can be seen in the vertices}.
 
-\noindent The same holds for player2, but you consider the rows. 
-Notice that w is unknown! The value is always an unknown of the problem.
+\noindent The same holds for player2, but you consider the rows:\\
+$y_1p_{11} + ... + y_mp_{1n} \leq w$\\
+...\\
+$y_1p_{i1} + ... + y_mp_{jm} \leq w$\\
+...\\
+$y_1p_{n1} + ... + y_mp_{nm} \leq w$\\
+where $w$ must be as small as possible.
 
-\noindent We can see this as a linear programming problem (see 
-\textbf{slide24}).
+
+\noindent Notice that $w$ is unknown! The value is always an unknown of the 
+problem.
+
+\noindent We can see this as a linear programming problem: for player1,
+\begin{equation*}
+    \begin{cases}
+        \max_{x,v} v:\\
+        P^Tx \geq v1_m\\
+        x \geq 0\\
+        \langle 1,x \rangle = 1
+    \end{cases}
+\end{equation*}
+while for player2
+\begin{equation*}
+    \begin{cases}
+        \min_{y,w} w:\\
+        Py \leq w1_n\\
+        y \geq 0\\
+        \langle 1,y \rangle = 1
+    \end{cases}
+\end{equation*}
+where both problems are feasible.
 
 
-\section{Linear programming - slide 25 sgg.}
+\section{Linear Programming}
 
-\noindent In (P) there are no equality constraints (that must be considered 
-in a different way).
+\noindent \textbf{Definition:} two linear problems (P) and 
+(D) are said to be \textbf{in duality} if they are of the form:
+\begin{equation}
+	\tag{P1}
+    \begin{cases}
+        \min{c^Tx}\\
+        Ax \geq b\\
+        x \geq 0
+    \end{cases}
+    \label{primal1}
+\end{equation}
+\begin{equation}
+	\tag{D1}
+    \begin{cases}
+        \max{b^Ty}\\
+        A^Ty \leq c\\
+        y \geq 0
+    \end{cases}
+    \label{dual1}
+\end{equation}
+or, equivalently, if they are written in the form:
+\begin{equation}
+	\tag{P2}
+    \begin{cases}
+        \min{c^Tx}\\
+        Ax \geq b
+    \end{cases}
+    \label{primal2}
+\end{equation}
+\begin{equation}
+	\tag{D2}
+    \begin{cases}
+        \max{b^Ty}\\
+        A^Ty = c\\
+        y \geq 0
+    \end{cases}
+    \label{dual2}
+\end{equation}
+
+\noindent In (\ref{primal1}) there are no equality constraints (that must be 
+considered in a different way).
 
 \noindent You find the dual problem by exchanging the role of unknowns and 
 of constraints.
 
-\noindent In the form of slide 26, notice that in (P) you don't have a 
-constraint like $x\geq 0$, while you have it in (D), where you also have 
-and equality constraint. This can be understood when you read the inequalities 
-of slide 30: iot be able to write:
+\bigskip
+\noindent \textbf{Definition:} a problem is \textbf{feasible} if the set of 
+vectors which satisfy the constraints admits at least one element (in this case, you also have a solution).
+
+\noindent Given two problems in duality, they can be:
+\begin{itemize}
+	\item both unfeasible
+	\item one feasible and one unfeasible
+	\item both feasible
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Theorem:} let $v$ be the value of the primal min problem and 
+let $V$ be the value of the dual max problem. Then $v \geq V$.
+
+\bigskip
+\noindent \textbf{Proof:} we can distinguish two cases:
+\begin{enumerate}
+	\item consider two problems in duality written in the form \ref{primal1},
+	\ref{dual1}. Then
+	\[
+		c^Tx \geq (A^Ty)^Tx = y^TAx \geq y^Tb = b^Ty
+	\]
+	Since this is true for all admissible $x$ and $y$, the result follows.
+
+	\item consider two problems in duality written in the form \ref{primal2},
+	\ref{dual2}. Then
+	\[
+		c^Tx = (A^Ty)^Tx = y^TAx \geq y^Tb = b^Ty
+	\]
+	Since this is true for all admissible $x$ and $y$, the result follows.
+\end{enumerate}	
+
+\bigskip
+\noindent In (\ref{primal2}) you don't have a constraint like $x\geq 0$, while 
+you have it in (\ref{dual2}), where you also have an equality constraint. This 
+can be understood when you read the inequalities above: iot be able to write:
 \[
 	c^Tx \geq (A^Ty)^Tx
 \]
@@ -163,105 +255,217 @@ to write:
 knowing that $Ax=b$, because you must be sure that the ineq. does not change 
 its sign.
 
-\noindent The second form of slide 26 is useful in \textbf{core problems}.
+\bigskip
+\noindent The second form of the problems in duality is useful in \textbf{core 
+problems}.
 
-\noindent A problem is feasible if the set of vectors which satisfy the 
-constraints admits at least one element (in this case, you also have a 
-solution).
+\bigskip
+\noindent \textbf{Strong duality theorem:} the following results hold:
+\begin{itemize}
+	\item[-] if the primal and the dual problems are feasible, then both have 
+	optimal solutions $\bar{x},\bar{y}$ and the optimal values coincide, i.e. 
+	$v = c^T\bar{x} = b^T\bar{y} = V$.
 
-\noindent \textbf{Proof of slide 30}
+	\noindent In this case we say that there is no duality gap.
 
-\noindent I'm considering
-\[
-	min c^Tx
-\]
-\[
-	Ax \geq b
-\]
-\[
-	x \geq 0
-\]
-and
-\[
-	max b^Ty
-\]
-\[
-	A^Ty \leq c
-\]
-\[
-	y \geq 0
-\]
-but then I can say $c^Tx \geq b^Ty \forall x,y$ which are feasible.
+	\item[-] if the primal is feasible and the dual is not feasible, then 
+	$v = V = -\infty$.
 
+	\item[-] if the dual is feasible and the primal is not feasible, then 
+	$v = V = +\infty$.
+
+	\item[-] if both the problems are unfeasible, then $v = +\infty > V = 
+	-\infty$.
+\end{itemize}
+
+\bigskip
 \noindent
-\textbf{Note:} the theorem of slide 31 comes from Weierstrass theorem: you 
+\textbf{Note:} the theorem comes from Weierstrass theorem: you 
 only prescribe the set of constraints to be bounded iot to grant you have 
 a solution (i.e. a minimum or a maximum, according to the fact that you 
 are considering (P) or (D)).
 
-\noindent \textbf{Complementarity conditions:} you lose the optimization 
+\bigskip
+\noindent \textbf{Corollary:} if one problem is feasible and has an optimal 
+solution, them also the other is feasible and have an optimal solution; 
+moreover, there is no duality gap.
+
+\bigskip
+\noindent \textbf{Complementarity conditions:} consider two problems in duality 
+expressed in the form \ref{primal1},\ref{dual1}.
+
+\noindent \textbf{Theorem:} let $\bar{x}$ and $\bar{y}$ be admissible solutions 
+for (\ref{primal1}) and (\ref{dual1}). Then $\bar{x}$ and $\bar{y}$ are 
+simultaneously optimal iff they satisfy
+\begin{equation}
+	\tag{CC}
+    \begin{cases}
+        \bar{x_i} > 0 \implies \sum_{j=1}^m{a_{ij}\bar{y_j}} = c_i ~
+        \forall i=1:n\\
+        \bar{y_j} > 0 \implies \sum_{i=1}^n{a_{ij}\bar{x_i}} = b_j ~
+        \forall j=1:m
+    \end{cases}
+    \label{CC}
+\end{equation}
+
+\bigskip
+\noindent \textbf{Comment:} you lose the optimization 
 part: you express the optimality of your solution using only 
-inequalities and equalities. (CC) means that if, for example, 
+inequalities and equalities. (\ref{CC}) means that if, for example, 
 $\bar{x_i} > 0 \forall i$ (strictly $>$), then the constraints of (D) 
 must be active, which means that they must hold with $=$ instead of 
 $\leq$ (and the same in the other case).
 
 \bigskip
-{\huge E' proprio Rinaldi, comunque}
+\noindent \textbf{Proof:} since $c^Tx \geq y^TAx \geq b^Ty$, then $\bar{x}$ 
+and $\bar{y}$ are optimal iff they satisfy $c^T\bar{x} = \bar{y}^TA\bar{x} = 
+b^T\bar{y}$.
+
+\noindent This is equivalent to $\bar{x}^T(A^T\bar{y} - c) = 0$ and 
+$\bar{y}^T(A\bar{x} - b) = 0$.
+
+\noindent Since $\bar{x},\bar{y} \geq 0$ and $A\bar{x} \geq b$, $A^T\bar{y} 
+\leq c$, the latter are equivalent to (\ref{CC}).
 
 \bigskip
-\noindent \textbf{Slide 34:} what I usually write, for player1, is:
-\[
-	min 1^T_nx
-\]
-\[
-	P^Tx \geq 1_m
-\]
-\[
-	x \geq 0
-\]
-and, for player2:
-\[
-	max 1_my
-\]
-\[
-	Py \geq 1_n
-\]
-\[	
-	y \geq 0
-\]
+{\huge E' proprio Rinaldi, comunque}
 
-\noindent \textbf{Example:}\\
-Consider the game:\\
+\subsection*{Linear programming for zero-sum games}
+
+\noindent Consider a zero sum game described by a payoff matrix P s.t. 
+$P_{ij} > 0 ~\forall i,j$, so that $v > 0$. Set $\alpha_i = \frac{x_i}{v}$. Then 
+the condition $\sum{x_i} = 1$ becomes $\sum{\alpha_i} = \frac{1}{v}$ and to 
+maximize $v$ is equivalent to minimize $\sum{\alpha_i}$.
+
+\noindent Set $\beta_j = \frac{y_j}{v}$; the same argument can be repeated, so 
+that we can write, for player1,
+\begin{equation}
+	\begin{cases}
+		\min 1^T_n\alpha\\
+		P^T\alpha \geq 1_m\\
+		\alpha \geq 0
+	\end{cases}
+\end{equation}
+and, for player2:
+\begin{equation}
+	\begin{cases}
+		\max 1_m\beta\\
+		P\beta \leq 1_n\\
+		\beta \geq 0
+	\end{cases}
+\end{equation}
+Denote by $v$ the common value of the two problems. We have that:
+\begin{enumerate}
+	\item $x$ is an optimal strategy for player1 iff $x = v\alpha$ for some 
+	$\alpha$ optimal solution of (P).
+	\item $y$ is an optimal strategy for player2 iff $y = v\beta$ for some 
+	$\beta$ optimal solution of (D).
+\end{enumerate}
+
+\subsection*{Complementarity conditions for zero-sum games}
+
+\noindent Being $x$ and $y$ the strategies of the two players, we can write:
+\begin{equation}
+    \begin{cases}
+        \bar{x_i} > 0 \implies \sum_{j=1}^m{p_{ij}\bar{y_j}} = v ~
+        \forall i=1:n\\
+        \bar{y_j} > 0 \implies \sum_{i=1}^n{p_{ij}\bar{x_i}} = v ~
+        \forall j=1:m
+    \end{cases}
+\end{equation}
+Which means that the fact that player1 plays row $i$ with positive probability 
+implies that player2 pays exactly $v$ (using an optimal strategy against row 
+$i$) and viceversa.
+
+\bigskip
+\noindent \textbf{Remark:} there are stil situations in which we do not know 
+what does rationality mean.
+
+\noindent \textbf{Example:} consider the game:\\
 (1,1)	(0,0)\\
 (0,0) 	(1,1)\\
-all cryteria we know cannot be applied, but we all agree that 
-the solution should be the first or the fourth element of the matrix. 
-The situation is similar in:\\
+all cryteria we know cannot be applied (it is not a game in extensive form, it 
+is not a zero-sum game and there are no strictly dominated strategies), but we 
+all agree that the solution should be the first or the fourth element of the 
+matrix. 
+
+\noindent The situation is similar in:\\
 (3,4) 	(0,0)\\
 (0,0)	(4,3)\\
 where, however, the first and the fourth elements are not indifferent. This 
 means that the two players are forced to coordinate if they do not want to 
-end up in (0,0).
+end up in (0,0), which is the worst situation for both.
 
-\noindent In a zero-sum-game players do not need to coordinate: at any 
-time in which both are optimal, one player gains $v$ and the other pays $v$, 
-which is the optimal solution for both. They naturally agree because the 
-optimal solution for each player is optimal for both.
+\noindent In a zero-sum-game players do not need to coordinate: there is a 
+convex set of optimal strategies. At any time in which both are optimal, one 
+player gains $v$ and the other pays $v$, which is the optimal solution for both. 
+They naturally agree because the optimal solution for each player is optimal 
+for both.
 
-\section{Symmetric games}
+\noindent We will see that there are Nash equilibria that are fair for one 
+player but not for the other. Therefore, if one player wants to reach a Nash 
+equilibrium and the other wants to reach another, they will end up in a third 
+solution, which is not a Nash equilibrium and therefore it is not rational.\\
+$\implies$\\
+Players need to coordinate.
+
+\section{Symmetric Games}
+
+\noindent \textbf{Definitions:} a square matrix $P \in \mathbb{R}^{n \times n}$ 
+is said to be \textbf{antisymmetric} if $P_{ij} = -P_{ji} ~\forall i,j$.
+
+\noindent A (finite) zero-sum game is said to be \textbf{fair} if its payoff 
+matrix $P$ is antisymmetric.
+
+\bigskip
+\noindent \textbf{Remember:} if P is antisymmetric, then $P^T=-P$.
+
+\bigskip
+\noindent \textbf{Note:} in fair games there is no favorite player.
 
 \noindent A symmetric game is fair because both the players have the same 
 options. The matrix is squared, which means that pure strategies and mixed 
 str. coincide. Moreover, I expect the outcome to be 0 and I expect that 
 the same stragegy is optimal for both the players.
 
-\noindent \textbf{Remember:} if P is antisymmetric, then $P^T=-P$.
+\bigskip
+\noindent \textbf{Proposition:} if $P$ is antisymmetric, then the value of the 
+game is 0 and $\bar{x}$ is an optimal strategy for player1 iff it is optimal 
+for player2.
 
-\noindent $v_1=\sup_x{\inf_y{f(x,y)}}$, therefore $f(x,x)=0$ means that 
-$inf_y{f(x,x)}\leq 0$, which entails $v_1\leq 0$.
+\bigskip
+\noindent \textbf{Proof:} since $x^TPx = (x^TPx)^T = x^TP^Tx = -x^TPx$, then we 
+have that $f(x,x) = 0$ for all $x$.
+
+\noindent By definition, $v_1=\sup_x{\inf_y{f(x,y)}}$, therefore 
+$f(x,x)=0$ means that $inf_y{f(x,x)}\leq 0$, which entails $v_1\leq 0$.
+
+\noindent The converse holds for $v_2$, which means that $v_2 \geq 0$.
 
 \noindent We are in a situation where $v=v_1=v_2$ and the fact that 
 $v_1\leq 0$ and $v_2\geq 0$ entails that $v=0$.
 
-\end{document}
+\noindent If $\bar{x}$ is optimal for player1, then $\bar{x}^TPy \geq 0$ for all 
+$y$ and, by transposing, we get $y^TP\bar{x} \leq 0$ for all $y \in \Sigma_n$.
+
+\noindent Notice that $y \in \Sigma_n$ means that $y$ is a strategy for player1, 
+besides its name.
+
+\noindent This entails that $\bar{x}$ is optimal also for the second player, and 
+conversely.
+
+\bigskip
+\noindent \textbf{Finding optimal strategies in a fair game:} we have to solve 
+the system of inequalities:\\
+$x_1p_{11} + ... + x_np_{n1} \geq 0$\\
+...\\
+$x_jp_{1j} + ... + x_np_{nj} \geq 0$\\
+...\\
+$x_1p_{1m} + ... + x_np_{nm} \geq 0$\\
+with the extra conditions $x_i \geq 0 ~\forall i$ and $\sum_{i=1}^n{x_i} = 1$.
+
+\noindent This means that in the case of fair games there is no need to go for 
+linear programming, because the value of the game is known and it is equal to 
+zero.
+
+%\end{document}

@@ -31,35 +31,47 @@ zero-sum because there is a true interaction between players.
 
 \noindent When we need real interaction it is natural to assume that the 
 players make coalitions (remember: players always want to maximize 
-their utility function $=>$ they cooperate if it is convenient).
+their utility function $\implies$ they cooperate if it is convenient).
 
 {\huge Then stop kidding Quarteroni $-.-'$ }
 
 \bigskip
-\noindent \textbf{Non-cooperative games - slide 3}
+\noindent \textbf{Non-cooperative games:} a two-player non-cooperative 
+game in strategic form is given by $(X,Y,
+f:X \times Y \rightarrow \mathbb{R}, g:X \times Y \rightarrow \mathbb{R})$, 
+where $X$ and $Y$ are the strategy spaces for player1 and player2, 
+respectively, while $f$ and $g$ are their utility functions.
 
-\noindent Remark: we speak about 2 players because it is easyer than 
-to consider more than 2. This is not a problem in noncooperative games, 
-while in cooperative games to consider 2 players is the same as to 
-consider a degenerate game, in which actually you don't see anything.
+\bigskip
+\noindent \textbf{Remark:} we speak about 2 players because it is easyer 
+than to consider more than 2. This is not a problem in noncooperative 
+games, while in cooperative games to consider 2 players is the same as 
+to consider a degenerate game, in which actually you don't see anything.
 
+\bigskip
 \noindent Notice that a zero-sum-game is a noncooperative game where 
 $g=-f$.
 
 \bigskip
-\noindent \textbf{Slide 4}
+\noindent \textbf{Nash equilibrium profile} for the non-cooperative game 
+$(X,Y, f:X \times Y \rightarrow \mathbb{R}, 
+g:X \times Y \rightarrow \mathbb{R})$ is given by a pair $\bar{x},\bar{y} 
+\in X \times Y$ s.t. $f(\bar{x},\bar{y}) \geq f(x,\bar{y}) ~\forall x \in X$ and 
+$g(\bar{x},\bar{y}) \geq g(\bar{x},y) ~\forall y \in Y$.
 
+\bigskip
 \noindent We're not talking about optimality, only about equilibria.
 
-\noindent Player1: "if I know that player2 will play $\bar{y}$, there 
+\noindent A NEp is a joint combination of strategies, stable wrt unilateral 
+deviations of a single player. Indeed, what happens for player1 is the 
+following: "if I know that player2 will play $\bar{y}$, there 
 is no reason to deviate from $\bar{x}$, since it is optimal for me. 
-And I can believe that player2 will actually play $\bar{y}$ since, 
-knowing that in that case I will play $\bar{x}$, $\bar{y}$ is optimal 
-for him"
+And I can believe that player2 will actually play $\bar{y}$ since he knows 
+that in that case I will play $\bar{x}$, $\bar{y}$ is optimal 
+for him" (and viceversa for player2).
 
-\noindent Player2: "Viceversa"
-
-\noindent $=>$ overall, we can say that the Nash profile is a joint 
+\bigskip
+\noindent $\implies$ overall, we can say that the Nash profile is a joint 
 combination of strategies, since the decision of player1 and of 
 player2 are strictly correlated. In principle, we can decide both to 
 deviate from our decision, but it will never happen that only one 
@@ -73,119 +85,139 @@ player has as optimal str. to go to see the movie and the other to
 stay home...even that what they both prefer is to stay together.
 
 \bigskip
-\noindent \textbf{Slide 5}
-
-\noindent The new model can be applied to former concept. For example, 
-if by strictly dominated strategies we recover a solution that is not 
-a Nash eq., then the definition of Nash eq. has some problems. The point 
-is: we can state the definition of rationality in a different way, but, 
-overall, rationality must be always the same concept.
-
-\noindent Given a strictly dominant str., it is easy to find the Nash 
-eq. profile. Indeed,
-\[
-	f(\bar{x},\bar{y}) \geq f(x,\bar{y}) ~\forall x,~\forall y
-\]
-of course implies
-\[
+\noindent \textbf{Remark:} NEp gives us a new definition of rationality, 
+which must be compared with the former concepts: we can state the 
+definition of rationality in a different way, but, overall, rationality must be 
+always the same concept.
+\begin{enumerate}
+	\item \textbf{Principle of strictly dominated strategies:} if by strictly 
+	dominated strategies we recover a solution that is not a Nash eq., then 
+	the definition of Nash eq. has some problems. 
+	
+	\noindent Given a weakly dominant str., it is easy to find the Nash 
+	eq. profile. Indeed,
+	\[
+	f(\bar{x},y) \geq f(x,y) ~\forall x,~\forall y
+	\]
+	of course implies
+	\[
 	f(\bar{x},\bar{y}) \geq f(x,\bar{y}) ~\forall x
-\]
+	\]
+	
+	\item \textbf{Backward induction:} it provides a solution which is a 
+	NEp for a game with perfect information.
+	
+	\noindent However, it is possible that games with perfect information 
+	have also equilibria that are not detected by backward induction.
+	
+	\noindent \textbf{Example:} a mother and her son have to decide whether to 
+	buy or not to buy an ice-cream.
+	
+	\noindent Mother's possibilities: to buy or not to buy
+	
+	\noindent Son's possibilities: to cry or not to cry
+	
+	\noindent ...this is the question
+	
+	\noindent Supposing that for the mother not to buy is better and 
+	supposing that for the son not to cry is better, we have: 
+	Outcome: (20, -1); strategies: (notBuy, notCry).
+	
+	\noindent Same game in grategic form:\\
+	(1,20)	(1,20)\\
+	(-5,-2)	(20,-1)\\
+	
+	\noindent We want to find the Nash equilibria for a game which is in 
+	matrix form. The Nash eq. are the optimal outcomes when we have a fixed 
+	strategy for both the players $\implies$ we find two Nash eq., i.e. $(1,20)$ 
+	and $(20,-1)$. The second is the same we recovered from backward 
+	induction, but here we find one more. Notice that the first outcome is 
+	strange: we arrive there when the mother buys and the son cries, which 
+	is strange because, looking at the game in extensive form, we see that 
+	when the mother buys the son does not cry $\implies$ the child does something 
+	which is not optimal...which makes sense because the point is: the 
+	situation we are talking about is never reached by the game (there is 
+	no point in crying when you have an ice-cream). This second Nash eq. is 
+	based on a threat: son says: "I cry" and therefore the mother buys the 
+	ice-cream. The threat is not really believable: we know that the son 
+	does not cry if you buy the ice-cream...but this is only a matter of 
+	announcements.
+	
+	\noindent In general, the first thing we can do is to look for backward 
+	induction solutions because these solutions cannot have objections...we 
+	can look for other Nash equilibria in a second moment.
+	
+	\noindent \textbf{Example on the slide:}\\
+	Outcome: (1,0)\\
+	Strategy for player1: $x=1$\\
+	Strategy for player2: "say always yes $\forall x$"
+	
+	\noindent Consider the same example in strategic form and look for Nash 
+	eq. profile. Claim: $(x,1-x)$ is the result of a Nash eq. profile 
+	$\forall x$. How is this possible?? Why (0.02, 0.98) should be a Nash eq? 
+	In this case, str. of player1 is $x=0.02$, while strategy for player2 is 
+	"yes to $x=0.02$, no to all other x". For both is not convenient to change: 
+	for player2 because in any case he cannot get more than 0.02 (which is 
+	the offer), while player1 cannot offer a different value of x because 
+	player2 says he will refuse all offers $x\neq 0.02$.
+	
+	\noindent Actually, the more natural strategy for player2 would be 
+	"yes to $x \leq 2$, no otherwise".
+	
+	\noindent $\implies$ Nash equilibria can be counterintuitive.
+	
+	\item \textbf{Zero-sum games:}
+	
+	\noindent \textbf{Theorem:} let $X,Y$ be nonempty sets and let 
+	$f: X \times Y \rightarrow \mathbb{R}$ a function. Then the following 
+	results are equivalent:
+	\begin{itemize}
+		\item the pair $(\bar{x},\bar{y})$ fulfills 
+		$f(x,\bar{y}) \leq f(\bar{x},\bar{y}) \leq f(\bar{x},y) ~\forall x \in X, y \in Y$
+		
+		\item the following conditions are satisfied:
+		\begin{enumerate}
+			\item $\inf_y\sup_xf(x,y) = \sup_x\inf_yf(x,y)$
+			\item $\inf_yf(\bar{x},y) = \sup_x\inf_yf(x,y)$
+			\item $\sup_xf(x,\bar{y}) = \inf_y\sup_xf(x,y)$
+		\end{enumerate}
+	\end{itemize}
+	\noindent \textbf{Comments:} $g=-f$ in zero-sum-games $\implies$ 
+	condition (1) says that $(\bar{x},\bar{y})$ is a Nash eq. for the game.
 
-\bigskip
-\noindent \textbf{Slide 6}
+	\noindent (a) says that $\bar{x}$ is optimal for player1, while (b) says 
+	that $\bar{y}$ is optimal for player2 (it minimizes something and 
+	player2 wants to minimize, since he has to pay).
+	
+	\noindent We have two optimal solutions and they agree.
+	
+	\noindent What I actually build in zero-sum games are Nash equilibria; 
+	the point is that zero-sum games are easier to solve because we can use 
+	linear programming, which we cannot use in general iot recover Nash eq.
+	
+	\bigskip
+	\noindent \textbf{Proof of the theorem:} suppose that $(\bar{x},\bar{y})$ 
+	is a Nash eq. Then I can say $f(\bar{x},\bar{y}) \leq f(\bar{x},y) ~\forall y$.
+	
+	\noindent This means that $f(\bar{x},\bar{y}) = \inf_y{f(\bar{x},y) \leq \sup_x{\inf_y{f(x,y)}}} = v_1$.
+	
+	\noindent We also have $v_2 = \inf_y{\sup_x{f(x,y)}} \leq 
+	\sup_x{f(x,\bar{y})}$ and by the same argument as above we end up with 
+	$v_2 \leq v_1$.	
+	
+	\noindent Since, however, it is always $v_1 \leq v_2$, it must be $v_1 =
+	v_2$, which means that all the inequalities above hold as equalities and 
+	therefore all the conditions (a),(b) and (c) are satisfied.
+	
+	\noindent On the other side: 
+	$\sup_x{\inf_y{f(x,y)}} = \inf_y{f(\bar{x},y)} \leq f(\bar{x},\bar{y}) 
+	\leq \sup_x{f(x,\bar{y})} = \inf_y{\sup_x{f(x,y)}}$.
+	
+	\noindent However, since the conditions (a), (b) and (c) are satisfied, this 
+	is the same as to say that the pair $(\bar{x},\bar{y})$ is a NEp for the game.
+\end{enumerate}
 
-\noindent Example: a mother and her son have to decide whether to 
-buy or not to buy an ice-cream.
-
-\noindent Mother's possibilities: to buy or not to buy
-
-\noindent Son's possibilities: to cry or not to cry
-
-\noindent ...this is the question
-
-\noindent Supposing that for the mother not to buy is better and 
-supposing that for the son not to cry is better, we have: 
-Outcome: (20, -1); strategies: (notBuy, notCry).
-
-\noindent Same game in grategic form:\\
-(1,20)	(1,20)\\
-(-5,-2)	(20,-1)\\
-
-\noindent We want to find the Nash equilibria for a game which is in 
-matrix form. The Nash eq. are the optimal outcomes when we have a fixed 
-strategy for both the players $=>$ we find two Nash eq., i.e. $(1,20)$ 
-and $(20,-1)$. The second is the same we recovered from backward 
-induction, but here we find one more. Notice that the first outcome is 
-strange: we arrive there when the mother buys and the son cries, which 
-is strange because, looking at the game in extensive form, we see that 
-when the mother buys the son does not cry $=>$ the child does something 
-which is not optimal...which makes sense because the point is: the 
-situation we are talking about is never reached by the game (there is 
-no point in crying when you have an ice-cream). This second Nash eq. is 
-based on a threat: son says: "I cry" and therefore the mother buys the 
-ice-cream. The threat is not really believable: we know that the son 
-does not cry if you buy the ice-cream...but this is only a matter of 
-announcements.
-
-\noindent In general, the first thing we can do is to look for backward 
-induction solutions because these solutions cannot have objections...we 
-can look for other Nash equilibria in a second moment.
-
-\noindent Example on the slide:\\
-Outcome: (1,0)\\
-Strategy for player1: $x=1$\\
-Strategy for player2: "say always yes $\forall x$"
-
-\noindent Consider the same example in strategic form and look for Nash 
-eq. profile. Claim: $(x,1-x)$ is the result of a Nash eq. profile 
-$\forall x$. How is this possible?? Why (0.02, 0.98) should be a Nash eq? 
-In this case, str. of player1 is $x=0.02$, while strategy for player2 is 
-"yes to $x=0.02$, no to all other x". For both is not convenient to change: 
-for player2 because in any case he cannot get more than 0.02 (which is 
-the offer), while player1 cannot offer a different value of x because 
-player2 says he will refuse all offers $x\neq 0.02$.
-
-\noindent Actually, the more natural strategy for player2 would be 
-"yes to $x \leq 2$, no otherwise".
-
-\noindent $=>$ Nash equilibria can be counterintuitive.
-
-\bigskip
-\noindent \textbf{Slide 7}
-
-\noindent $g=-f$ in zero-sum-games $=>$ condition (1) says that 
-$(\bar{x},\bar{y})$ is a Nash eq. for the game.
-
-\noindent (i) says that $\bar{x}$ is optimal for player1, while (ii) says 
-that $\bar{y}$ is optimal for player2 (it minimizes something and 
-player2 wants to minimize, since he has to pay).
-
-\noindent We have two optimal solutions and they agree.
-
-\noindent What I actually build in zer-sum-games are Nash equilibria; 
-the point is that zero-sum-games are easier to solve because we can use 
-linear programming, which we cannot use in general iot recover Nash eq.
-
-\noindent \textbf{proof of the theorem:} suppose that $(\bar{x},\bar{y})$ 
-is a Nash eq. Then I can say $f(\bar{x},\bar(y)) \leq f(\bar{x},y)$. But 
-then it is $ = \inf_y{f(\bar{x},y) \leq \sup_x{\inf_y{f(x,y)}}} = V_1$.
-
-\noindent We also have $V_2 = \inf_y{\sup_x{f(x,y)}} \leq 
-\sup_x{f(x,\bar{y})}$.
-
-\noindent Then $V_2 \leq V_1$...but it is always $V_1 \leq V_2$ and 
-therefore we must have $V_1 = V_2$, which means that all the inequalities 
-above are actually equalities $=>$ we proved that (1) implies (2).
-
-\noindent On the other side: 
-$\sup_x{\inf_y{f(x,y)}} = \inf_y{f(\bar{x},y)} \leq f(\bar{x},\bar{y}) 
-\leq \sup_x{f(x,\bar{y})} = \inf_y{\sup_x{f(x,y)}}$
-
-\noindent But we have (2) as hypothesis, which means that all the 
-ineq. are equalities, which is exactly the same as to say (1).
-
-\bigskip
-\noindent \textbf{Slide 10}
+\section*{Existence of Nash equilibria}
 
 \noindent \textbf{Multifunctions:} The only requirement we make to 
 $f: X \rightarrow Y$ iot be a function is that $f(x)$ must be an unique 
@@ -193,41 +225,73 @@ element in $Y$. Example: $\sqrt{y^2}$ is not a function in $\mathbb{R}$
 if we do not write $\sqrt{y^2}=|y|$. We use the word "multifunction" 
 when we do not know if something is actually a function.
 
-\noindent $BR_1(y)$: Best Reaction of player1 to a strategy $y$ of player2.
+\bigskip
+\noindent \textbf{Best Reply functions:} they are multifunctions defined in the following way:
+\[
+	BR_1: Y \rightarrow X, ~BR_1(y) = \text{ArgMax}\{f(\cdot,y)\}
+\]
+\[
+	BR_2: X \rightarrow Y, ~BR_2(x) = \text{ArgMax}\{f(x,\cdot)\}
+\]
+\[
+	BR: X \times Y \rightarrow X \times Y, ~BR(x,y) = (BR_1(y),BR_2(x))
+\]
 
-\noindent $(\bar{x},\bar{y})$ is a Nash eq. if $\bar{x}$ is the best 
-reaction of $\bar{y}$ and viceversa.
+\noindent $BR_1(y)$ is the best reaction of player1 to a strategy $y$ of player2.
 
-\noindent Remember: $g: Z \rightarrow Z, ~g(z) = z$ is a fixed point.
+\noindent $(\bar{x},\bar{y})$ is a Nash eq. iff $(\bar{x},\bar{y}) = BR(\bar{x},\bar{y})$, i.e. $\bar{x}$ is the best 
+reaction to $\bar{y}$ and viceversa.
 
-\noindent The Nash eq. is a fixed point for a multifunction ("multi" 
-because the best reaction can be not unique) $=>$ it is enough to 
+\bigskip
+\noindent \textbf{Remember:} $g: Z \rightarrow Z, ~g(z) = z$ is a fixed point.\\
+$\implies$
+The Nash eq. is a fixed point for a multifunction ("multi" 
+because the best reaction can be not unique) $\implies$ it is enough to 
 find a couple which belongs to $BR(\bar{x},\bar{y})$, we do not require $=$.
 
 \bigskip
-\noindent \textbf{Slide 11}
+\noindent \textbf{Kakutani's theorem:} let $Z$ be a compact convex subset of 
+an Euclidean space. Let $F: Z \rightarrow Z$ be s.t. $F(z)$ is a 
+nonempty closed and convex set for all $z$. If $F$ has closed graph, then 
+$F$ admits a fixed point, i.e. there exists $\bar{z} \in Z$ s.t. $\bar{z} \in F(\bar{z})$.
 
-\noindent "F has closed graph" means that:\\
+\bigskip
+\noindent \textbf{Remember:} "F has closed graph" means that:\\
 $(u_k,v_k) \in Graph(F)$ AND 
 $u_k \rightarrow u$ AND 
 $v_k \rightarrow v$ 
-$=> ~(u,v \in Graph(F))$
+$\implies ~(u,v \in Graph(F))$
 
 \bigskip
-\noindent \textbf{Slide 12}
+\noindent \textbf{Nash theorem:} given the game 
+$X,Y,f:X\times Y \rightarrow \mathbb{R}, g:X\times Y \rightarrow \mathbb{R}$, 
+suppose that:
+\begin{enumerate}
+	\item $X$ and $Y$ are compact convex subset of an Euclidean space.
+	\item $f,g$ are continuous.
+	\item $x \mapsto f(x,y)$ is quasi concave for all $y \in Y$.
+	\item $y \mapsto g(x,y)$ is quasi concave for all $x \in X$.	
+\end{enumerate}
+Then the game admits an equilibrium.
 
-\noindent Quasi-concave means that the upper level sets are convex. Of 
+\bigskip
+\noindent A real-valued function $h$ is quasi-concave if the upper level sets 
+$h_a = \{z: h(z)\geq a\}$ are convex for all $a$. Of 
 course, a concave function is quasi concave. Example: $\frac{1}{x}$ is 
 quasi concave. Indeed, all the upper level sets are half-lines, which of 
 course are convex.
 
-\noindent Example: if I'm indifferent to $x,y$, then I can assume that any 
+\noindent Example of usage of quasi-concave functions: if I'm indifferent to $x,y$, then I can assume that any 
 convex combination of x and y is better than anyone of them. In this case, 
 I can say that quasi concave functions are useful.
 
+\bigskip
 \noindent \textbf{Proof of the theorem:} I want to prove that $BR(x,y)$ is 
 not empty, closed, convex $\forall x,y$ and it has closed graph iot use 
-the theorem of slide 11. I do the proof for $BR_1$.
+the Kakutani's theorem. I do the proof for $BR_1$.
+
+% FIN QUI
+
 
 \noindent $BR_1(y)$ is nonempty and closed by Weierstrass theorem and 
 it is closed by the quasi concavity assumption. I need to prove that 
