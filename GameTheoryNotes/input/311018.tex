@@ -35,153 +35,193 @@ in the first one we assume that agreements are binding (: vincolanti).
 		another which is better, for the other player this is a 
 		problem, because if somethig is better for you, than it is 
 		worse for me. This is not necessarily true in general games 
-		$=>$ players can decide to cooperate because cooperation can 
+		$\implies$ players can decide to cooperate because cooperation can 
 		be useful.
 	\item Non-cooperative theory (Nash)
 \end{enumerate}
 
 \bigskip
-\noindent \textbf{Slide 3}
+\noindent \textbf{Cooperative game:} is a game $(N,V: \mathcal{P}(N) \rightarrow \mathbb{R}^n)$, where $V(A) \subseteq \mathbb{R}^A$.
+
+\noindent $N$ is the set of players, so that $|N| = n$; $\mathcal{P}(N)$ is the collection of all the nonempty subsets of $N$.
 
 \noindent V is a multifunction defined on the power set of N (the set of all 
 its subsets).
 
+\noindent For a given $A \in \mathcal{P}(N)$, $V(A)$ is the set of the aggregate utilities of all players in coalition $A$: $x = (x_i)_{i \in A} \in V(A)$ if the players in coalition $A$, acting by themselves, can guarantee to each one of them the utility $x_i$.
+
+\noindent \textbf{Remark:} $V(A)$ can represent a cost instead of representing an utility.
+
 \bigskip
-\noindent \textbf{Slide 4}
+\noindent \textbf{Transferrable Utility (TU) Game:} it is a function 
+$v: 2^N \rightarrow \mathbb{R}$ such that $v(\emptyset) = 0$.
+
+\bigskip
+\noindent TU games are cooperative games with
+\[
+	V(A) = \{x \in \mathbb{R}^A: \sum_{i \in A}{x_i} \leq v(A)\}
+\] 
 
 \noindent In TU games, I assume that utilities are expressed by some value, 
 for example euros.
 
 \bigskip
-\noindent \textbf{Slide 5}
+\noindent \textbf{Examples:}
+\begin{enumerate}
+	\item \textbf{Seller \& buyers:} there are one seller and two potential buyers for an important, indivisible good. Player one, the seller, evaluates the good $a$. Players two and three evaluate it $b$ and $c$, respectively. $a < b < c$
 
-\noindent Value of player1, if he is alone, is $a$, because he owns the 
-good and he evaluates the good exactly $a$. Values of player2 and player3, 
-if they are alone, is 0 because the do not own the good.
+	\noindent Value of player1, if he is alone, is $a$, because he owns the 
+	good and he evaluates the good exactly $a$. Values of player2 and player3, 
+	if they are alone, is 0 because they own nothing.
+	
+	\noindent Value for the coalition $\{1,2\}$ is $b$ because they can make an 
+	agreement and, since player2 evaluates the good $b$, player1 would not 
+	sell it for less than $b$.
+	
+	\noindent The value for the "grand coalition" N is $c$, which is the maximum 
+	value of the good.
 
-\noindent Value for the coalition $\{1,2\}$ is $b$ because they can make an 
-agreement and, since player2 evaluates the good $b$, player1 would not 
-sell it for less than $b$.
+	\item \textbf{Glove game:} $N$ players have a glove each, some of them a right glove, some other a left glove. Aim is to have pairs of gloves.
 
-\noindent The value for the "grand coalition" N is $c$, which is the maximum 
-value of the good.
+	\noindent What it is useful is to make pair of gloves $\implies$ the value of a 
+	coalition is the number of pairs that can be produced if the players share 
+	the gloves. For example, if there are two peoples with a right glove and 
+	two people with a left glove, only two pairs can be produced $\implies$ the value 
+	of the coalition is the minimum between the number of left and right gloves 
+	inside the coalition.
+	
+	\noindent This is a good model for all the situations in which you produce 
+	something that has no value by itself, but that needs to be matched with 
+	somethig else (ad esempio, due persone che producono ciascuna un pezzo 
+	necessario per costruire un oggetto).
+	
+	\noindent How the players will form pairs? Who keeps the gloves? These are the 
+	questions to which cooperative game theory has to give an answer.
+
+	\item \textbf{Children game:} three players must vote a name of one of them. If one of the players will get at least two votes, she will get 1000 Euros. They can make binding agreements about how sharing money. In case no one gets two nominations, the 1000 Euros are lost.
+
+	\noindent The value of any coalition A is 1000 if its cardinality is greater 
+	than 2 (i.e. the coalition contains at least twice the same name). It is zero 
+	if all players vote for themselves.
+
+	\item \textbf{Weighted majority game:} the game $[q; w_1,...,w_n]$ wants to provide a model of the situation where $n$ parties in a Parliament must take a decision. Party $i$ has $w_i$ members; to be approved, a proposal needs at least $q$ votes
+
+	\noindent In this case, the value of the coalition is not an utility; the 
+	value 1 means that the coalition wins.
+	
+	\noindent \textbf{Note:} weighted majority games are in general quite easy to 
+	solve, while this is not true for cooperative games, since the number of 
+	coalitions that can be formed is huge (it grows exponentially wrt the number 
+	of players).
+	
+	\noindent Suppose for example that, iot enhance a resolution, we need the agreement of all the 5 permanent players, plus the agreement of at least 4 of the 10 non-permanent players.
+	
+	\noindent We set to 1 the wheights of all the non permanent players. We need 
+	to choose $w_1,...,w_5$. We need the vote of all the permanent members iot 
+	enhance a resolution $\implies$ we cannot substitute a permanent player by 6 non 
+	permament players. Four non permanent players are needed to form a 
+	winning coalition, the other 6 are useless $\implies$ we should fix $w_j~=~7~
+	\forall j=1:5$. The quota is $\sum_{j=1}^5{w_j}$ plus the sum of the 
+	weights of four non permament players, i.e. it is 39.
+	
+	\noindent We can verify that, if we have all the non permanent players and four 
+	permanent players in the coalition, the resolution cannot pass; indeed, the 
+	value we have is $7 \times 4 ~+~ 1 \times 10 ~=~ 38 ~<~ 39$.
+	
+	\noindent Notice that this kind of model can be useful to analyse the power 
+	of the parties, which is not always trivially correlated to the number of 
+	members. For example, if we have three parties, two with 49 members and one 
+	which 2 members, we can observe that any combination of two parties creates 
+	a majority and therefore the relative power of all the parties is practically 
+	symmetric, even if one of them has far less members than the others.
+	
+	\item \textbf{Bankruptcy game:} it is defined by the triple $B = (N, c, E)$, where $N = \{1,...,n\}$ is the set of creditors, $E$ is the estate and $c = \{c_1,...,c_n\}$ is the set of claims (i.e. $c_i$ is the credit claimed by player $i$).
+	
+	\noindent The bankruptcy condition is expressed as $E < \sum_{i=1}^n{c_i} = C$.
+
+	\noindent Suppose that I have an estate of 100 and I have to pay 50 to one 
+	person, 60 to another and 25 to another (50, 60 and 25 are called "claims"), 
+	so that the total amount that I 
+	have to pay is greater than what I have (: this is the situation of 
+	bankruptcy). I have to decide how to distribute my money. I can see this 
+	situation as a cooperative game.
+	
+	\noindent Consider a situation as the one above. I can say that $v(\{1\})~=~15$, 
+	which means that player1 is sure he will get at least 15. Indeed, player2 gets 
+	at most 60 and player3 gets at most 25, which means that $100~-~60~-~25~=~15$ 
+	are left for player1. Analogously, $v(\{2\})~=~25$ and $v(\{3\})~=~0$ (the claims 
+	of player1 and player2, together, gives more than 100 and I cannot ask player3 
+	to pay, therefore he will simply get nothing).
+	
+	\noindent In general terms, the value of a coalition $S \subseteq N$ is given by
+	\[
+		v_P(S) = \max\left(0, E - \sum_{i \in N \setminus S}{c_i}\right)
+	\]
+	
+	\noindent There is another possibility, which is less realistic: all the 
+	coalitions are convinced to be my friends, therefore they say: "He will give 
+	us as much as possible, not exceeding the sum of our claims".
+
+	\noindent In general terms, the value of a coalition $S \subseteq N$ with this assumption is given by
+	\[
+	v_O(S) = \min\left(E, \sum_{i \in  S}{c_i}\right)
+	\]
+
+	\item \textbf{Airport game:} there is a group of $N$ flying companies needing a new landing lane. $N$ is partitioned into groups $N_1,...,N_k$ s.t. to each $N_j$ is associated the cost $c_j < c_{j+1}$ to build the landing lane.
+
+	\noindent Suppose for example that there are three companies and that the 
+	first one need an 1km truck, the second one needs a 2km truck, while the 
+	third one needs a 3km truck. Suppose also that the cost for 1km is $c_1$, 
+	the cost for 2km is $c_2$ and the cost for 3km is $c_3$, where of course 
+	$c_1~<~c_2~<~c_3$, but there is a scale so that $c_2~<~2c_1$ and so on.
+	
+	\noindent The value of the coalition $S$, i.e. the amount it has to pay, is given by $v(S) = \max\{c_i: i \in S\}$.
+	
+	\noindent How can we fairy share the cost between the companies? Of course 
+	the sum of the amounts they have to pay is $c_3$ (the greater cost).
+	
+	\noindent \textbf{Note:} here we consider costs and not utilities! We have to 
+	remember to reverse all the inequalities we might need to define the game.
+	
+	\item \textbf{Peer games:}	let $N = \{1,...,n\}$ be the set of players and let $T = (N,A)$ be a directed rooted tree. Each player $i$ has a potential $v_i$ that represents the total gain he can receive if all the players at an upper level in the hierarchy cooperate with him.
+	
+	\noindent For every $i \in N$, we denote by $S(i)$ the set of all superiors of $i$, i.e. the set of all nodes in the unique directed path connecting 1 to $i$. 
+	
+	\noindent A peer game is the game $v$ s.t. 
+	\[
+		v(S) = \sum_{i \in N: S(i) \subseteq S}{a_i}
+	\]
+
+	\noindent Consider the example in slide 12 of slide deck "Lesson8".
+	
+	\noindent The value of the coalition $\{1,2\}$ is exactly equal to the value 
+	of the coalition $\{1,2,5\}$. Indeed, I can sum up the values of two nodes 
+	only if they are directly connected one to the other; since 5 is not 
+	connected to 1 or 2, it is meaningless to add it to the coalition, as long 
+	as we do not add also the node 3. The same happens, for example, with the 
+	coalitions $\{1,2,4\}$ and $\{1,2,4,5\}$.
+	
+	\noindent The structure of the game depends on the structure of the tree.
+	
+\end{enumerate}	
 
 \bigskip
-\noindent \textbf{Slide 6}
+\noindent \textbf{Set of the TU games:} we define $\mathcal{G}(N)$ as the set of all the cooperative games having $N$ as the set of players.
 
-\noindent What it is useful is to make pair of gloves $=>$ the value of a 
-coalition is the number of pairs that can be produced if the players share 
-the gloves. For example, if there are two peoples with a right glove and 
-two people with a left glove, only two pairs can be produced $=>$ the value 
-of the coalition is the minimum between the number of left and right gloves 
-inside the coalition.
-
-\noindent This is a good model for all the situations in which you produce 
-something that has no value by itself, but that needs to be matched with 
-somethig else (ad esempio, due persone che producono ciascuna un pezzo 
-necessario per costruire un oggetto).
-
-\noindent How the players will form pairs? Who keeps the gloves? These are the 
-questions to which cooperative game theory has to give an answer.
+\noindent Let $S_1,...,S_{s^n-1}$ be the list of all the possible coalitions. If we denote by $v_i$ the value of the coalition $S_i$, i.e. $v_i = v(S_i)$, we have that the vector $(v_1,...,v_{2^n-1})$ can be used to represent the game.\\
+$\implies$\\
+\textbf{Proposition:} $\mathcal{G}(N)$ is isomorphic to $\mathbb{R}^{2^n-1}$.
 
 \bigskip
-\noindent \textbf{Slide 7}
-
-\noindent The value of any coalition A is 1000 if its cardinality is greater 
-than 2 (i.e. the coalition contains at least twice the same name). It is zero 
-if all players vote for themselves.
-
-\bigskip
-\noindent \textbf{Slide 8}
-
-\noindent In this case, the value of the coalition is not an utility; the 
-value 1 means that the coalition wins.
-
-\noindent \textbf{Note:} weighted majority games are in general quite easy to 
-solve, while this is not true for cooperative games, since the number of 
-coalitions that can be formed is huge (it grows exponentially wrt the number 
-of players).
-
-\noindent We set to 1 the wheights of all the non permanent players. We need 
-to choose $w_1,...,w_5$. We need the vote of all the permanent members iot 
-enhance a resolution $=>$ we cannot substitute a permanent player by 6 non 
-permament players. Four non permanent player are needed to form a 
-winning coalition, the other 6 are useless $=>$ we should fix $w_j~=~7~
-\forall j=1:5$. The quota is $\sum_{j=1}^5{w_j}$ plus the sum of the 
-weights of four non permament players, i.e. it is 39.
-
-\noindent We can verify that if we have all the non permanent players and four 
-permanent players in the coalition, the resolution cannot pass; indeed, the 
-value we have is $7 \times 4 ~+~ 1 \times 10 ~=~ 38 ~<~ 39$.
-
-\noindent Notice that this kind of model can be useful to analyse the power 
-of the parties, which is not always trivially correlated to the number of 
-members. For example, if we have three parties, two with 49 members and one 
-which 2 members, we can observe that any combination of two parties creates 
-a majority and therefore the relative power of all the parties is practically 
-symmetric, even if one of them has far less members than the others.
-
-\bigskip
-\noindent \textbf{Slide 9}
-
-\noindent Suppose that I have an estate of 100 and I have to pay 50 to one 
-person, 60 to another and 25 to another (50, 60 and 25 are called "claims"), 
-so that the total amount that I 
-have to pay is greater than what I have (: this is the situation of 
-bankrupticity). I have to decide how to distribute my money. I can see this 
-situation as a cooperative game.
-
-\noindent Consider a situation as the one above. I can say that $v(\{1\})~=~15$, 
-which means that player1 is sure he will get at least 15. Indeed, player2 gets 
-at most 60 and player3 gets at most 25, which means that $100~-~60~-~25~=~15$ 
-are left to player1. Analogously, $v(\{2\})~=~25$ and $v(\{3\})~=~0$ (the claims 
-of player1 and player2, together, gives more than 100 and I cannot ask player3 
-to pay, therefore he will simply get nothing).
-
-\noindent There is another possibility, which is less realistic: all the 
-coalitions are convinced to be my friends, therefore they say: "He will give 
-us as much as possible, not exceeding the sum of our claims". {\huge a questo 
-devo pensare...qualcosa non mi convince fino in fondo}
-
-\bigskip
-\noindent \textbf{Slide 10}
-
-\noindent Suppose for example that there are three companies and that the 
-first one need an 1km truck, the second one needs a 2km truck, while the 
-third one needs a 3km truck. Suppose also that the cost for 1km is $c_1$, 
-the cost for 2km is $c_2$ and the cost for 3km is $c_3$, where of course 
-$c_1~<~c_2~<~c_3$, but there is a scale so that $c_2~<~2c_1$ and so on.
-
-\noindent How can we fairy share the cost between the companies? Of course 
-the sum of the amounts they have to pay is $c_3$ (the greater cost).
-
-\noindent \textbf{Note:} here we consider costs and not utilities! We have to 
-remember to reverse all the inequalities we might need to define the game.
-
-\bigskip
-\noindent \textbf{Slide 12}
-
-\noindent The value of the coalition $\{1,2\}$ is exactly equal to the value 
-of the coalition $\{1,2,5\}$. Indeed, I can sum up the values of two nodes 
-only if they are directly connected one to the other; since 5 is not 
-connected to 1 or 2, it is meaningless to add it to the coalition, as long 
-as we do not add also the node 3. The same happens, for example, with the 
-coalitions $\{1,2,4\}$ and $\{1,2,4,5\}$.
-
-\noindent The structure of the game depends on the structure of the tree.
-
-\bigskip
-\noindent \textbf{Slide 13}
-
 \noindent Consider for example a game with 3 players; all the possible 
 coalitions are
 \[
 	\{\{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, N\},
 \]
-where $N$ is the coalition made by all the players, i.e. $N~=~\{1,2,3\}$.
+where $N$ is the grand coalition made by all the players, i.e. $N~=~\{1,2,3\}$.
 
 \noindent To each one of these coalitions I have to attach a number $v_i$, 
-which represents its value $=>$ I can say that the game corresponds to the 
+which represents its value $\implies$ I can say that the game corresponds to the 
 vector of the values $[v_1, v_2, ..., v_{2^n-1}]$, where $2^n-1$ is the 
 number of all the possible coalitions.
 
@@ -189,84 +229,103 @@ number of all the possible coalitions.
 dimension $2^n-1$. I want to find a basis for this vector space.
 
 \noindent The canonical basis is made by the games which assign to coalition 
-$T$ the value 1 if $A~=~T$, 0 otherwise $=>$ there is one winning coalition 
-and all the others are losing coalitions $=>$ this basis is not very 
+$T$ the value 1 if $A~=~T$, 0 otherwise $\implies$ there is one winning coalition 
+and all the others are losing coalitions $\implies$ this basis is not very 
 meaningful because there are few games which have this kind of model.
 
 \noindent Iot make this basis more meaningful, we can consider to set $u_A(T)$ 
 to 1 when $A \subseteq T$. Indeed, the relation $A \subseteq T$ means that 
-all players of $A$ are essential to make the coalition win. 
+all players of $A$ are essential to make the coalition win.\\
+$\implies$\\
+\textbf{Proposition:} the set $\{u_A: A \subseteq N\}$ of the \textbf{unanimity games $u_A$} defined as:
+\[
+	u_A(T) = \begin{cases}
+					1 \hspace{1cm} \text{if} ~A \subseteq T\\
+					0 \hspace{1cm} \text{otherwise}
+				  \end{cases}
+\]
+is a basis for the space $\mathcal{G}(N)$.
 
 \bigskip
-\noindent \textbf{Slide 14} 
+\noindent \textbf{Subsets of $\mathcal{G}(N)$:} 
+\begin{itemize}
+	\item \textbf{additive games:} $v(A \cup B) = v(A) + v(B)$ if $A \cap B = \emptyset$.
+	
+	\noindent In the case of additive games, I put together people staying in A 
+	and people staying in B and therefore I simply have to sum their values, 
+	if the intersection is empty.
+	
+	\noindent Consider for example the coalition $\{1,2\}$. The global utility 
+	that I can produce is the sum of the utilities that player1 and player2 
+	produce when they are alone, which means that to stay together is neutral 
+	for the players: the do not gain more and they do not gain less than what 
+	they gain when they are alone (and this happens for all the possible 
+	coalitions).
+	
+	\noindent The set of additive games is a vector space (the sum of two 
+	additive games is still an additive game), which has dimension $n$, where $n$ 
+	is the number of players. Indeed, what I need to know iot compute the value of 
+	any coalition is the value of all the players, since the value of a coalition 
+	is the sum of the values of all the players belonging to it.
+	
+	\item \textbf{superadditive games:} $v(A \cup B) \geq v(A) + v(B)$ if $A \cap B = \emptyset$.
+	
+	\noindent \textbf{Note:} notice that superadditive games are games in which 
+	to stay together can be better than to stay alone, since the value we may 
+	get can be greater than the sum of the values we get when we are alone. 
+	Whenever a game is superadditive, we can assume that players want to stay 
+	alltogether: it would be meaningless to split in subgroups, since the 
+	value of the union could be greater than the sum of the single values $\noindent$ 
+	each coalition which is proposed to us is more convenient than to stay alone 
+	and the most convenient coalition is the grand coalition.
+	
+	\noindent All the \textbf{TU} games in the examples above are superadditive.
+	
+	\noindent \textbf{Note:} if our values represent costs rather than utilities, 
+	superadditivity holds with $\leq$ instead of $\geq$. Indeed, a game is 
+	superadditive if it is convenient to stay together, which, in this context, 
+	means that if we stay together we pay less than what we pay if we stay alone.
+	
+	\item \textbf{convex games:} $v(A \cup B) + v(A \cap B) \geq v(A) + v(B)$.
+	
+	\noindent Convexity implies superadditivity. Indeed, iot check superadditivity I 
+	have to consider disjoint coalitions. But if A and B are disjoint, then 
+	$A \cap B~=~\emptyset$ and, since $v(\emptyset)~=~0$, we are left exactly 
+	with $v(A\cup B) \geq v(A)+v(B)$, which is the definition of subadditivity.
+	
+	\noindent \textbf{Example:} the children game is not convex. Indeed, if I 
+	consider the coalitions $\{1,2\}$ and $\{2,3\}$, their union is the grand 
+	coalition $N~=~\{1,2,3\}$, whose value is 1, but their intersection is $\{2\}$, 
+	which is a single element and therefore has a value of 0.
+	
+	\item \textbf{simple games:} are the games s.t.
+	\begin{itemize}
+		\item $v(S) \in \{0,1\} ~\forall S \subseteq N$, i.e. every coalition can be either losing or winning.
+		\item $S_1 \subseteq S_2 \implies v(S_1) \leq v(S_2)$ (:monotonicity).
+		\item $v(N) = 1$, i.e. the grand coalition is always winning.
+	\end{itemize}
 
-\noindent In the case of additive games, I put together people staying in A 
-and the ones staying in B and therefore I simply have to sum their values, 
-if the intersection is empty.
+	\noindent The monotonicity property means that, if I add a player to a winning coalition, it remains a winning 
+	coalition. This is not always true in real life situations!
+	
+	\noindent Moreover, I have to assume that at least the grand coalition is 
+	winning. Indeed, if this is not the case, then all the coalitions must be
+	losing coalitions because of monotonicity and the game is not interesting 
+	in practice.
+	
+	\noindent \textbf{Minimal winning coalition:} is a coalition $A \subseteq N$ s.t. $v(A) = 1$ and $v(B) = 0 ~\forall B \subset A$.
+	
+	\noindent In a minimal winning coalitions, all players are crucial: if I 
+	remove just one of them, the coalition is no more a winning coalition 
+	(\textbf{example:} if I have three parties and one has 45, another 3, 
+	another 7, the coalition is winning but it is not minimal because, for example, 
+	the party with 3 is not really needed).
+	
+	\noindent Simple games (example: weighted majority games or unanimity games) are characterized by giving the list of all minimal 
+	winning coalitions.
+\end{itemize}
 
-\noindent Consider for example the coalition $\{1,2\}$. The global utility 
-that I can produce is the sum of the utilities that player1 and player2 
-produce when they are alone, which means that to stay together is neutral 
-for the players: the do not gain more and they do not gain less than what 
-they gain when they are alone (and this happens for all the possible 
-coalitions).
-
-\noindent The set of additive games is a vector space (the sum of two 
-additive games is still an additive game), which has dimension $n$, where $n$ 
-is the number of players. Indeed, what I need to know iot compute the value of 
-any coalition is the value of all the players, since the value of a coalition 
-is the sum of the values of all the players belonging to it.
-
-\noindent \textbf{Note:} notice that superadditive games are games in which 
-to stay together can be better than to stay alone, since the value we may 
-get can be greater than the sum of the values we get when we are alone. 
-Whenever a game is superadditive, we can assume that players want to stay 
-alltogether: it would be meaningless to split in subgroups, since the 
-value of the union could be greater than the sum of the single values $=>$ 
-each coalition which is proposed to us is more convenient than to stay alone 
-and the most convenient coalition is the grand coalition.
-
-\bigskip
-\noindent \textbf{Slide 15}
-
-\noindent Convex implies superadditive. Indeed, iot check superadditivity I 
-have to consider disjoint coalitions. But if A and B are disjoint, then 
-$A \cap B~=~\emptyset$ and, since $v(\emptyset)~=~0$, we are left exactly 
-with $v(A\cup B) \geq v(A)+v(B)$, which is the definition of subadditivity.
-
-\noindent \textbf{Example:} the children game is not convex. Indeed, if I 
-consider the coalitions $\{1,2\}$ and $\{2,3\}$, their union is the grand 
-coalition $N~=~\{1,2,3\}$, whose value is 1, but their intersection is $\{2\}$, 
-which is a single element and therefore has a value of 0.
-
-\noindent \textbf{Note:} if our values represent costs rather than utilities, 
-superadditivity holds with $\leq$ instead of $\geq$. Indeed, a game is 
-superadditive if it is convenient to stay together, which, in this context, 
-means that if we stay together we pay less than what we pay if we stay alone.
-
-\bigskip
-\noindent \textbf{Slide 16}
-
-\noindent The monotonicity property "$A \subseteq C \implies v(A) \leq v(C)$" 
-means that, if I add a player to a winning coalition, it remains a winning 
-coalition. This is not always true in real life situations!
-
-\noindent Moreover, I have to assume that at least the grand coalition is 
-winning. Indeed, if this is not the case, then all the coalitions must be
-losing coalitions because of monotonicity and the game is not interesting 
-in practice.
-
-\noindent Simple games are characterized by giving the list of all the 
-winning coalitions.
-
-\noindent In a minimal winning coalitions, all players are crucial: if I 
-remove just one of them, the coalition is no more a winning coalition 
-(\textbf{example:} if I have three parties and one has 45, another 3, 
-another 7, the coalition is winning but it is not minimal because, for example, 
-the party with 3 is not really needed).
-
-\bigskip
-\noindent \textbf{Slide 17}
+\section{Solution for cooperative games}
 
 \noindent \textbf{Remember:} a solution for a non-cooperative game is a list 
 of strategies for all the players and, consequently, a list of utilities 
@@ -287,12 +346,24 @@ solution.
 \noindent A solution concept is a multifunction from the set of the games to 
 $\mathbb{R}^n$, which means that I have to give something to players, I am 
 not looking to what happens to coalitions: coalitions are information that I 
-have to look at, but what really matters is what I give players (because 
+have to look at, but what really matters is what I give to players (because 
 they are egoistic; the only reason why they work together is that it is 
 convenient).
 
+\noindent Briefly, a \textbf{solution vector} for the game $v \in \mathcal{G}(N)$ is a vector $x = (x_1,...,x_n)$ s.t. $x_i$ represents the utility that I give to player $i$.
+
+\noindent A \textbf{solution concept} is a multifunction $S: \mathcal{G}(N) \rightarrow \mathbb{R}^n$ that assigns to every game $v \in \mathcal{G}(N)$ a solution vector in $\mathbb{R}^n$.
+
 \bigskip
-\noindent \textbf{Slide 18}
+\noindent There are multiple ways to define a solution concept.
+
+\subsection{Imputations}
+
+\noindent The imputation solution is the solution $I: \mathcal{G}(N) \rightarrow \mathbb{R}^n$ s.t. $x \in I(v)$ if:
+\begin{itemize}
+	\item[-] efficiency: $x_i \geq v(\{i\}) ~\forall i \in N$.
+	\item[-] feasibility: $\sum_{i \in N}{x_i} = v(N)$.
+\end{itemize}
 
 \noindent First condition: you cannot assign to a player an utility which is 
 smaller than the utility he can get if he stays alone (individual 
@@ -301,13 +372,11 @@ guarantee a priori that this would be better than to stay alone).
 
 \noindent Second condition: the leading idea of solution is that the grand 
 coalition is {\huge is what?? min 1:16 circa, ma non ho capito lo stesso} 
-$=>$ you cannot distribute more than $v(N)$ and, at the same time, it would be 
+$\implies$ you cannot distribute more than $v(N)$ and, at the same time, it would be 
 stupid to distribute less than $v(N)$.
 
-\noindent We can say that the first one is an efficiency condition, while 
-the second one is a feasibility condition.
-
-\noindent The situation $v(N) \geq \sum_i{v(\{i\})}$ can happen in general 
+\bigskip
+\noindent \textbf{Note:} the situation $v(N) \geq \sum_i{v(\{i\})}$ can happen in general 
 games that, for example, are not superadditive. Consider for example the 
 situation in which we have three players, $v(\{1\})=2$, $v(\{2\})=3$, 
 $v(\{3\})=6$ and $v(\{1,2\})=0$ because player1 and player2 hate each 
@@ -318,44 +387,62 @@ not want to make a pair, they find a great advantage in staying in a group
 with also player3, rather than staying alone.
 
 \bigskip
-\noindent \textbf{Slide 19}
-
-\noindent In additive games, it is absolutely the same to stay alone or 
+\noindent \textbf{Remark:} the imputation set is nonempty if the game is superadditive; it reduces to a singleton if the game is additive: $I(v) = (v(\{1\}),...,v(\{n\}))$. Indeed, in additive games, it is absolutely the same to stay alone or 
 together, therefore each player simply keeps his own utility.
 
+\bigskip
+\noindent \textbf{Remark:} the imputation set lies on the hyperplane 
+$H = \{x \in \mathbb{R}^n: \sum_{i \in N}{x_i} = v(N)\}$ and it is bounded because $x_i \geq v(\{i\}) ~\forall i$.
+
+\noindent In particular, it is the intersection of halfspaces defined by linear inequalities, therefore it is a convex polytope.
+
+\bigskip
 \noindent The imputation solution is an interesting concept but it is not 
 complete: indeed, it takes care only of the grand coalition and the coalitions 
 made by a single player, but actually there are all the intermediate 
 coalitions that we could consider.
 
-\bigskip
-\noindent \textbf{Slide 20} 
+\subsection{Core}
+
+\noindent The core is the solution $C: \mathcal{G}(N) \rightarrow \mathbb{R}^n$ s.t.
+\[
+	C(v) = \left\{ x \in \mathbb{R}^n: \sum_{i\in N}{x_i} = v(N) 
+	\wedge \sum_{i\in S}{x_i} \geq v(S) ~ \forall S \subseteq N \right\}
+\]
 
 \noindent Imputation is efficient and accepted by every single player; core 
 is efficient and accepted by every coalition.
 
 \bigskip
-\noindent \textbf {Slide 21}
+\noindent \textbf {Examples}
+\begin{enumerate}
 
-\noindent The idea is: player1 should sell his good to player3, since $c>a$ 
-and this means that player3 is always able to make a better offer.
+	\item \textbf{Seller \& buyers:}
+	
+	\noindent The idea is: player1 should sell his good to player3, since $c>a$ 
+	and this means that player3 is always able to make a better offer.
+	
+	\noindent At the same time, player1 should actually sell his good, since the 
+	other players evaluate it more than him.
+	
+	\noindent We get that, since it must be $x_1+x_3\geq c$ and $x_1+x_2+x_3=c$, 
+	it should be $x_2<0$, which is not admissible because utilities are always 
+	non negative. Therefore it must be $x_2=0$. Now I have $x_1\geq a$ and 
+	$x_1 \geq b$, which means that, being $b>a$, it must be $x_1\geq b$, and 
+	so on.
 
-\noindent At the same time, player1 should actually sell his good, since the 
-other players evaluate it more than him.
-
-\noindent We get that, since it must be $x_1+x_3\geq c$ and $x_1+x_2+x_3=c$, 
-it should be $x_2<0$, which is not admissible because utilities are always 
-non negative. Therefore it must be $x_2=0$. Now I have $x_1\geq a$ and 
-$x_1 \geq b$, which means that, being $b>a$, it must be $x_1\geq b$, and 
-so on.
-
-\bigskip
-\noindent \textbf{Slide 23}
-
-\noindent The fact that the core can be empty is not strange: if you think 
-in term of coalitions, player1 can go to player2 and say: "Vote for me and 
-I'll give you 50\%". Player2 would agree, but this is not convenient for 
-player3, which could say: "No: vote for me and I'll give you 51\%", which 
-for him is convenient because $49>0$. There can never be an agreement.
+	\item \textbf{Glove game:}
+	
+	\noindent If $l$ people have a left glove and $r$ people, $r > l$, have a right glove, then $C(v) = \{1,...,1,0,...,0\}$, where we have $l$ ones and $r$ zeros.
+	
+	\item \textbf{Children game:}
+	
+	\noindent The fact that the core can be empty is not strange: if you think 
+	in term of coalitions, player1 can go to player2 and say: "Vote for me and 
+	I'll give you 50\%". Player2 would agree, but this is not convenient for 
+	player3, which could say: "No: vote for me and I'll give you 51\%", which 
+	for him is convenient because $49>0$. There can never be an agreement.
+	
+\end{enumerate}
 
 %\end{document}

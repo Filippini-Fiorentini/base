@@ -24,41 +24,52 @@ vectors of all the players.
 function, not a multifunction: you only have one distribution of utilities.
 
 \bigskip
-\noindent \textbf{Slide 3}
+\noindent \textbf{Properties of an one-point solution}
+
+\noindent Let $\phi: \mathcal{G}(N) \rightarrow \mathbb{R}^n$ be an one-point solution.
 
 \begin{enumerate}
 	\item Efficiency: the sum of the utilities that $\phi$ distributes 
-	coincides with $v(N)$.
+	coincides with $v(N)$, i.e. $\sum_{i \in N}\phi_i(v) = v(N)$.
 	
-	\item Symmetry: $i,j$ are players s.t. if A is a coalition that does not 
-	cointain neither $i$ nor $j$, then, adding $i$ or $j$ to A gives exactly 
-	the same result.
+	\item Symmetry: $\phi_i(v) = \phi_j(v) ~\forall i,j$ that are symmetric players, i.e. players s.t. $v(A \cup \{i\}) = v(A \cup \{j\}) ~\forall A \subset N, i,j \notin A$.
+	
+	\noindent
 	\textbf{Example:} in a Parliament, two parties with exactly the same 
 	number of seats.
 
-	\item Suppose that player $i$ is useless: you do not increase (or decrease) 
-	the utility of a coalition by adding the player $i$. Then, to that player, 
-	you should assign utility (or cost) equal to zero.
+	\item Null-player property: $\phi_i(v) = 0$ for every useless player, i.e. for every player that does not increase (or decrease) 
+	the utility of a coalition by entering it (player $i$ is useless if $v(A \cup \{i\}) = v(A) ~\forall A \subset N, i \notin A$).
 
-	\item Additivity: remember that v and w are vectors and you know how to 
+	\item Additivity: $\phi(v + w) = \phi(v)  + \phi(w)$.
+	
+	\noindent
+	Remember that v and w are vectors and you know how to 
 	sum vectors. Problem: we do not actually know what's the meaning of a game 
 	which is defined as the sum of two games. We still consider this property 
 	because it is useful iot define a solution.
 \end{enumerate}
 
 \bigskip
-\noindent \textbf{Slide 5}
+\noindent \textbf{Shapley Theorem:} the function $\sigma: \mathcal{G}(N) \rightarrow \mathbb{R}^n$ defined as
+\[
+	\sigma_i(v) = \sum_{S \in 2^{N \setminus \{i\}}}{\frac{s!(n-s-1)!}{n!} \left(v(S \cup \{i\}) - v(S)\right)}
+\]
+is the only functions that satisfies properties (1)-(4).
 
-\noindent If you believe that a function should fullfill all the properties of 
-slide 3, then you are obliged to consider $\sigma$, since it is the only 
-function that fullfills these properties.
+\bigskip
+\noindent If you believe that a function should fulfill all the properties (1)-(4), then you are obliged to consider $\sigma$, since it is the only 
+function that satisfies them.
 
-\noindent $v(S \cup \{i\} - v(S))$: I can say that the difference is what 
-player $i$ brings as marginal contribution to the coalition $S \cup \{i\}$.
+\bigskip
+\noindent $m_i(v,S) = v(S \cup \{i\}) - v(S)$ is called the \textbf{marginal contribution} that
+player $i$ brings to the coalition $S \cup \{i\}$.
 
-\noindent The Shapley solution of player $i$ is a weighted sum of all the 
+\bigskip
+\noindent The Shapley solution for player $i$ is a weighted sum of all the 
 marginal contributions of player $i$. 
 
+\bigskip
 \noindent What's the meaning of the coefficient? 
 
 \noindent \textbf{Notation:} $s = |S|$: small s is the number of elements in 
@@ -73,7 +84,9 @@ people in S are already there when he enters the room. Of course, the internal
 ordering of players in S does not matter: he will consider all the possible 
 permutations of the elements in S. Analogously, also the ordering of all the 
 players who will arrive after $i$ does not matter, which means that you 
-consider $s!$ and $(n-s-1)!$.
+consider $s!$ and $(n-s-1)!$.\\
+$\implies$\\
+The coefficient is the probability that player $i$ joins coalition $S$.
 
 \noindent Consider the example of \textbf{slide 11} for the interpretation of 
 the coefficient.
@@ -101,77 +114,120 @@ $v(\{1,3\}) - v(3)$\\
 $v(N) - v(\{2,3\})$.
 
 \bigskip
-\noindent \textbf{Slide 7, 8, 9 - proof of Shapley theorem}
-
-\begin{enumerate}
-	\item Efficiency: I write in $\sum_{i=1}^n{\sigma_i(v)}$ the definition 
-	of $\sigma_i$ given by the Shapley theorem. $v(N)$ appears in the sum 
-	only when $S = N - {i}$, because the internal sum is defined over S s.t. 
-	$S \subseteq N - {i}$. 
-	We consider any coalition A and we prove that v(A) appears with coefficient 
-	zero (because it appears sometimes with positive and sometimes with negative 
-	coefficient, therefore, overall, its contribution is zero). 
-	We have positive coefficient when $A = S \cup \{i\}$, i.e. when $i$ belongs 
-	to A. If $A = S \cup \{i\}$, the caridinality of A, which is a, is 
-	given by $s-1$. 
-	We have the negative coefficient when player $i$ does not belong to A, i.e. 
-	it appears $n-a$ times, exactly when $A = S$.
-
-	\item Symmetry: I should prove that $\sigma_i(v) = \sigma_j(v)$. 
-	Remember: these are two different sums: in $\sigma_i$ I consider coalitions 
-	that do not contain $i$, but of course they may contain $j$ (and viceversa). 
-	I proceed by splitting the sum between the coalitions that do not contain 
-	neither $i$ nor $j$ and then I add what I need. Therefore, in the second 
-	term of $\sigma_1$, for example, the index is S (which does not contain 
-	neither $i$ nor $j$), but the actual coalition is $S \cup \{j\}$. 
-	With this trick, the two formulas are exactly the same, I only have to 
-	interchange $i$ and $j$. Since the union is symmetric and since in each 
-	sum I have the same coefficients, I have exactly that $\sigma_1 = \sigma_2$, 
-	which corresponds to symmetry.
-
-	\item Null player property means that $v(S \cup \{i\}) - v(S)$ is always 
-	zero, which of course entails that $\sigma_i$ is always zero (I can have 
-	whatever coefficient).
-
-	\item Additivity: also here the coefficients do not matter. I only have to 
-	apply distributive law (it. raccoglimento a fattor comune).
-\end{enumerate}
-
-\noindent What we still did not prove is uniqueness of $\sigma$. Remember the 
-unanimity game, which is a basis for the set of games $\mathcal{G}(N)$. It is 
-enough to prove that if I consider the game $Cu_A$, where $C$ is a constant 
-(remember: a game is a vector and I can always multiply a vector by a 
-constant), then the function must be the Shapley value. 
-What happens is the following:
+\noindent \textbf{Proof of Shapley theorem:} the proof is divided in two steps:
 \begin{itemize}
-	\item players inside A are symmetric (they are all necessary to make 
-	the coalition winning)
+	\item We show that the function $\sigma$ satisfies properties (1)-(4):
+	\begin{enumerate}
+		\item Efficiency: I write in $\sum_{i=1}^n{\sigma_i(v)}$ the definition 
+		of $\sigma_i$ given by the Shapley theorem. 
+		
+		\noindent $v(N)$ appears in the sum 
+		only when $S = N \setminus \{i\}$, because the internal sum is defined over $S$ s.t. 
+		$S \subseteq (N \setminus \{i\})$, therefore it appears once for every player, with coefficient $\frac{s!(n-s-1)!}{n!} = \frac{1}{n}$. 
+		
+		\noindent
+		We consider any coalition $A \neq N$ and we prove that $v(A)$ appears with coefficient 
+		zero (because it appears sometimes with positive and sometimes with negative 
+		coefficient). 
+		
+		\noindent We have positive coefficient when $i$ belongs 
+		to $A$ and we set, in the formula, $S = A \setminus \{i\}$. In this case, being $a$ the cardinality of $A$, we have $s = a-1$ $\implies$ the positive coefficient $\frac{(a-1)!(n-a)!}{n!}$ appears $a$ times (once for every player $i \in A$) and therefore we get $\frac{a!(n-a)!}{n!}$.
+		
+		\noindent
+		We have the negative coefficient when player $i$ does not belong to $A$, i.e. 
+		it appears $n-a$ times, setting in the formula $S = A$ $\implies$ its total contribution is $- \frac{a!(n-a-1)!}{n!}(n-a) = 
+		- \frac{a!(n-a)!}{n!}$.
+	
+		\item Symmetry: I should prove that $\sigma_i(v) = \sigma_j(v)$. 
+		Remember: these are two different sums: in $\sigma_i$ I consider coalitions 
+		that do not contain $i$, but of course they may contain $j$ (and viceversa). 
+		I proceed by splitting the sum between the coalitions that do not contain 
+		neither $i$ nor $j$ and then I add what I need. Therefore, in the second 
+		term of $\sigma_i$, for example, the index is S (which does not contain 
+		neither $i$ nor $j$), but the actual coalition is $S \cup \{j\}$. 
+		With this trick, the two formulas are exactly the same, I only have to 
+		interchange $i$ and $j$. Since the union is symmetric and since in each 
+		sum I have the same coefficients, I have exactly that $\sigma_i = \sigma_j$, 
+		which corresponds to symmetry.
+		
+		\noindent In mathematical terms,
+		\[
+			\sigma_i(v) = \sum_{S \in 2^{N \setminus (\{i\} \cup \{j\})}}
+			{\frac{s!(n-s-1)!}{n!}\left[v(S \cup \{i\}) - v(S)\right]} +\]
+			\[ 
+			\sum_{S \in 2^{N \setminus (\{i\} \cup \{j\})}}
+			{\frac{(s+1)!(n-s-2)!}{n!}\left[v(S \cup \{i\} \cup \{j\}) - v(S \cup \{j\})\right]}
+		\]
+		while
+		\[
+		\sigma_j(v) = \sum_{S \in 2^{N \setminus (\{i\} \cup \{j\})}}
+		{\frac{s!(n-s-1)!}{n!}\left[v(S \cup \{j\}) - v(S)\right]} +\]
+		\[ 
+		\sum_{S \in 2^{N \setminus (\{i\} \cup \{j\})}}
+		{\frac{(s+1)!(n-s-2)!}{n!}\left[v(S \cup \{i\} \cup \{j\}) - v(S \cup \{i\})\right]}
+		\]
+		which are equal for symmetric players.
+		
+		\item Null player property means that $v(S \cup \{i\}) - v(S)$ is always 
+		zero, which of course entails that $\sigma_i$ is always zero (I can have 
+		whatever coefficient).
+	
+		\item Additivity: also here the coefficients do not matter. I only have to 
+		apply distributive law (it. raccoglimento a fattor comune).
+	\end{enumerate}
 
-	\item players outside A are null players, because if A is a winning 
-	coalition it has value 1 and this value remains 1 no matter how many 
-	players I add.
+	\item We prove that $\sigma$ is unique.
+	\noindent Consider the 
+	unanimity game, which is a basis for the set of games $\mathcal{G}(N)$. 
+	What happens is the following:
+	\begin{itemize}
+		\item players inside $A$ are symmetric (they are all necessary to make 
+		the coalition winning)
+	
+		\item players outside $A$ are null players, because if $A$ is a winning 
+		coalition it has value 1 and this value remains 1 no matter how many 
+		players I add.
+	\end{itemize}
+	Therefore, players outside$A$ must take 0 and players inside A must take all the same value. Moreover, the function is efficient, therefore the value of the game, which is 1, is equally distributed among players in $A$.\\
+	$\implies$\\
+	The function is uniquely determined over the basis of $\mathcal{G}(N)$ given by unanimity games.
+	
+	\noindent The same argument can be applied to the game $Cu_A$, where $C$ is a constant in $\mathbb{R}$
+	(remember: a game is a vector and I can always multiply a vector by a 
+	constant) $\implies$ players outside A must take 
+	$\frac{C}{n}$.
+	
+	\noindent The additivity axiom entails uniqueness.
 \end{itemize}
-Therefore players inside A must take 0 and players outside A must take all the 
-same value. But the game is efficient $\implies$ players outside A must take 
-$\frac{C}{n}$.
 
 \bigskip
-\noindent \textbf{Slide 10}
+\noindent \textbf{Shapley value for simple games}
 
 \noindent Simple games are the one in which the value of a coalition is either 
 0 or 1. In this case, it is easy to compute marginal contributions: they can 
-only be given by $1-1$, $0 - 0$ or $1 - 0$. The only important case is the 
+only be given by $(1-1)$, $(0 - 0)$ or $(1 - 0)$. The only important case is the 
 last one: to add a player to a winning coalition does not change anything and 
 to add a player to a losing coalition does not tell anything interesting if 
 the new coalition is still losing. 
-The case $0 - 1$ cannot occur: if I add a player to a winning coalition, it 
+The case $(0 - 1)$ cannot occur: if I add a player to a winning coalition, it 
 cannot become a losing coalition.
 
 \noindent Iot compute $\sigma_i$, we must count the number of times in which 
 player $i$ is crucial for a coalition.
 
 \bigskip
-\noindent \textbf{Slide 12}
+\noindent If we define $\mathcal{A}_i$ as the family of coalitions $A$ s.t. $i \notin A$, $A$ is losing and $A \cup \{i\}$ is winning, then
+\[
+	\sigma_i(v) = \sum_{A \in \mathcal{A}_i}\frac{a!(n-a-1)!}{n!}
+\]
+
+\noindent As an alternative form, if we define $\mathcal{W}_i$ as the family of coalitions $W$ s.t. $i \in W$ and $W \setminus \{i\}$ was winning (of course $W$ is still winning), then
+\[
+	\sigma_i(v) = \sum_{W \in \mathcal{W}_i}\frac{(w-1)!(n-w)!}{n!}
+\]
+
+\bigskip
+\noindent \textbf{Example:} airport game, from slide 12 of slide deck "Lesson7".
 
 \noindent The game: player1 only need 1km truck, player2 needs 2km and player3 
 needs 3km. The total cost is $c_3$. How to share this cost among the players? 
@@ -214,14 +270,34 @@ $\{11, 20, 30, 39\}$\\
 turns out to be almost equal to the first one. The point are not numbers, but 
 the real meaning of those numbers.
 
+\bigskip
 \noindent \textbf{Remark:} when I'm measuring the power of the players, what 
 actually means is the ratio: it is the fact, for example, that my fraction 
 of power is twice the yours. In this context, efficiency is not a 
 requirement I must have.
 
 \bigskip
-\noindent \textbf{Slide 14}
+\noindent \textbf{Probabilistic power index:} a probabilistic power index $\psi$ on the set of simple games is
+\[
+	\psi_i(v) = \sum_{S \in 2^{N \setminus \{i\}}}p_i(S)m_i(v,S)
+\]
+where $p_i$ is a probability measure over $2^{N \setminus \{i\}}$.
 
+\bigskip
+\noindent \textbf{Semivalues:} a probabilistic power index $\psi$ on the set of simple games is a semivalue if there exists a vector $(p_0,...,p_{n-1})$ s.t.
+\[
+	\psi_i(v) = \sum_{S \in 2^{N \setminus \{i\}}}p_sm_i(v,S)
+\]
+
+\bigskip
+\noindent \textbf{Remark:} since the index is probabilistic, two conditions must hold:
+\begin{enumerate}
+	\item $p_s \geq 0 ~\forall s$
+	\item $\sum_{s=0}^{n-1}\binom{n-1}{s}p_s = 1$
+\end{enumerate}
+In particular, if $p_s > 0 ~\forall s$, the semivalue is called \textbf{regular}.
+
+\bigskip
 \noindent Remember: $s$ is the cardinality of coalition $S$. What I am saying 
 is that the probability to make a coalition with coalition A is equal to 
 the probability to make a coalition with B, if both A and B have the same 
@@ -230,18 +306,33 @@ when I do not make coalitions with some parties only because they have the
 right number of seats {\huge ma certo XD}.
 
 \bigskip
-\noindent \textbf{Slide 15}
+\noindent \textbf{Examples of semivalues:}
+\begin{itemize}
+	
+	\item Shapley value
+	
+	\item Banzhaf value: it says that the number of players in a coalition 
+	does not matter when I have to decide which coalition I want to belong to. 
+	Every coalition is equally likely. This is sometimes reasonable, when I 
+	know that players aggregate no matter the number they are.
+	\[
+		\beta_i(v) = \sum_{S \in 2^{N \setminus \{i\}}}
+		{\frac{1}{2^{n-1}}m_i(v,S)}
+	\]
 
-\noindent Banzhaf value: it says that the number of players in a coalition 
-does not matter when I have to decide to which coalition I want to belong. 
-Every coalition is equally likely. This is sometimes reasonable, when I 
-know that players aggregate no matter the number they are.
-
-\noindent I use dictatorial value when I have the feeling that people might 
-aggregate in coalitions, but this is unlikely.
+	\item Dictatorial value: it is used when I have the feeling that people might 
+	aggregate in coalitions, but this is unlikely.
+	\[
+		p_0 = 1, ~p_s = 0 ~\forall s=1:n-1
+	\]
+\end{itemize}
 
 \bigskip
-\noindent \textbf{Slide 16}
+\noindent Properties of semivalues: if you don't consider Shapley, they fulfill 
+all the properties of Shapley but for efficiency.
+
+\bigskip
+\noindent \textbf{Example from slide 16:}
 
 \noindent All non-veto players are symmetric and all veto players are 
 symmetric $\implies$ I only have to compute one Shapley value and then 
@@ -257,8 +348,5 @@ players and at least 4 non-veto players.
 \noindent The ratio between the Banzhaf of non-veto and the Banzhaf of 
 veto players is almost 10, while for Shapley it is almost 100 $\implies$ 
 there is a factor of 10 among them.
-
-\noindent Properties of semivalues: if you consider Shapley, they fullfill 
-all the properties of Shapley but for efficiency.
 
 %\end{document}

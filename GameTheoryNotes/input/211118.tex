@@ -16,12 +16,14 @@
 
 %!TeX root = ./GameTheoryNotes.tex
 
+\section{Repeated Games}
+
 \bigskip
 \noindent Idea: sometimes the inefficiency of the Nash equilibrium can be 
 wickened having some more information.
 
 \bigskip
-\noindent \textbf{Slide 3}
+\noindent \textbf{Reference game from slide 3, sl. deck "Lesson6"}
 
 \noindent Each player has three strategies. If you forget the last row and col, 
 you have a $2 \times 2$ matrix with a strictly dominant strategy that 
@@ -46,16 +48,16 @@ one-shot game and therefore I apply strictly dominant strategy etc.
 equilibrium? Maybe there is another Nash eq. in mixed str.
 
 \bigskip
-\noindent \textbf{Slide 4}
-
-\noindent What I'm claimin is that I will get $3-a$ on average, not in every 
-single day. 
+\noindent \textbf{Claim:} for every $a > 0$, if the game is played a sufficient number of times, each player will get at least $3-a$ on average (not in every single day). 
 
 \noindent We can also prove that it is possible to get even more than this!
 
 \bigskip
-\noindent \textbf{Slide 5}
+\noindent \textbf{Strategy profile:} suppose that the game is played once per day for $N$ days.
 
+\noindent Strategy profile with symmetric strategies: given $k < N$, all players play the first strategy for the first $N-k$ and the second for the remaining $k$ days if the opponent plays the same. Once player $i$ deviates, the other plays always the third strategy until the end of the game.
+
+\bigskip
 \noindent Remember: this means that in the first $N-k$ days we gain exactly 
 3, since both of us play the first strategy. In the last $k$ days, we play the 
 strictly dominant strategy, which means that we gain 1.
@@ -63,46 +65,65 @@ strictly dominant strategy, which means that we gain 1.
 \noindent Players are threatening each other: if one changes strategy, the other 
 plays the last strategy, which is the worst for both (negative outcome).
 
-\noindent I giocatori scelgono di giocare la prima strategia per $N-k$ giorni 
-perché hanno bisogno di lasciarsi la possibilità di punire l'altro se cerca di 
+\noindent I giocatori scelgono di giocare la prima strategia per $N-k$ giorni perché hanno bisogno di lasciarsi la possibilità di punire l'altro se cerca di 
 fregarli. Infatti, in caso contrario l'ultimo giorno converrebbe giocare la 
 seconda strategia, che garantisce al giocatore un outcome di 10, se l'altro 
 rimane fedele alla prima strategia. Questo non sarebbe necessario in un gioco 
-con infinite partite, perché in quel caso avrei sempre il tempo di punirti se 
+con infinite partite, perchè in quel caso avrei sempre il tempo di punirti se 
 cercassi di fregarmi. In giochi finiti, i giocatori sono collaborativi per 
 $N-k$ giorni e poi giocano la strategia dominante.
 
 \bigskip
-\noindent \textbf{Slide 6}
-
 \noindent I know that you will punish me if I deviate, therefore I should 
 cheat you the last day before you change strategy: in this way, I take 3 
 until day $N-k-1$, then I cheat and I get 10 for one day and $-1$ for the 
 remaining $k$ days.
 
 \bigskip
-\noindent \textbf{Slide 8}
+\noindent This strategy profile is a NEp if $k > 3$. Indeed, what I give from the strategy profile is
+$\frac{3(N-k) + k}{N}$.
 
-\noindent Nash equilibrium is always a rational outcome.
+\noindent What I get if I deviate the last useful day is $\frac{3(N-k-1) + 10 + (-1)k}{N}$.
 
-\noindent Observation: the threat is not really credible: % siamo sicuri che
-														  % questa parola
-														  % esista ?! no
-it is based on the fact that I will punish you by also punish myself.
-
-\noindent In Life::real, people use dominant strategies and this is very bad 
-for the society...but there are situations in which people actually decide to 
-cooperate...even if we do not really know that we will play a certain 
-number of times and therefore we will have time to punish each other. This is 
-a very unstable equilibrium: if one cheat, then also the others start to cheat 
-and the situation becomes even worse than before.
-
-\noindent In one-shot days, we do always have to assume that people use the 
-strictly dominant strategy, but they sometimes collaborated if the game is 
-repeated.
+\noindent Therefore, I have a NEp iff
+\[
+	\frac{3(N-k) + k}{N} \geq \frac{3(N-k-1) + 10 + (-1)k}{N} 
+\]
+which entails $k > 3$.
 
 \bigskip
-\noindent \textbf{Slide 9}
+\noindent The payoffs for the players at the NEp are $\frac{3(N-k) + k}{N}$ and we can observe that
+\[
+	\lim\limits_{N \rightarrow + \infty}\frac{3(N-k) + k}{N} = 3
+\]
+
+\bigskip
+\noindent \textbf{Observations:}
+\begin{itemize}
+	\item Nash equilibrium is always a rational outcome.
+
+	\item the threat is not really credible: 
+	% siamo sicuri che
+	% questa parola
+	% esista ?! no
+	it is based on the fact that I will punish you by also punish myself.
+	
+	\item In Life::real, people use dominant strategies and this is very bad 
+	for the society...but there are situations in which people actually decide to 
+	cooperate...even if we do not really know that we will play a certain 
+	number of times and therefore we will have time to punish each other. This is 
+	a very unstable equilibrium: if one cheat, then also the others start to cheat 
+	and the situation becomes even worse than before.
+
+	\noindent In one-shot days, we do always have to assume that people use the 
+	strictly dominant strategy, but they sometimes collaborated if the game is 
+	repeated.
+\end{itemize}
+
+\section{Correlated Equilibria}
+
+\bigskip
+\noindent \textbf{Reference game from slide 9}
 
 \noindent \textbf{Remark:} there must be a pure mixed Nash equilibrium because 
 there is not a strictly dominant strategy. The only possibilities in this case 
@@ -115,14 +136,15 @@ Nash equilibrium is observed more often.
 \noindent Under the mixed Nash eq., the probability distribution of the 
 outcomes is:\\
 $\frac{4}{9}$	$\frac{2}{9}$\\
-$\frac{2}{9}$	$\frac{1}{9}$\\
+$\frac{2}{9}$	$\frac{1}{9}$
 
 \bigskip
-\noindent \textbf{Slide 10}
-
 \noindent Suppose that the players can talk to each other and make agreements.
 
-\noindent I would like to use this probability distribution: why should we 
+\noindent I would like to use the probability distribution\\
+$\frac{1}{3} \hspace{.5cm} \frac{1}{3}$\\
+$\frac{1}{3} \hspace{.5cm} 0$\\
+Indeed, why should we 
 go, even if with small probability, for the outcome (0,0)? Actually, this 
 probability distribution cannot be retreived by using a strategy as: 
 $[p,(1-p)]$, because we cannot reach a probability equal to 0. However, the 
@@ -137,15 +159,23 @@ informazione perfetta: se esce 1 o 2, so che l'altro giocatore giocherà la
 prima strategia e quindi a me conviene giocare la seconda: 7 è meglio che 6.
 
 \bigskip
-\noindent \textbf{Slide 11}
+\noindent If we want such a situation to be possible, we must give the players only a \textbf{partial information}, so that they do not know what the others would play and they do not have incentive to change their strategy.
 
-\noindent Per fare in modo che quanto è descritto sopra, dobbiamo dare ai 
-giocatori un'informazione parziale, in modo che non sappiano cosa giocherà 
-l'altro.
+\noindent We will assume that an external entity makes a random choice based on the probability distribution the players agreed on and she tells the players what to play privately. 
 
 \bigskip
-\noindent \textbf{Slide 14}
+\noindent \textbf{Correlated equilibrium:} consider the game described by $(A,B) = (a_{ij}, b_{ij})$, where $i=1:n$ and $j=1:m$; let $I = \{1,...,n\}$, $J = \{1,...,m\}$ and $X = I \times J$.
 
+\noindent A correlated equilibrium is a probability distribution $p = (p_{ij})$ such that, for all $\bar{i} \in I$,
+\[
+	\sum_{j \in J}p_{\bar{i}ja_{\bar{i}j}} \geq \sum_{j \in J}p_{\bar{i}j}a_{ij} ~\forall i \in I
+\]
+and, for all $\bar{j} \in J$,
+\[
+\sum_{i \in I}p_{i\bar{j}b_{i\bar{j}}} \geq \sum_{i \in I}p_{i\bar{j}}b_{ij} ~\forall j \in J
+\]
+
+\bigskip
 \noindent The player can be told to play row $\bar{i}$. What I want is that 
 to play $\bar{i}$ is better than to play any other row, otherwise I would 
 change strategy.
@@ -153,18 +183,48 @@ change strategy.
 \noindent Analogously, for player2 the best strategy must be column $\bar{j}$.
 
 \bigskip
-\noindent \textbf{Slide 16}
-
-\noindent We want to show that, having a Nash eq. profile, we can build a 
-correlated equilibria. Since in a game we can also find a Nash equilibrium 
-profile, then we can also say that we can always find a correlated equilibrium. 
-
-\noindent We claim that $p_{ij} = \bar{x_i}\bar{y_j}$ is a correlated 
-equilibrium.
+\noindent \textbf{Theorem:} a NEp $(\bar{x},\bar{y})$ generates a correlated equilibrium.
 
 \bigskip
-\noindent \textbf{Slide 19}
+\noindent \textbf{Remark:} since in a game we can always find a Nash equilibrium 
+profile, then we can also say that we can always find a correlated equilibrium. 
 
+\bigskip
+\noindent \textbf{Proof:} We show that $p_{ij} = \bar{x}_i\bar{y}_j$ is a correlated equilibrium.
+
+\noindent We have to prove that
+\[
+	\sum_{j=1}^m{\bar{x}_{\bar{i}}\bar{y}_ja_{\bar{i}j}} \geq 
+	\sum_{j=1}^m{\bar{x}_{\bar{i}}\bar{y}_ja_{ij}} ~\forall i \in I
+\]
+This is obvious if $\bar{x}_{\bar{i}} = 0$. If it is $> 0$, since it appears both in the lhs and in the rhs and it is a positive quantity,we can simplify it, getting
+\[
+\sum_{j=1}^m{\bar{y}_ja_{\bar{i}j}} \geq 
+\sum_{j=1}^m{\bar{y}_ja_{ij}} ~\forall i \in I
+\]
+The lhs is the expected utility of the first player when he plays row $\bar{i}$ and the other plays his equilibrium strategy $\bar{y}$; the rhs is the expected utility of the first player when he plays row $i$ and the other plays his equilibrium strategy $\bar{y}$.
+
+\noindent Since the pure strategy $\bar{i}$ is played with strictly positive probability, the inequality must hold for sure because $\bar{i}$ must be the best reaction of player1 to the strategy of player2.
+
+\bigskip
+\noindent \textbf{Theorem:} the set of correlated equilibria of a finite game is a nonempty convex ploytope.
+
+\bigskip
+\noindent \textbf{Proof:} a convex polytope is the smallest convex set containing a finite number of points.
+
+\noindent The set of correlated equilibria is the solution set of a system of $n^2+m^2$ linear inequalities called \textbf{incentive constraints}, to whom we add the conditions $p_{ij} \geq 0$ and $\sum p_{ij} = 1$. 
+
+\bigskip
+\noindent \textbf{Proposition:} if a row $\bar{i}$ is strictly dominated, then $p_{\bar{i}j} = 0 ~\forall j \in J$.
+
+\bigskip
+\noindent \textbf{Proof:} if row $\bar{i}$ is strictly dominated by row $i$, then $a_{\bar{i}j} - a_{ij} < 0 ~\forall j$.
+
+\noindent Being $p_{\bar{i}j}$ a probability, it must be $\geq 0 ~\forall j$.
+
+\noindent We have $\sum_{j \in J}p_{\bar{i}j}(a_{\bar{i}j} - a_{ij}) \geq 0$, which entails $p_{\bar{i}j} = 0 ~\forall j$.
+
+\bigskip
 \noindent If I tell you to play line $\bar{i}$, the point is that you have to 
 agree and to be sure that in any case you would not get anything better if 
 you change strategy. This of course cannot be true with strictly dominated 
@@ -174,7 +234,7 @@ is always worse than anything else, for you.
 \noindent Counterexample for weakly dominated row:\\
 (5,5)	(0,5)\\
 (5,0)	(1,1)\\
-Remark: from this I can see that a Nash equilibrium is still a correlated 
+\textbf{Remark:} from this I can see that a Nash equilibrium is still a correlated 
 equilibrium. For example, the probability distribution:\\
 1	0\\
 0	0\\

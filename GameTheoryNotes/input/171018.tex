@@ -290,19 +290,26 @@ I can say that quasi concave functions are useful.
 not empty, closed, convex $\forall x,y$ and it has closed graph iot use 
 the Kakutani's theorem. I do the proof for $BR_1$.
 
-% FIN QUI
+\noindent $BR_1(x)$ is nonempty because of the compactness assumption, it is closed by the continuity of $f$ and $g$ and it is convex valued by the quasi-concavity assumption.
 
+\noindent $BR$ has closed graph. Indeed, consider $(u_n,v_n) \in 
+BR(x_n,y_n) ~\forall n$, suppose that $(u_n,v_n) \rightarrow (u,v)$ 
+and that $(x_n,y_n) \rightarrow (x,y)$. We want to show that 
+$(u,v) \in BR(x,y)$.
 
-\noindent $BR_1(y)$ is nonempty and closed by Weierstrass theorem and 
-it is closed by the quasi concavity assumption. I need to prove that 
-the graph is closed. I assume that:
-\begin{enumerate}
-	\item $(x_k,y_k) \in Graph(BR_1)$
-	\item $x_k \rightarrow x$ and $y_k \rightarrow y$.
-\end{enumerate}
+\noindent In particular, being $(u_n,v_n) \in BR(x_n,y_n)$, we have that $f(u_n,y_n) \geq f(z,y_n)$ and $g(x_n,v_n) \geq g(x_n,t) ~
+\forall z \in X, ~t \in Y$. Then we can pass to the limit and, by continuity of $f$ and $g$, we get that $f(u,y) \geq f(z,y)$ and $g(x,v) \geq g(x,t) ~\forall z \in X, ~t \in Y$.
 
-(1) implies that $f(x_k,y_k) \geq f(x,y_k) ~\forall x \in X$, which means, 
-by teorema della permanenza del segno, that $f(\bar{x},\bar{y}) \geq 
-f(x,\bar{y}) ~\forall x \in X$.
+%\noindent $BR_1(y)$ is nonempty and closed by Weierstrass theorem and 
+%it is closed by the quasi concavity assumption. I need to prove that 
+%the graph is closed. I assume that:
+%\begin{enumerate}
+%	\item $(x_k,y_k) \in Graph(BR_1)$.
+%	\item $x_k \rightarrow x$ and $y_k \rightarrow y$.
+%\end{enumerate}
+%
+%\noindent (1) implies that $f(x_k,y_k) \geq f(x,y_k) ~\forall x \in X$, which means, 
+%by "teorema della permanenza del segno", that $f(\bar{x},\bar{y}) \geq 
+%f(x,\bar{y}) ~\forall x \in X$.
 
 %\end{document}

@@ -14,28 +14,52 @@
 
 %!TeX root = ./GameTheoryNotes.tex
 
-\noindent It is easy to find Nash eq in zero-sum games because they are 
-related to solutions of linear programming.
-
 \bigskip
-\noindent \textbf{Slide 36}
-
 \noindent When I say that $u$ depends on $x_{-i}$, I'm saying that $u$ 
 depends on possibly all the variables but $x_i$.
 
 \noindent This is reasonable because when I maximize wrt one variable, I 
-take all the others as fixed $=>$ the constant through which I can modify 
+take all the others as fixed $\implies$ the constant through which I can modify 
 the payoffs without modifying the game can depend on all the variables, but 
 the one wrt which I am maximizing my payoff.
 
 \noindent The difference between payoffs is a constant wrt the strategy 
 of player $i$, even if it depends on the strategies of all the other 
 players. If this happens, we are not changing best responses and therefore 
-the equilibria $=>$ we can define the two utility functions as 
+the equilibria $\implies$ we can define the two utility functions as 
 \textbf{diff-equivalent}.
 
 \bigskip
-\noindent \textbf{Slide 37}
+\noindent By definition, two diff-equivalent payoffs $\tilde{u}_i$ and $u_i$ are s.t. $\tilde{u}_i(x_i',x_{-i}) - u_i(x_i',x_{-i}) = 
+\tilde{u}_i(x_i,x_{-i}) - u_i(x_i,x_{-i})$.
+
+\noindent If we define $\Delta f(x_i',x_i,x_{-i}) = f_i(x_i',x_{-i}) - f_i(x_i,x_{-i})$, the equality above can be rewritten as 
+$\Delta \tilde{u}_i(x_i',x_i,x_{-i}) = \Delta u_i(x_i',x_i,x_{-i})$.
+
+\bigskip
+\noindent \textbf{Theorem:} finite games with diff-equivalent payoffs have the same pure Nash equilibria.
+
+\bigskip
+\noindent \textbf{Proof:} a profile $(x_1,...,x_n)$ is a NEp iff the increments we get by moving towards another profile $x_i'$ are non 
+positive, i.e. $\Delta u_i(x_i',x_i,x_{-i}) \leq 0$.
+
+\noindent From the equivalence $\Delta \tilde{u}_i = \Delta u_i$ we wrote above we can deduce that pure NEp are the same for $u_i$ and $\tilde{u}_i$.
+
+\bigskip
+\noindent \textbf{Remark:} this holds for mixed NEp as well.
+
+\section{Potential Games}
+
+\noindent A finite game with strategy sets $X_i$ and payoffs 
+$u_i: X \rightarrow \mathbb{R}$ is a potential game if it is diff-equivalent to a game with common payoff, i.e. if there exists a potential function $p: X \rightarrow \mathbb{R}$ s.t. $\forall x_{-i} \in X_{-i}$ and $\forall x_i,x_i' \in X_i$ we have 
+$\Delta u_i(x_i',x_i,x_{-i}) = \Delta p(x_i',x_i,x_{-i})$.
+
+\bigskip
+\noindent \textbf{Corollary:}
+\begin{enumerate}
+	\item every finite potential game has at least one pure Nash equilibrium.
+	\item in a finite potential game every best response iteration reaches a pure NEp in finitely many steps.
+\end{enumerate}
 
 \noindent \textbf{Remember:} when we compute the potential, we can fix 
 the rows and look at payoffs of the second player (i.e. compute the 
@@ -46,111 +70,151 @@ things!
 equilibria.
 
 \bigskip
-\noindent \textbf{Slide 39}
-
-\noindent $o_i$ are different origins and $d_i$ different destinations. 
-
-\noindent Some arcs are sensitive to the number of people travelling onto 
-the paths themselves.
-
-\noindent Routing games are potential games. $r_i$, the strategy of player 
-$i$, is a sequence of compatible arcs.
-
-\bigskip
-\noindent \textbf{Slide 41}
-
-\noindent An example to understand the previous slide ;)
-
-\noindent Computation of the potential: for any arc, it is the sum, 
-from 1 to the total number of players passing through that arc, of the 
-cost $t_a(k)$. We have $p(r_1,r_2,r_3)~=~\sum_{k=1}^{n_a}{t_a(k)~=~...}$
+\noindent \textbf{Examples:}
 \begin{enumerate}
-	\item[a] only one person (player1) passes through the arc $a$, 
-		therefore\\ $t_a(1)~=~10$
-	\item[b] two people pass through $b$, therefore we have $t_a(1)$, 
-		which is 4, plus $t_a(2)$, which is 5
-	\item[c] no players pass through the arc $c$, therefore we have 0.
+	
+	\item \textbf{Routing games:} consider $n$ people travelling from $o_i$ different origins to $d_i$ different destinations. 
+
+	\noindent Some arcs are sensitive to the number of people travelling onto 
+	the paths themselves.
+	
+	\noindent Routing games are potential games. $r_i$, the strategy of player 
+	$i$, is a sequence of compatible arcs connecting his origin $o_i$ to his destination $d_i$.
+	
+	\noindent The total travel time for player $i$ is given by
+	\[
+		u_i(r_1,...,r_n) = \sum_{a \in r_i}{t_a(n_a)}
+	\]
+	where $n_a$ is the number of people travelling on $a \in r_i$.
+	
+	\noindent Here $u_i$ represents a cost for the player $i$.
+	
+	\noindent In order to minimize the travel time, players can restrict to simple paths, with no cycles, so that any node is visited at most once. $\implies$ the strategy set for player $i$ is the set 
+	$X_i$ of all the simple paths connecting $o_i$ to $d_i$.
+	
+	\bigskip
+	\noindent \textbf{Theorem (Rosenthal '73):} a routing game admits the potential
+	\[
+		p(r_1,...,r_n) = \sum_{a \in A}{\sum_{k=0}^{n_a}t_a(k)}
+	\]
+	
+	\noindent \textbf{Proof:} it is enough to notice that for $r = 
+	(r_1,...,r_n)$ we have:
+	\[
+		p(r) - u_i(r) = \sum_{a \in A}{\sum_{k=0}^{n_a}t_a(k)} - 
+		\sum_{a \in r_i}{t_a(n_a)} = \sum_{a \in A}{\sum_{k=0}^{n_a^{-i}}t_a(k)}
+	\]
+	where $n_a^{-i}$ is the number of players other than $i$ who travel on the arc $a$.
+	
+	\noindent This means that the difference depends on $r_{-i}$ but 
+	not on $r_i$, which is exactly the definition of potential.
+
+	\bigskip
+	\noindent $\implies$
+		
+	\noindent An example to understand the previous one ;)
+		
+	\noindent Computation of the potential: for any arc, it is the sum, 
+	from 1 to the total number of players passing through that arc, of the 
+	cost $t_a(k)$. We have $p(r_1,r_2,r_3)~=~\sum_{k=1}^{n_a}{t_a(k)~=~...}$
+	\begin{enumerate}
+		\item only one person (player1) passes through the arc $a$, 
+			therefore\\ $t_a(1)~=~10$
+		\item two people pass through $b$, therefore we have $t_a(1)$, 
+			which is 4, plus $t_a(2)$, which is 5
+		\item no players pass through the arc $c$, therefore we have 0.
+	\end{enumerate}
+		
+	\noindent For all the other arcs, since only one player is using them, we 
+	have only one term. If we had, for example, two players passing through 
+	$d$, then we would have $t_a(1)+t_a(2)~=~2+2$, since $t_d$ is independent 
+	on the number of players passing through $d$.
+	
+	\noindent Utilities (costs) for all the players:
+	\begin{enumerate}
+		\item he is the only player passing through arc $a$, therefore he 
+			pays 10:\\ $u_1(r_1,r_2,r_3)~=~10$.
+		\item there are two players passing through arc $b$, thus the time 
+			spent on that arc is 5: $u_2(r_1,r_2,r_3)~=~2+5+2$.
+		\item $u_3(r_1,r_2,r_3)~=~1+5+1$.
+	\end{enumerate}
+		
+	\noindent If now we consider player2 and we compute the difference between 
+	the potential and the utility function of player2, we have: 
+	\[
+		p(r_1,r_2,r_3)~=~u_2(r_1,r_2,r_3)~=~...
+	\]
+	we erase 5 from the arc $b$, 2 from the arc $d$ and 2 from the arc $f$, which 
+	means that we are left exactly with the potential we would have if we had 
+	only players 1 and 3 $\implies$ the difference between $p$ and $u_2$ only depends 
+	on $r_1$ and $r_3$, which is what we expect from a potential.
+
+	\item \textbf{Congestion games:} they are based on the assumption that a group of 
+	players have to use a set of resources. The strategy for player $i$ is to 
+	select a certain amount of resources he has to use. The cost of a resource 
+	depends on the number of player that want to use it and each player only 
+	pays for the resources he is using.
+	
+	\noindent \textbf{Note:} routing games are an example of congestion games 
+	where the resources coincide with the paths from an origin to a destination.
+	
+	\noindent The potential is the sum over all the resources of the sum between 
+	1 and the number of players which use a certain resource of its cost. As in 
+	the case of routing games, if we erase from the sum the contribution of the 
+	player $i$, we are left with the sum extended to the resources that are used 
+	by all the players except of $i$.
+	
+	\noindent In mathematical terms, if we call $c_r(n_r)$ the cost of the resource $r \in R$ when it is used by $n_r$ players, we have that
+	\[
+		u_i(x_1,...,x_n) = \sum_{r \in x_i}{c_r(n_r)}
+	\]
+	where $n_r = \#\{j: r \in x_j\}$ and we can prove that
+	\[
+		p(x_1,...,x_n) = \sum_{r \in R}{\sum_{k=0}^{n_r}{c_r(k)}}
+	\]
+	is a potential for the game.
+
+	\item \textbf{Network connection games:} we need to build a network that connects 
+	some nodes, knowing that we would have to pay a certain cost iot build an 
+	arc (: to create a connection).
+	
+	\noindent In the routing games, if we use the same path we damage each other, 
+	while here we help each other because we share the building cost of the 
+	arc $\implies$ the utility is the cost of an arc divided by the number of people 
+	who are using it.
+	
+	\noindent In the formula of the potential, if you erase one player you go in 
+	the sum from 1 to $n_a-1$, which means that, as usual, the potential does not 
+	depend on the last player but only on the others.
+	
+	\noindent In mathematical terms, the cost for player $i$ is
+	\[
+		u_i(r_1,...,r_n) = \sum_{a \in r_i}{\frac{v_a}{n_a}}
+	\]
+	where $n_a = \#\{j: a \in r_j\}$ and we can prove that
+	\[
+		p(r_1,...,r_n) = \sum_{a \in A: n_a > 0}{v_a\left(1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n_a}\right)}
+	\]
+	
+	\bigskip
+	\noindent Suppose that we are in the following situation:
+	many people have to create a connection with $d$. They can directly 
+	connect themselves to $d$, paying the usual $\frac{1}{n}$, or they can connect 
+	for free to an older node $b$, knowing that the cost from $b$ to $d$ is 
+	$1+\epsilon$.
+	
+	\noindent If all the players choose the path $o_n \rightarrow b \rightarrow 
+	d$, each one of them pays $\frac{1+\epsilon}{n}$. Instead, if they go directly 
+	to $d$, player $n$ pays $\frac{1}{n}$.
+	
+	\noindent Are there Nash equilibria? And is there a potential?
+	
+	\noindent Actually, this situation is exactly modeled by a routing game.
+	
+	\item \textbf{SKIP LOCATION GAMES}
 \end{enumerate}
 
-\noindent For all the other arcs, since only one player is using them, we 
-have only one term. If we had, for example, two players passing through 
-$d$, then we would have $t_a(1)+t_a(2)~=~2+2$, since $t_d$ is independent 
-on the number of players passing through $d$.
-
-\noindent Utilities (costs) for all the players:
-\begin{enumerate}
-	\item he is the only player passing through arc $a$, therefore he 
-		pays 10:\\ $u_1(r_1,r_2,r_3)~=~10$.
-	\item there are two players passing through arc $b$, thus the time 
-		spent on that arc is 5: $u_2(r_1,r_2,r_3)~=~2+5+2$.
-	\item $u_3(r_1,r_2,r_3)~=~1+5+1$.
-\end{enumerate}
-
-\noindent If now we consider player2 and we compute the difference between 
-the potential and the utility function of player2, we have: 
-\[
-	p(r_1,r_2,r_3)~=~u_2(r_1,r_2,r_3)~=~...
-\]
-we erase 5 from the arc $b$, 2 from the arc $d$ and 2 from the arc $f$, which 
-means that we are left exactly with the potential we would have if we had 
-only players 1 and 3 $=>$ the difference between $p$ and $u_2$ only depends 
-on $r_1$ and $r_3$, which is what we expect from a potential.
-
-\bigskip
-\noindent \textbf{Slide 42}
-
-\noindent Congestion games are based on the assumption that a group of 
-players have to use a set of resources. The strategy for player $i$ is to 
-select a certain amount of resources he has to use. The cost of a resource 
-depends on the number of player that want to use it and each player only 
-pays for the resources he is using.
-
-\noindent \textbf{Note:} routing games are an example of congestion games 
-where the resources coincide with the paths from an origin to a destination.
-
-\noindent The potential is the sum over all the resources of the sum between 
-1 and the number of players which use a certain resource of its cost. As in 
-the case of routing games, if we erase from the sum the contribution of the 
-player $i$, we are left with the sum extended to the resources that are used 
-by all the players except of $i$.
-
-\bigskip
-\noindent \textbf{Slide 43}
-
-\noindent In Network connection games we need to build a network that connects 
-some nodes, knowing that we would have to pay a certain cost iot build an 
-arc (: to create a connection).
-
-\noindent In the routing games, if we use the same path we damage each other, 
-while here we help each other because we share the building cost of the 
-arc $=>$ the utility is the cost of an arc divided by the number of people 
-who are using it.
-
-\noindent In the formula of the potential, if you erase one player you go in 
-the sum from 1 to $n_a-1$, which means that, as usual, the potential does not 
-depend on the last player but only on the others.
-
-\bigskip
-\noindent \textbf{Slide 44}
-
-\noindent Many people have to create a connection with $d$. They can directly 
-connect themselves to $d$, paying the usual $\frac{1}{n}$, or they can connect 
-for free to an older node $b$, knowing that the cost from $b$ to $d$ is 
-$1+\epsilon$.
-
-\noindent If all the players choose the path $o_n \rightarrow b \rightarrow 
-d$, each one of them pays $\frac{1+\epsilon}{n}$. Instead, if they go directly 
-to $d$, player $n$ pays $\frac{1}{n}$.
-
-\noindent Are there Nash equilibria? And is there a potential?
-
-\noindent Actually, this situation is exactly modeled by a routing game.
-
-\bigskip
-\noindent \textbf{SKIP LOCATION GAMES}
-
-\bigskip
-\noindent \textbf{Slide 47}
+\subsection*{Finding a potential}
 
 \noindent By analogy with the usual potential, we can expect that it is 
 not unique: if there exists a potential, then there are infinitely many. 
@@ -162,6 +226,27 @@ exactly as in physics. In particular, if I fix any strategy profile $\bar{x}$
 and I set $p(\bar{x})~=~0$, then the potential at any other point is 
 uniquely determined.
 
+\begin{equation*}
+	\begin{cases}
+		1)\hspace{.5cm} p(x_1,x_2,...,x_n) - 
+								p(\bar{x}_1,x_2,...,x_n) = 
+		    					u_1(x_1,x_2,...,x_n) - 
+		    					u_1(\bar{x}_1,x_2,...,x_n)\\
+		    
+		2)\hspace{.5cm} p(\bar{x}_1,x_2,...,x_n) -
+								p(\bar{x}_1,\bar{x}_2,...,x_n) = 
+								u_2(\bar{x}_1,x_2,...,x_n) -
+								u_2(\bar{x}_1,\bar{x}_2,...,x_n)\\	
+			
+		...\\
+		
+		n)\hspace{.5cm} p(\bar{x}_1,\bar{x}_2,...,x_n) -
+								p(\bar{x}_1,\bar{x}_2,...,\bar{x}_n) = 
+								u_n(\bar{x}_1,\bar{x}_2,...,x_n) -
+								u_n(\bar{x}_1,\bar{x}_2,...,\bar{x}_n)\\					    
+	\end{cases}
+\end{equation*}
+
 \noindent In lines 1 to n, I keep fixed every player except for player $j$ 
 and I compute the difference between $p(\bar{x_1},...,x_j,...,x_n)$ and 
 $p(\bar{x_1},...,\bar{x_j},...x_n)$.
@@ -169,21 +254,24 @@ $p(\bar{x_1},...,\bar{x_j},...x_n)$.
 \noindent Since all the other variables are fixed, the difference is given 
 exactly by the difference between utility functions of player $j$.
 
-\noindent By summing between 1 and $n$, on the rhs we find 
+\noindent By summing between 1 and $n$, on the lhs we find 
 $p(x_1,x_2,...,x_n)-p(\bar{x_1},\bar{x_2},...,\bar{x_n})$, which is 
-$p(x_1,x_2,...,x_n)$ since we have fixed $p(\bar{x})~=~0$.
+$p(x_1,x_2,...,x_n)$ since we have fixed $p(\bar{x})~=~0$, i.e. we find
+\[
+	p(x_1,...,x_n) = \sum_{i=1}^{n}{[u_i(\bar{x}_1,...,x_i,...,x_n) - 
+		u_i(\bar{x}_1,...,\bar{x}_i,...,x_n)]}
+\]
+If the game admits a potential, the sum on the rhs is independent on the particular order used (and viceversa).
 
 \bigskip
-\noindent \textbf{Slide 48} 
-
-\noindent I can always write the sum on the lhs in the previous slide, but 
+\noindent \textbf{Note:} I can always write the sum on the lhs in the previous slide, but 
 this does not mean that that sum is always a potential. IF the game admits 
 a potential, then I can say that the potential is defined by that sum. On 
 the other hand, if the sum defined at the lhs is independent on the order 
 used, then I can say that it is a potential.
 
 \bigskip
-\noindent \textbf{Slide 49}
+\noindent \textbf{Example - vd slide 49, deck "Lesson5"}
 
 \noindent In order to build a potential, we usually fix the value 0 at one 
 point. In particular, we fix $p_{1,1}~=~0$, i.e. we set to zero the first 
@@ -203,8 +291,7 @@ the first are fulfilled for player2, since I wrote them for player1, while
 I have to check that the differences in the first row are fullfilled for 
 player1.
 
-\bigskip
-\noindent \textbf{Slide 50}
+\section{Social cost and efficiency}
 
 \noindent One of the main features of cooperative game theory is that it 
 shows that in order to survive people have to aggregate, but that, once they 
@@ -218,14 +305,28 @@ then at the end they confess and they spend 5 years in jail.
 of a game. We need to specify what do we mean with "good" and "bad" and 
 this can be done in different ways.
 
+\noindent The quality of a strategy profile $x = (x_1,...,x_n)$ can be measured through a social cost function $x \mapsto C(x)$, where 
+$C: X \rightarrow \mathbb{R}_+$: the lower is $C(x)$, the better is the strategy profile.
+
+\noindent The benchmark is the minimum that a benevolent social planner could achieve, i.e. it is $\text{Opt} = \min_{x \in X}{C(x)}$.
+
+\noindent Given an $x \in X$, the quotient $\frac{C(x)}{\text{Opt}}$ tells how much $x$ is far from the optimum: a value next to 1 tells that $x$ is almost as efficient as the optimal solution.
+
 \noindent \textbf{Note:} we apply this theory to potential games, then we 
 consider cases in which we want to minimize a cost (not to mazimize a 
 positive outcome).
 
 \bigskip
-\noindent \textbf{Slide 51}
+\noindent \textbf{Price-of-Anarchy and Price-of-Stability:} let $NE \subseteq X$ be the set of Nash equilibria for the game; then, the price of anarchy is defined as
+\[
+	\text{PoA} = \max_{\bar{x} \in NE}{\frac{C(\bar{x})}{\text{Opt}}}
+\]
+while the price of stability is defined as
+\[
+\text{PoS} = \min_{\bar{x} \in NE}{\frac{C(\bar{x})}{\text{Opt}}}
+\]
 
-\noindent Since the maximum is always greater than the minimum, $PoA \geq PoS$.
+\noindent Since the maximum is always greater than the minimum, $PoA \geq PoS \geq 1$.
 
 \noindent If the price of anarchy is very high, this means that anarchy 
 (: to apply individual rationality without taking care of the society) is 
@@ -238,12 +339,20 @@ is defined assuming that people do not care about the optimum for the society.
 
 \noindent $PoA$ is a pessimistic estimator, while $PoS$ is optimistic.
 
+\noindent \textbf{Note:} $\text{PoA} \leq \alpha$ means that, for every possible pure Nash equilibrium, the social cost $C(\bar{x})$ is lower than $\alpha\text{Opt}$.
+
+\noindent In turn, $\text{PoS} \leq \alpha$ means that there exists a pure Nash equilibrium s.t. the social cost $C(\bar{x})$ is lower than $\alpha\text{Opt}$.
+
 \bigskip
-\noindent \textbf{Slide 52}
+\noindent \textbf{Egalitarian function}
 
 \noindent We need to specify which is the function $C$ iot gave a meaning 
-to the previous definitions. One of the more common definition is the 
-egalitarian function. It is called like this because all the players' costs 
+to the previous definitions. One of the most common definition is the 
+egalitarian function
+\[
+	C(a) = \sum_{i=1}^{n}{u_i(a)}
+\]
+It is called like this because all the players' costs 
 are treated in the same way: it doesn't matter if player1 takes 10 minutes 
 to reach his destination and player2 takes one hour, these values are 
 summed up without weights when we compute the social cost of the travels.
@@ -253,50 +362,71 @@ instead of the sum: I consider people who are less lucky and I try to
 minimize their misfortune.
 
 \bigskip
-\noindent \textbf{Slide 53}
+\noindent \textbf{Examples:}
+\begin{enumerate}
+	\item \textit{Routing games:} the egalitarian function is the total time travelled by all the players, i.e.
+	\[
+		C(r_1,...,r_n) = \sum_{x \in X}{n_xt_x(n_x)}
+	\]
+	where $n_x = \#\{j: x \in r_j\}$
+	
+	\item \textit{Network connection games:} the egalitarian function is the total investment required iot connect all the players, i.e.
+	\[
+		C(r_1,...,r_n) = \sum_{x \in X: n_x > 0}{v_x}
+	\]
 
-\noindent $n$ people have to move from $o$ to $d$ and they can choose either 
-the path $a$ or the path $b$. The social optimum is 1. 
-
-\noindent If all the players go to $b$, each one of them pays $\frac{1}{n}$ 
-and therefore the social cost is
-\[
-	C_1~=~\sum_{k=1}^n{\frac{1}{n}}~=~1
-\]
-
-\noindent On the other hand, if all the players choose the path $a$, each one 
-of them pays 1 (they have to share the cost $v_a=n$ among $n$ people) and 
-therefore the social cost is 
-\[
-	C_2~=~\sum_{k=1}^n{1}~=~n
-\]
-
-\noindent Finally we have $PoS~=~\frac{C_1}{Opt}~=~1$ and 
-$PoA~=~\frac{C_2}{Opt}~=~n$.
-
-\noindent The point is: if by chance all the people choose the path $a$, you 
-cannot convince them to deviate.
+	\item Consider a situation where $n$ people have to move from $o$ to $d$ and they can choose either 
+	the path $a$ or the path $b$. The social optimum is 1. 
+	
+	\noindent If all the players go to $b$, each one of them pays $\frac{1}{n}$ 
+	and therefore the social cost is
+	\[
+		C_1~=~\sum_{k=1}^n{\frac{1}{n}}~=~1
+	\]
+	
+	\noindent On the other hand, if all the players choose the path $a$, each one 
+	of them pays 1 (they have to share the cost $v_a=n$ among $n$ people) and 
+	therefore the social cost is 
+	\[
+		C_2~=~\sum_{k=1}^n{1}~=~n
+	\]
+	
+	\noindent Finally we have $PoS~=~\frac{C_1}{Opt}~=~1$ and 
+	$PoA~=~\frac{C_2}{Opt}~=~n$.
+	
+	\noindent The point is: if by chance all the people choose the path $a$, you 
+	cannot convince them to deviate.
+	
+	\item \textit{From slide 54:} you recover the Nash equilibrium by elimination of strictly dominated 
+	strategies. Indeed, consider for example player $n$: if he chooses the path 
+	$bd$, the minimum he can pay is $\frac{1+\epsilon}{n}$, if also all the other 
+	players choose the same path. On the other hand, if he connects directly to 
+	$d$ he pays $\frac{1}{n}$, which is better. Therefore, player $n$ connects 
+	directly to $d$. This choice is known to player $n-1$, who have to choose 
+	between $\frac{1+\epsilon}{n-1}$ and $\frac{1}{n-1}$. Knowing that player $n$ 
+	goes directly to $d$ and therefore, in the best situation, only $n-1$ players 
+	go through $bd$, also for player $n-1$ the strategy $bd$ is strictly 
+	dominated. The same happens to all the players, therefore to connect directly 
+	to $d$ is the unique Nash equilibrium.
+\end{enumerate}
 
 \bigskip
-\noindent \textbf{Slide 54}
-
-\noindent You recover the Nash equilibrium by elimination of strictly dominated 
-strategies. Indeed, consider for example player $n$: if he chooses the path 
-$bd$, the minimum he can pay is $\frac{1+\epsilon}{n}$, if also all the other 
-players choose the same path. On the other hand, if he connects directly to 
-$d$ he pays $\frac{1}{n}$, which is better. Therefore, player $n$ connects 
-directly to $d$. This choice is known to player $n-1$, who have to choose 
-between $\frac{1+\epsilon}{n-1}$ and $\frac{1}{n-1}$. Knowing that player $n$ 
-goes directly to $d$ and therefore, in the best situation, only $n-1$ players 
-go through $bd$, also for player $n-1$ the strategy $bd$ is strictly 
-dominated. The same happens to all the players, therefore to connect directly 
-to $d$ is the unique Nash equilibrium.
-
-\bigskip
-\noindent \textbf{Slide 55}
+\noindent \textbf{An estimate for PoS}
 
 \noindent It is difficult, in general, to compute $PoS$ and $PoA$.
 
+\bigskip
+\noindent \textbf{Proposition:} consider a cost minimization finite potential game with potential $p: X \rightarrow \mathbb{R}$ and suppose that there exists two positive constants $\alpha$ and $\beta$ s.t. $\frac{1}{\alpha}C(x) \leq p(x) \leq \beta C(x) ~\forall x \in X$.
+\noindent Then $\text{PoS} \leq \alpha \beta$.
+
+\bigskip
+\noindent \textbf{Proof:} consider $\bar{x} \in X$ s.t. $p(\cdot)$ is minimum in $\bar{x}$, which means that $\bar{x}$ is a NE.
+
+\noindent Then $\frac{1}{\alpha}C(\bar{x}) \leq p(\bar{x}) \leq p(x) \leq \beta C(x)$.
+
+\noindent Since this holds for all $x \in X$, it must be $C(\bar{x}) \leq \alpha \beta \text{Opt}$ 
+
+\bigskip
 \noindent In the proof, I consider the minimum because I'm considering 
 costs and not positive outcomes.
 
@@ -306,9 +436,41 @@ $\frac{1}{\alpha}C(\bar{x})~\leq~\beta Opt$ and therefore
 $C(\bar{x})~\leq~\alpha \beta Opt$.
 
 \bigskip
-\noindent \textbf{Slide 57}
+\noindent \textbf{PoS in network connection games}
+
+\bigskip
+\noindent \textbf{Proposition:} consider a network connection game with $n$ players on a graph $(N,X)$, where the arc construction cost is $v_x > 0$.
+
+\noindent Then $\text{PoS} \leq H_n = 1 + \frac{1}{2} + ... + \frac{1}{n}$.
+
+\bigskip
+\noindent \textbf{Proof:} in this case, we have that the potential of the game is
+\[
+	p(r_1,...,r_n) = \sum_{x \in X}{\sum_{k=0}^{n_x}{\frac{v_x}{k}}}
+\]
+while the social cost is
+\[
+	C(r_1,...,r_n) = \sum_{x \in X: n_x > 0}{v_x}
+\]
+which entails that $C(r) \leq p(r) \leq H_nC(r)$ and this means that 
+$\text{PoS} \leq H_n$.
+
+\bigskip
+\noindent \textbf{Utilities instead of costs}
 
 \noindent What happens if I consider utilities instead of costs? I still 
 want $PoA$ to be very high when I am in a bad situation.
+
+\noindent We define $\text{Opt} = \max_{x \in X}{U(x)}$.
+
+\bigskip
+\noindent \textbf{Proposition:} let $NE \subseteq X$ the set of pure Nash equilibria for an utility game; then, the price of anarchy is defined as
+\[
+	\text{PoA} = \max_{\bar{x} \in NE}{\frac{\text{Opt}}{U(\bar{x})}}
+\]
+while the price of stability is defined as
+\[
+\text{PoS} = \min_{\bar{x} \in NE}{\frac{\text{Opt}}{U(\bar{x})}}
+\]
 
 %\end{document}

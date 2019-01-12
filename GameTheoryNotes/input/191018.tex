@@ -12,11 +12,19 @@
 
 %\begin{document}
 
-\bigskip
-\noindent \textbf{Slide 15}
+\section*{Finite Games}
 
-\noindent A finite game admits always a Nash equilibrium profile in mixed 
-strategies.
+\noindent The sets of strategies for both the players are finite (in particular, $n$ strategies for player1 and $m$ for player2).
+
+\noindent The game can be represented by a bimatrix whose element $ij$ is the pair $(a_ij,b_ij)$, where $a_ij$ is the utility of player1 when he plays row $i$ and the other plays column $j$ (and the same for $b_ij$).
+
+\noindent We denote this game by $(A,B)$.
+
+\bigskip
+\noindent \textbf{Corollary:} a finite game admits always a Nash equilibrium profile in mixed strategies.
+
+\bigskip
+\noindent Indeed, in this case $X$ and $Y$ are simplexes and we have that $f(x,y) = x^TAy$, while $g(x,y) = x^TBy$, therefore the hypothesis of the Nash theorem are fulfilled.
 
 \bigskip
 \noindent \textbf{Slide 16}
@@ -26,10 +34,12 @@ strategies.
 (0,2)		(1,0)\\
 and find its Nash equilibria. First of all, we check for pure Nash 
 equilibria. 
-%Fixed the $1^{st}$ col, the best reaction for player2 is the 
-%first row....{\huge min 12: qualcosa non quadra}
+Fixed the $1^{st}$ row, the best reaction for player2 is the 
+$2^{nd}$ col; fixed the $2^{nd}$ row, the best reaction for player2 is the $1^{st}$ col.
 
-\noindent There are no pure equilibria, we have to look for mixed ones. We 
+\noindent In turn, fixed the $1^{st}$ col, the best reaction for player1 is the $1^{st}$ row and, fixed the $2^{nd}$ col, the best reaction for player1 is the $2^{nd}$ row.\\
+$\implies$\\
+There are no pure equilibria, we have to look for mixed ones. We 
 have to look for $f(x_1,x_2,y_1,y_2)$. Since we know that $x_1+x_2=1$ we can 
 write:\\
 $x_1 = p$\\
@@ -49,7 +59,7 @@ $p\in [0,1]$.
 
 \noindent We can do the same for the player2, i.e. writing:
 \[
-	q(p,q) ~=~ 3p(1-q)+2q(1-p) ~=~ q(2-5p)+3p
+	g(p,q) ~=~ 3p(1-q)+2q(1-p) ~=~ q(2-5p)+3p
 \]
 
 \noindent $BR_2(p)$, i.e. the best reaction to $p$ of player2, is $q=0$ if 
@@ -59,12 +69,8 @@ $p>\frac{2}{5}$, $q=1$ if $p<\frac{2}{5}$ and $q\in [0,1]$ if $p=\frac{2}{5}$.
 $\left( \frac{2}{5},\frac{3}{5} \right)$ for player1, while it is 
 $\left( \frac{1}{2},\frac{1}{2} \right)$ for player2.
 
-\noindent Remember: when I am at the equilibrium, I must get the same 
-outcome for both the rows (or the columns) $=>$ \textbf{indifference 
-principle}, which is the counterpart of the complementarity conditions 
-in a general game (which is not zero-sum).
-
-\noindent Observation: suppose that there is not domination in a 2x2 case. 
+\bigskip
+\noindent \textbf{Observation:} suppose that there is not domination in a 2x2 case. 
 This means that sometimes I would choose the first row and sometimes the 
 second (and the same for the columns).
 
@@ -73,9 +79,30 @@ we can have either no pure equilibria and
 one mixed eq. or we can have 2 pure equilibria and one mixed eq.
 
 \bigskip
-\noindent \textbf{Slide 18}
+\noindent \textbf{Remember:} when I am at the equilibrium, I must get the same 
+outcome for both the rows (or the columns) $\implies$ \textbf{indifference 
+principle}, which is the counterpart of the complementarity conditions 
+in a general game (which is not zero-sum).
 
-\noindent Note: in general, some of the probabilities $x_k$ and $y_k$  
+\bigskip
+\noindent \textbf{Indifference principle:} suppose that $(\bar{x},\bar{y})$ is a NE in mixed strategies. Suppose that the support of $\bar{x}$, i.e. the set of indices s.t. $\bar{x_i} > 0$, is 
+$\{1,2,...,k\}$ and that the support of $\bar{y}$, i.e. the set of indices s.t. $\bar{y_j} > 0$, is $\{1,2,...,l\}$. Let $f(\bar{x},\bar{y}) = v$. 
+
+\noindent Then it holds:
+\begin{equation*}
+	\begin{cases}
+		a_{11}\bar{y_1} + ... + a_{1l}\bar{y_l} = v\\
+		...\\
+		a_{k1}\bar{y_1} + ... + a_{kl}\bar{y_l} = v\\
+		a_{(k+1)1}\bar{y_1} + ... + a_{(k+1)l}\bar{y_l} \leq v\\
+		...\\
+		a_{n1}\bar{y_1} + ... + a_{nl}\bar{y_l} \leq v
+	\end{cases}
+\end{equation*}
+Indeed, all the rows played with positive probability must be optimal (they must provide as outcome the value of the game) while all the rows played with probability equal to zero must be suboptimal (they must provide an outcome lower than $v$, otherwise there is no reason not to play them).
+
+\bigskip
+\noindent \textbf{Note:} in general, some of the probabilities $x_k$ and $y_k$  
 are equal to 0. In particular, a probability is zero if the outcome 
 of the corresponding line 
 is less than the value of the game, because in this case I'm sure I 
@@ -95,94 +122,150 @@ we do not know in advance which are the rows/cols that we play with
 zero probability.
 
 \bigskip
-\noindent \textbf{Slide 19}
-
 \noindent \textbf{Fully mixed equilibria:} there are not rows/cols that 
-we play with zero probability $=>$ the outcome of all the rows (and, 
-separately, for all the cols) must be equal (: if it were less, we 
+we play with zero probability $\implies$ the outcome of all the rows (and, separately, for all the cols) must be equal (: if it were less, we 
 would not play that row).
 
 \bigskip
-\noindent \textbf{Slide 20}
-
-\noindent Brute force algorithm: ipotizziamo che, ad esempio, le prime 
+\noindent \textbf{Brute force algorithm:} ipotizziamo che, ad esempio, le prime 
 tre righe siano ottime; calcoliamo le rispettive probabilità  (fissando 
 a zero quelle relative alle altre righe) e, a posteriori, verifichiamo 
 che le altre righe non siano ottime (che abbiano un outcome inferiore). 
 Se questo non si verifica, ripartiamo ipotizzando che le righe ottime 
 siano altre.
 
-\bigskip
-\noindent \textbf{Slide 25}
+\noindent \textbf{Problem:} the computational cost of such a procedure is $(2^n-1)(2^m-1)$, which is prohibitive for values of $n$ and $m$ large enough.
 
-\noindent The Nash equilibrium of Braess paradox is $\frac{1}{2}$ on the 
-north path and $\frac{1}{2}$ on the south path. Indeed, if one person 
-moves from one path to the other, immediatly the time of the second 
-path increases because the number of people increases. Therefore, there 
-is not convenience in changing path.
+\section*{General Strategic Games}
 
-\noindent Now what happens if someone opens a path connecting the north 
-and the south street? For every player, to go from Turin to north and 
-then to the south path is strictly dominant wrt going from Turin to 
-south. Indeed, if all the people go to north the time is $\frac{4000}{100}$, 
-which means that the path T $=>$ north $=>$ south costs at most 45, 
-which is definitely less than 50 (the cost of T $=>$ south).
+\noindent Consider an $n$-players game with strategy sets $X_i$ and payoffs $f_i: X \rightarrow \mathbb{R}$, with 
+$X = \prod_{i=1}^n{X_i}$.
 
-\noindent Adding strategies to the players can be harmful to all of them. 
-The players cannot ignore the new street, but this street creates problems 
-to everyone (the overall time of T $=>$ north $=>$ south $=>$ M is greater 
-than the time we had when there was not path from north to south).
+\noindent If $x = (x_1,...,x_{i-1},x_i,x_{i+1},...,x_n)$ is a strategy profile, we define the vector $x_{-i} = (x_1,...,x_{i-1},x_{i+1},...,x_n)$, 
+so that we can write $x = (x_i, x_{-i})$.
+
+\noindent A vector $\bar{x} = (\bar{x}_i)_{i=1}^n$ is a \textbf{NEp} for a general strategic game if $\bar{x}_i \in BR_i(\bar{x}_{-i}) ~\forall i=1:n$.
 
 \bigskip
-\noindent \textbf{Slide 26}
+\noindent \textbf{Nash theorem for general strategic games:} given a general strategic game with $n$ players s.t. $X_i$ are the strategy sets and $f_i: X \rightarrow \mathbb{R}$ are the payoffs, with $X = \prod_{i=1}^n{X_i}$, if
+\begin{enumerate}
+	\item each $X_i$ are closed bounded convex sets in $\mathbb{R}^{d_i}$
+	\item $f_i$ are continuous functions
+	\item $x_i \mapsto f_i(x_i,x_{-i})$ are quasi-concave functions for each $x_{-i} \in X_{-i}$
+\end{enumerate}
+then the game admits at least one NEp.
 
-\noindent \textbf{Pure coordination game:} the utility function is the 
-same for all the players.
+\subsection*{Finite Strategic Games}
 
-\noindent The unique Nash eq. in pure strategies is the trivial eq. "300 
-people go to the bar and 200 stay at home". Of course, it is unique 
-except for permutation, in the sense that the 300 people in the bar are 
-chosen at random.
+\noindent Consider an $n$-players finite game with strategy sets 
+$A_i$ and payoffs given by $f_i(a_1,...,a_n)$.
 
-\noindent Problem: what actually happens in a situation like this, is that 
-people makes experiments and try to converge to a mixed Nash eq.
+\noindent In the mixed extension every player selects a probability distribution $x^i \in \Sigma_{A_i}$, i.e. $x_{a_i}^i \geq 0 ~\forall a_i \in A_i$ and s.t. $\sum_{a_i \in A_i}{x_{a_i}^i} = 1$.
 
-\noindent Example:\\
-(7,2)		(0,0)\\
-(6,6)		(2,7)\\
-Here there are two pure Nash eq., but mixed Nash eq. are in any case 
-interesting. Pure Nash eq. are less natural to see in real situations 
-because they are less symmetric wrt the outcome of the players.
+\noindent Denote by $A = \prod_{i=1}^n{A_i}$ the set of pure strategy profiles. The probability of having an outcome $(a_1,...,a_n) \in A$ is the product $\prod_{i=1}^n{x_{a_i}^i}$ and the expected payoffs are:
+\[
+	\bar{f}_i(x^1,...,x^n) = \sum_{(a_1,...,a_n)\in A}{f_i(a_1,...,a_n)
+	\prod_{j=1}^n{x_{a_j}^i} = \sum_{a_i \in A_i}{x_{a_i}^iu_i(a_i,x^{-i})}}
+\]
+where
+\[
+	u_i(a_i,x^{-i}) = \sum_{a_i \in A_i, j \neq i}{f(a_1,...,a_n)\prod_{j \neq i}{x_{a_j}^j}}
+\]
+
+\bigskip
+\noindent \textbf{Corollary:} every n-players finite game has at least one Nash equilibrium profile in mixed strategies.
+
+\bigskip
+\noindent \textbf{Examples:} 
+
+\begin{enumerate}
+	\item \textbf{The Braess paradox}
+	
+	\noindent The Nash equilibrium of Braess paradox is $\frac{1}{2}$ on the 
+	north path and $\frac{1}{2}$ on the south path. Indeed, if one person 
+	moves from one path to the other, immediatly the time of the second 
+	path increases because the number of people increases. Therefore, there 
+	is not convenience in changing path.
+	
+	\noindent Now what happens if someone opens a path connecting the north 
+	and the south street? For every player, to go from Turin to north and 
+	then to the south path is strictly dominant wrt going from Turin to 
+	south. Indeed, if all the people go to north the time is $\frac{4000}{100}$, 
+	which means that the path T $\rightarrow$ north $\rightarrow$ south costs at most 45, 
+	which is definitely less than 50 (the cost of T $\rightarrow$ south).
+	
+	\noindent Adding strategies to the players can be harmful to all of them. 
+	The players cannot ignore the new street, but this street creates problems 
+	to everyone (the overall time of T $\rightarrow$ north $\rightarrow$ south $\rightarrow$ M is greater 
+	than the time we had when there was not path from north to south).
+
+	\item \textbf{El Farol bar}
+	
+	\bigskip
+	\noindent \textbf{Pure coordination game:} the utility function is the 
+	same for all the players.
+	
+	\noindent The unique Nash eq. in pure strategies is the trivial eq. "300 
+	people go to the bar and 200 stay at home". Of course, it is unique 
+	except for permutation, in the sense that the 300 people in the bar are 
+	chosen at random.
+
+	\noindent Problem: what actually happens in a situation like this, is that 
+	people makes experiments and try to converge to a mixed Nash eq.
+
+	\noindent Example:\\
+	(7,2)		(0,0)\\
+	(6,6)		(2,7)\\
+	Here there are two pure Nash eq., but mixed Nash eq. are in any case 
+	interesting. Pure Nash eq. are less natural to see in real situations 
+	because they are less symmetric wrt the outcome of the players.
+
+\end{enumerate}
 
 \section{Duopoly}
 
 %\noindent {\huge you cannot indent}
 
-\noindent $u_1(q_1,q_2) = (a-q_1-q_2)q_1 - cq_1$ is the utility function 
-of a person producing something, which is income minus cost of production. 
-The price on the market is $a-q_1-q_2$, where $a$ is called the quantity 
+\noindent Two firms choose a quantity of a certain good they want to produce. Firm1 chooses the quantity $q_1$ while firm2 chooses the quantity $q_2$.
+
+\noindent A quantity $a > c$ of that good, where $c$ is the unitarian cost for both firms, saturates the market.
+
+\noindent The utility functions for the two firms are 
+\[u_1(q_1,q_2) = (a-q_1-q_2)q_1 - cq_1\]
+and
+\[u_2(q_1,q_2) = (a-q_1-q_2)q_2 - cq_2\]
+which are income minus cost of production. 
+The price on the market is $p = \max{(a-q_1-q_2,0)}$, where $a$ is called the quantity 
 that clears the market. If I produce a very little amount $q_1$ and $q_2$, 
 the actual price is almost $a$, while it is almost zero if I produce $a$.
 
-\noindent $u_2(q_1,q_2) = (a-q_1-q_2)q_2-cq_2$.
+\noindent I can write: 
+\[u_1 = -q_1^2+(a-c-q_2)q_1\]
+and 
+\[u_2 = -q_2^2+(a-c-q_1)q_2\]
 
-\noindent I can write: $u_1 = -q_1^2+(a-c-q_2)q_1$ and 
-$u_2 = -q_2^2+(a-c-q_1)q_2$.
+\subsection{Monopoly}
 
-\noindent Let's suppose that $q_2=0$ (monopoly situation), so that I 
-have to maximize $-q_M^2+(a-c)q_M$ (M stands for Monopoly), therefore 
+\noindent Let's suppose that $q_2=0$, so that I 
+have to maximize $-q_M^2+(a-c)q_M$ (M stands for Monopoly).
+
+\noindent
 I compute the derivative $-2q_M+a-c=0$ and finally I get: 
 $q_M = \frac{a-c}{2}$, $u(q_M)=\frac{(a-c)^2}{4}$ and the price is 
 $p_M = \frac{a+c}{2}$.
+
+\subsection{Duopoly}
 
 \noindent Now we can consider the duopoly case. We compute the partial 
 derivatives of $u_1$ wrt $q_1$ and of $u_2$ wrt $q_2$. We get a symmetric 
 system so that $q_1=q_2=\frac{a-c}{3}$, $u_i(q_1,q_2)=\frac{(a-c)^2}{9}$ and 
 the price is $p_D=\frac{a+2c}{3}$.
 
+\subsection{Leader \& Follower}
+
 \noindent Now consider the case in which the two forms are not symmetric: 
 there is a leader which has the possibility to decide the strategy, while 
-the other player takes the strategy as granted and tryes to maximize it.
+the other player takes the strategy as granted and tries to maximize it.
 
 \noindent In particular, the leader announces $q_1$ and the follower 
 maximizes $-q_2^2+(a-c-q_1)q_2$, getting $q_2(q_1)=\frac{a-c-q_1}{2}$.
@@ -193,8 +276,7 @@ $-q_1^2+(a-c-q_2)q_1=-q_1^2+\left(a-c-\frac{a-c-q_1}{2}\right)$.
 \noindent This means that he maximizes $-\frac{1}{2}q_1^2 + 
 \frac{a-c}{2}q_1$, getting $q_1=\frac{a-c}{2}$.
 
-\bigskip
-\noindent \textbf{Slide 31}
+\subsection{Comparison}
 
 \noindent In the duopoly case, we have a greater quantity and also a 
 greater utility (if in the duopoly case we consider the sum of the 
@@ -207,12 +289,13 @@ is perfect. Here we do not have a finite number of options, but the
 utility function is continuous and the set is convex, which means that 
 we can always find a maximum.
 
+\bigskip
 \noindent \textbf{Note:} We can find the equilibrium of the duopoly case 
 also with elimination of strictly dominated strategies (by applying it 
 infinitely many times). Starting from the derivative of $u_1$, we look for 
 the values of $q_1$ s.t. $-2q_1+a-c-q_2 \leq 0 ~\forall q_2$ and we 
 find $q_1 \geq \frac{a-c}{2}$. This means that the quantity 
-$\bar{q_2}=\frac{a-c}{2}$ strictly dominates all strategies with 
+$\bar{q}_2=\frac{a-c}{2}$ strictly dominates all strategies with 
 $q > \frac{a-c}{2}$. Therefore we can go on by reducing the interval in 
 which I can choose the amount of production.
 
@@ -225,6 +308,10 @@ the same way, starting from this interval, we finally get the point
 $\frac{a-c}{3}$.
 
 \section{Finite games with common payoffs}
+
+\noindent Consider a finite game with strategy sets $X_i$ and suppose that all the players have the same payoff $p: X \rightarrow \mathbb{R}$, i.e. $u_i(x_1,...,x_n) = p(x_1,...,x_n)$.
+
+\noindent Let $\bar{x} \in X$ be a strategy profile s.t. $p(\bar{x}) \geq p(x)$ for all $x \in X$. Then $\bar{x}$ is a NEp in pure strategies.
 
 \noindent They are pure coordination games, i.e. the utility functions of 
 the players are exactly the same.
@@ -240,6 +327,9 @@ his situation, improving at the same time the outcome for all the players.
 There are no cycles, which means that at worst in a number of steps equal 
 to all the possible entries you reach the maximum.
 
+\bigskip
+\noindent \textbf{Payoff equivalence:}
+
 \noindent Consideriamo un gioco $(X,Y,f,g)$. Invece di considerare $f(x,y)$, 
 potrei considerare $f(x,y)+c_1$ (e lo stesso con $g(x,y)+c_2$) senza 
 modificare la "best reaction multifunction". Per di più, dato che, per il 
@@ -248,17 +338,21 @@ utilità  considerando $f(x,y)+c_1(y)$, l'importante è che $c_1$ non
 dipenda da x.
 
 \bigskip
-\noindent \textbf{Slide 37}
+\noindent \textbf{Definition:} two payoffs $u_i$ and 
+$\tilde{u}_i$ are said to be \textbf{diff-equivalent} for player $i$ if $u_i(x_1,...,x_n) - \tilde{u}_i(x_1,...,x_n) = c_i(x_{-i})$, i.e. the difference does not depend on his decision $x_i$, but possibly on the decisions of all the other players. 
 
+\bigskip
 \noindent In any case I can find a "diff-equivalent" utility function for 
 two players, \textit{de facto} I can find an utility function which holds 
 for both, which means that I can consider the game as a game with common 
 payoff.
 
-\noindent Consideriamo l'esempio della slide 49: nella matrice ridotta, 
-i due massimi sono 4 e 4, il che significa che i due elementi corrispondenti 
-nella matrice originale sono Nash eq. Di fatto, esiste un altro Nash eq. 
-(l'elemento (3,4) nella seconda riga), che però è soltanto un ottimo 
-locale, non un ottimo globale nella matrice ridotta.
+%\noindent Consideriamo l'esempio della slide 49: nella matrice ridotta, 
+%i due massimi sono 4 e 4, il che significa che i due elementi corrispondenti 
+%nella matrice originale sono Nash eq. Di fatto, esiste un altro Nash eq. 
+%(l'elemento (3,4) nella seconda riga), che però è soltanto un ottimo 
+%locale, non un ottimo globale nella matrice ridotta.
+%\noindent It is easy to find Nash eq in zero-sum games because they are 
+%related to solutions of linear programming.
 
 %\end{document}
