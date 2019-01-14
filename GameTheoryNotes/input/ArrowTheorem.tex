@@ -12,7 +12,7 @@
 %
 %\begin{document}
 
-\section{Arrow's Theorem}
+%!TeX root = 051218.tex
 
 \bigskip
 \noindent \textbf{Notation:}
@@ -45,8 +45,21 @@ $\forall~i \in N$ ($o_1 \succ' o_2$ if and only if $o_1 \succ'' o_2$) implies
 that ($o_1 \succ_{W_{[\succ']}} o_2$ if and only if $o_1 \succ_{W_{[\succ'']}} 
 o_2$).
 
+\bigskip
 \noindent This means that the selected ordering between two outcomes depends 
 only on their relative ordering given by the agents.
+
+\noindent Suppose that 
+people give me a ranking and then they change their mind and they give me a 
+different ranking. If, in both the rankings, agent $x$ is ranked better than 
+agent $y$. Then I do not care if in the first ranking $x$ is the first and $y$ 
+the last, while in the second ranking $x$ is the first and $y$ is the second: 
+other agents do not matter, the only important thing is their relative position 
+in the ranking. Any time you assign scores to your position (ex. sport: you make 
+a mutual comparison between two soccer teams, you assign a certain amount 
+of points to the winner or another to a tie and then you sum all the points) 
+this assumption is not fullfilled: maybe Milan wins over Inter, but its position 
+in the final ranking is worse.
 
 \noindent \textit{NOTE:} the fact that we assumed $|O| \geq 3$ depends on the 
 fact that the IIA property is not meaningful in the case of only two outcomes.
@@ -57,6 +70,16 @@ fact that the IIA property is not meaningful in the case of only two outcomes.
 \noindent $W$ is non-dictatorial if it does not have a dictator, i.e. 
 $\nexists ~i \in N$ s.t. $\forall ~o_1,o_2 \in O$, $o_1 \succ_i o_2 \implies 
 o_1 \succ_W o_2$.
+
+\bigskip
+\noindent Dictator: no matter what all the other individuals say, the ranking 
+for the society is decided only by one player. Remember: this is only an 
+\textit{a priori} analysis, which means that the society does what I decide, no 
+matter what it is.
+
+\noindent This means that the function $F$ turns out to be a projection: it 
+selects, among the vector of preferences, the one related to the choice of the 
+dictator.
 
 \bigskip
 \noindent \textbf{Arrow's Theorem}
@@ -172,5 +195,10 @@ independent of irrelevant alternatives is dicatorial.
 
 	\noindent $\implies$ Q.E.D.
 \end{enumerate}
+
+\bigskip
+\noindent \textbf{Arrow's Theorem - Alternative Statement} 
+
+\noindent It does not exists a social welfare function $W$ s.t. it satisfies Pareto efficiency and IIA property and it is not dictatorial.
 
 %\end{document}

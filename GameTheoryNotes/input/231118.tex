@@ -16,47 +16,100 @@
 
 %!TeX root = ./GameTheoryNotes.tex
 
-\bigskip
-\noindent \textbf{Slide 4}
+\noindent Situation: two players have to share a certain good (example: a pie). It is not a zero-sum game, because players have a common interest in reaching an agreement, othewise the good is lost.
 
-\noindent If player2 has the possibility to make a counteroffer, then player1 
-is in his hands. The last one who can make an offer is the winner of the game.
+\noindent It can be seen either as a cooperative or as a non-cooperative game.
 
 \bigskip
-\noindent \textbf{Slide 6}
+\noindent \textbf{Bargaining as extensive game}
 
-\noindent Suppose that in every day a player makes an offer. Then you have a 
-discount factor for every day. In Life::real, it is not very natural to 
+\noindent Suppose that we have two players and the following rules:
+\begin{enumerate}
+	\item At the first stage, player1 makes an offer: $(x_1,x_2)$ s.t. $(x_1+ x_2) = 1$.
+	\item Player2 has the possibility either to accept the offer or to reject; the outcome is $(x_1,x_2)$ in the first case, $(0,0)$ otherwise.
+\end{enumerate}
+
+\noindent By backward induction, the solution of the game is $(1,0)$.
+
+\noindent However, if player2 has the possibility to make a counteroffer, then player1 
+is in his hands. The last one who can make an offer is the winner of the game. Indeed, in this case we have a game in multiple stages:
+\begin{enumerate}
+	\item At the first stage, player1 makes an offer: $(x_1,x_2)$ s.t. $(x_1+ x_2) = 1$.
+	\item Player2 has the possibility either to accept the offer or to propose $(y_1,y_2)$.
+	\item Player1 have the possibility either to accept or to reject the offer (i.e. the game follows as before, with the role of the two players interchanged).
+\end{enumerate}
+
+\noindent If the game ends after two stages, the outcome is, by backward induction, $(0,1)$, etc.
+
+\bigskip
+\noindent \textbf{Impatient players}
+
+\noindent Suppose that in every day a player makes an offer and suppose there is a 
+discount factor $0 < \delta_i < 1$ for every day. In Life::real, it is not very natural to 
 assume a stopping time for bargaining; however, let's suppose that for every 
 day we have a discount factor. The discount factor is different for 
 every player. 
+
+\noindent The game becomes:
+\begin{enumerate}
+	\item At the first stage, player1 makes an offer: $(x_1,x_2)$ s.t. $(x_1+ x_2) = 1$.
+	\item Player2 has the possibility either to accept the offer or to propose $(y_1,y_2)$, but the outcome would be $(\delta_1y_1,\delta_2y_2)$.
+	\item etc.
+\end{enumerate}
 
 \noindent If you reject my offer, which is (1,0), you will propose (0,1): you 
 want to have everything. But now your utility is $1 \times \delta_2$: the 
 maximum you can get is $\delta_2$. Then I can make you accept an offer by 
 simply proposing you $\delta_2$: by refusing, you cannot get more. 
 
+\noindent $\implies$
+
+\noindent The unique solution, by backward induction, is
+\begin{enumerate}
+	\item player1 proposes $(1-\delta_2, \delta_2)$
+	\item player2 accepts the offer
+\end{enumerate}
+
+\noindent Indeed, what happens is the following: if player2 rejects the offer that player1 made at the first stage, the game becomes an ultimatum game in which is player2's turn to make an offer $\implies$ he will propose (0,1), which gives as utilities $(0 \cdot \delta_1, 1 \cdot \delta_2)$ $\implies$ if player1 accepts the offer, he will get nothing and player2 will get exactly $\delta_2$.
+
+\noindent $\implies$ Player2 will accept, at the first stage, any offer $x_2 \geq \delta_2$ because he knows that, in any case, he cannot get more.
+
+\noindent Since player1 knows this, and he knows that, in case he proposes less than $\delta_2$, he will get nothing, his optimal offer is exactly $\delta_2$.
+
 \bigskip
-\noindent \textbf{Slide 8 - 9}
+\noindent \textbf{Strategies for the player:}
+
+\noindent
+\begin{enumerate}
+	\item Player1 offers $(1-\delta_2, \delta_2)$ at the first stage; he accepts every offer in the second stage.
+	\item Player2 accepts any offer $x_2 \geq \delta_2$ at the first stage; otherwise he rejects and he proposes $(0,1)$.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Game with infinite horizon}
 
 \noindent A play, in the game, is a series of offers. It is possible that the 
 game is endless: everybody rejects the offer. In turn, it is possible that the 
 offer is accepted at a certain time $T$. The utilities in these cases, 
-considering that we are in a discount situation, we have:
+considering that we are in a discount situation, are:
 \begin{enumerate}
-	\item In the first case, we have (0,0)
-	\item In the second case, we have an utility which depends on the discount 
+	\item (0,0) in the first case
+	\item $(\delta_1^{T-1}x_1^T,\delta_2^{T-1}x_2^T)$ in the second case: the utilities depend on the discount 
 	factor. The point is: the more you remain in the bargain situation, the 
 	less is your outcome. If you postpone the decision, you will get less.
 \end{enumerate}
 
 \noindent In this context, we cannot speak about backward induction: we need 
-the game to be finite (i.e. there is a stopping rule, which in this case we 
+the game to be finite (i.e. there must be a stopping rule, which in this case we 
 do not have). However, we can express backward induction in finite games by 
 considering each node of the tree as the root of a smaller subgame; we can 
 define backw. ind. by saying that its strategy is a str. s.t. its restriction 
 to every subgame is a Nash equilibrium for the subgame itself.
 
+\bigskip
+\noindent \textbf{Subgame perfect NEp:} is a NEp s.t. its restriction to every subgame of the initial game represents a NEp for the subgame itself.
+
+\bigskip
 \noindent With this definition, we do not care any more that the game must be 
 finite: what is important is that the subgame, even if infinite, is actually 
 a game and it has a Nash equilibrium.
@@ -71,38 +124,134 @@ ai giocatori nei rami decisionali che all'atto pratico non verranno mai
 raggiunti (infatti, se la mamma compra il gelato, il bambino non piange).
 
 \bigskip
-\noindent \textbf{Slide 11}
+\noindent \textbf{Strategies for the players - part 2:}
 
-\noindent Idea: un giocatore propone, ad esempio (60,40), ma è pronto ad 
+\noindent Idea: a player proposes $w$ and accepts any offer $z$ iff it allows him to get at least a fixed quota (un giocatore propone, ad esempio (60,40), ma e' pronto ad 
 accettare anche se l'altro propone (50,50) (e viceversa). Occorre trovare 
-un equilibrio tra le due proposte. 
+un equilibrio tra le due proposte).
 
-\bigskip
-\noindent \textbf{Slide 19}
-
-\noindent We forget alternate offers and strategies, we only speak about 
-utilities. The set $C$ is the set of all the possible distributions of utilities; 
-in principle we do not know how these utilities are obtained.
-
-\noindent Disagreement point $d$: utility if we do not reach an agreement.
-
-\noindent This is a Non Transferrable Utility cooperative game.
-
-\bigskip
-\noindent \textbf{Slide 20}
-
-\noindent \textbf{Remark:} this approach is possible only with two players.
-
-\noindent Assumptions:
+\noindent In particular
 \begin{enumerate}
-	\item This is obvious: we always take closed sets, otherwise we could 
-	miss existence.
-	\item Oh, be'
-	\item This means that players can reach an agreement s.t. their utility 
-	is greater than what they get in case of disagreement. If this assumption 
-	were not fullfilled, then there would be at least one player for which 
-	there is not reason to bargain. Iot have an interesting bargaining, 
-	players must have the possibility to meet somewhere.
+	\item player1 proposes $\bar{x}$ and accepts $y$ iff $y_1 \geq \bar{y}_1$.
+	\item player2 proposes $\bar{z}$ and accepts $w$ iff $w_2 \geq \bar{w}_2$
 \end{enumerate}
+where $\bar{x}$, $\bar{y}$, $\bar{z}$ and $\bar{w}$ are fixed \textit{a priori}.
+
+\noindent If we consider the two stage game, we notice that $\bar{w}_2$ represents the minimum level of acceptance for player2, i.e. he will reject $\bar{x}_2$ if $\bar{x}_2 < \bar{w}_2$. $\implies$ optimality for player1 implies $\bar{x}_2 = \bar{w}_2$.
+
+\noindent Conversely, we can apply the same argument and we get that optimality for player2 implies $\bar{z}_1 = \bar{y}_1$.
+
+\noindent $\implies$
+
+\noindent $\bar{x} = \bar{w}$ and $\bar{z} = \bar{y}$, which means that the strategies for the two players are the following:
+\begin{enumerate}
+	\item player1 proposes $\bar{x}$ and accepts $y$ iff $y_1 \geq \bar{y}_1$.
+	\item player2 proposes $\bar{y}$ and accepts $x$ iff $x_2 \geq \bar{x}_2$.
+\end{enumerate}
+
+\noindent If we consider the two-stages game with impatient players (and therefore discount factors $\delta_i$), we can relate $\bar{x}$ and $\bar{y}$ by saying that
+\[
+	\bar{y}_1 = \delta_1\bar{x}_1 \hspace{1cm} \bar{x}_2 = \delta_2\bar{y}_2
+\]
+where we know that $\bar{x}_2 = 1 - \bar{x}_1$ and $\bar{y}_2 = 1 - \bar{y}_1$. 
+
+\bigskip
+\noindent \textbf{Theorem:} there is an unique subgame perfect NEp for the bargaining game with alternate offers and impatient players, with the following strategies:
+\begin{enumerate}
+	\item player1 offers $\bar{x}$ and accepts $y$ iff $y_1 \geq \bar{y}_1$
+	\item player2 offers $\bar{y}$ and accepts $x$ iff $x_2 \geq \bar{x}_2$
+\end{enumerate}
+where
+\[
+	\bar{x} = \left( \frac{1-\delta_2}{1-\delta_1\delta_2}, 
+					     \frac{\delta_2(1-\delta_1)}{1-\delta_1\delta_2} \right)
+	\hspace{1cm}	
+	\bar{y} = \left( \frac{\delta_1(1-\delta_2)}{1-\delta_1\delta_2},
+	 					\frac{1-\delta_1}{1-\delta_1\delta_2} \right)
+\]
+
+\bigskip
+\noindent \textbf{Outcome of the game:}
+
+\noindent Player1 offers $\bar{x}$ to player2 and player2 accepts the offer at the first stage $\implies$ the utilities for the two players are
+\[
+	\frac{1-\delta_2}{1-\delta_1\delta_2}
+	\hspace{1cm}
+	 \frac{\delta_1(1-\delta_2)}{1-\delta_1\delta_2}	
+\]
+
+\bigskip
+\noindent \textbf{Partial proof:} let $\sigma_i$ be the strategy of player $i$. There are two possibility: either we are considering a subgame starting with an offer or we are considering a subgame starting with the response to an offer.
+
+\noindent In any case, we want to prove that the strategy profile $\sigma = (\sigma_1,\sigma_2)$ restricted to the subgame is a NEp.
+
+\begin{enumerate}
+	\item \textbf{Subgame starting with an offer:} suppose we are in node $v$ and it is player1's turn to make an offer. With the NEp $(\sigma_1,\sigma_2)$ he gets $\bar{x}_1$. We want to show that he has no incentive to change his strategy, which means that $(\sigma_1,\sigma_2)$ is a NEp for the subgame.
+	\begin{itemize}
+		\item if player1 offers $x_2 > \bar{x}_2$, player2 would accept the offer and player1 would get $1 - x_2 < 1 - \bar{x}_2$, therefore he has no reason to offer more than $\bar{x}_2$.
+		\item if player1 offers $x_2 < \bar{x}_2$, player2 would reject the offer and would offer $\bar{y}_1 = \delta_1\bar{x}_1 < \bar{x}_1$. Player1 can accept (but he gets less than before) or reject, but in this case the situation is the same as before.
+	\end{itemize}
+	We need to show that also for player2 there is no incentive to change his strategy; player2 is facing the opposite situation.
+	
+	\item \textbf{Subgame starting with the response to an offer:} for player2, the strategy $\sigma_2$ prescribes to accept any offer $x_2 \geq \bar{x}_2$. We want to show that he has no incentive to deviate, taking for granted that player1 follows the strategy $\sigma_1$.
+	\begin{itemize}
+		\item case $x_2 < \bar{x}_2$: according to $\sigma_2$, player2 refuses the offer and makes a counteroffer $\bar{y}_1$. Since player1 plays the strategy $\sigma_1$, the offer is accepted and the outcome for player2 is $\delta_2\bar{y}_2 = \bar{x}_2 > x_2$.
+		
+		\noindent If, in turn, player2 accepts the offer, he gets $x_2 < \bar{x}_2$, then for him it is not convenient to deviate.
+		
+		\item case $x_2 > \bar{x}_2$: according to $\sigma_2$, player2 accepts the offer and gets $x_2 > \bar{x}_2$.
+		
+		\noindent If, in turn, he rejects the offer, knowing that player1 follows $\sigma_1$ he can only offer $\bar{y}_1$, which is accepted, and therefore he gets $\delta_2\bar{y}_2 = \bar{x}_2 < x_2$. Again, for him it is not convenient to deviate.
+	\end{itemize}
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Symmetric case:} 
+
+\noindent $\delta_1 = \delta_2 = \delta$ $\implies$ the utilities for the players are
+\[
+	\left( \frac{1}{1 + \delta}, \frac{\delta}{1 + \delta} \right)
+\]
+which entails that the first player who makes an offer has the better outcome.
+
+
+% the following is reported in 301118.tex according to the topic of the lesson
+%
+%
+%\bigskip
+%\noindent \textbf{Bargaining problem according to Nash}
+%
+%\noindent We forget alternate offers and strategies, we only speak about 
+%utilities. The set $C$ is the set of all the possible distributions of utilities; 
+%in principle we do not know how these utilities are obtained.
+%
+%\noindent Disagreement point $d$: utility if we do not reach an agreement.
+%
+%\noindent This is a Non Transferrable Utility cooperative game.
+%
+%\bigskip
+%\noindent \textbf{Set of bargaining problems:}
+%
+%\noindent \textbf{Remark:} this approach is possible only with two players.
+%
+%\noindent Assumptions: the set $\mathcal{C} = \{(C,d)\}$ is s.t.
+%\begin{enumerate}
+%	\item $C$ is a closed bounded convex subset of $\mathbb{R}^2$.
+%	
+%	\noindent This is obvious: we always take closed sets, otherwise we could 
+%	miss existence.
+%	
+%	\item $d \in \mathbb{R}^2$. 
+%	
+%	\noindent Oh, be'
+%	
+%	\item $\exists x \in C$ s.t. $x_1 > d_1$ and $x_2 > d_2$.
+%	
+%	\noindent This means that players can reach an agreement s.t. their utility 
+%	is greater than what they get in case of disagreement. If this assumption 
+%	were not fullfilled, then there would be at least one player for which 
+%	there is not reason to bargain. Iot have an interesting bargaining, 
+%	players must have the possibility to meet somewhere.
+%\end{enumerate}
 
 %\end{document}

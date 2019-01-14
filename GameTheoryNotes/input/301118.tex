@@ -24,27 +24,131 @@ possibility to reach an agreement in which both players can have better
 outcome than in the disagreement point. There is no reason to reach an 
 agreement which is not efficient.
 
-\bigskip
-\noindent \textbf{Slide 22}
+\noindent We forget alternate offers and strategies, we only speak about 
+utilities. The set $C$ is the set of all the possible distributions of utilities; 
+in principle we do not know how these utilities are obtained.
 
-\noindent Is it possible to change some of these assumptions? The assumption 
+\noindent Disagreement point $d$: utility if we do not reach an agreement.
+
+\noindent This is a Non Transferrable Utility cooperative game.
+
+\noindent \textbf{Remark:} this approach is possible only with two players.
+
+\bigskip
+\noindent \textbf{Set of bargaining problems:}
+
+\noindent Assumptions: the set $\mathcal{C} = \{(C,d)\}$ is s.t.
+\begin{enumerate}
+	\item $C$ is a closed bounded convex subset of $\mathbb{R}^2$.
+	
+	\noindent This is obvious: we always take closed sets, otherwise we could 
+	miss existence.
+	
+	\item $d \in \mathbb{R}^2$. 
+	
+	\noindent Oh, be'
+	
+	\item $\exists x \in C$ s.t. $x_1 > d_1$ and $x_2 > d_2$.
+	
+	\noindent This means that players can reach an agreement s.t. their utility 
+	is greater than what they get in case of disagreement. If this assumption 
+	were not fullfilled, then there would be at least one player for which 
+	there is not reason to bargain. Iot have an interesting bargaining, 
+	players must have the possibility to meet somewhere.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Solution concept:}
+
+\noindent A solution for the bargaining problem is a function $f: \mathcal{C} \rightarrow \mathbb{R}^2$ s.t. $f[(C,d)] \in C ~\forall (C,d) \in \mathcal{C}$.
+
+\bigskip
+\noindent \textbf{Properties of the solution:}
+\begin{enumerate}
+	\item Invariance with respect to admissible transformations of the utility functions: let $L: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ be the transformation $L(x_1,x_2) = (ax_1+c, bx_2 + e)$, with $a,b > 0$ and $c,e \in \mathbb{R}$. Then $f[L(C),L(d)] = Lf(C,d)$.
+	
+	\noindent \textbf{Remark:} the transformation $L$ is invertible and its inverse $L^{-1}(y_1,y_2) = \left( \frac{y_1}{a} - \frac{c}{a}, \frac{y_2}{b} - \frac{e}{b} \right)$ is an admissible transformation too.
+	
+	\item Symmetry: let $S: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ be s.t. $S(x_1,x_2) = (x_2,x_1)$. Suppose moreover that the game $(C,d)$ satisfies $(S(C),S(d)) = (C,d)$. Then $f(C,d) = S(f(C,d))$.
+	
+	\noindent \textbf{Note:} in a game s.t. $(S(C),S(d)) = (C,d)$, the players are symmetric.
+	
+	\item Independence from irrelevant alternatives (IIA): given two problems $(A,d)$ and $(C,d)$, if $C \subset A$ and $f(A,d) \in C$, then $f(A,d) = f(C,d)$.
+	
+	\item Efficiency: let $u,y \in C$ be s.t. $u_1 > y_1$ and $u_2 > y_2$. Then $f(C,x) \neq y ~\forall x \in C$.
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{Nash bargaining theorem:} There exists one and only one function $f$ satisfying the properties (1)-(4). In particular, if $(C,d) \in \mathcal{C}$, $f(C,d)$ is the point that maximizes the function
+\[
+	g(u,v) = (u - d_1)(v - d_2)
+\]
+on the set $C \cap \{(u,v): u \geq d_1, v \geq d_2\}$.
+
+\noindent $\implies$ players must maximize the product of their utilities over the set of the interesting outcomes.
+
+\bigskip
+\noindent \textbf{Outline of the proof:} 
+\begin{itemize}
+	\item $f$ is well defined: $g$ is continuous and $C$ is closed, convex and bounded $\implies$ the maximum exists. Moreover, $g$ is quasi-concave $\implies$ the maximum is unique.
+	
+	\item $f$ satisfies all the properties (1)-(4).
+	
+	\item $f$ is the unique function that satisfies the properties. Indeed, let $h$ be another function s.t. (1)-(4) are fulfilled. Symmetry and efficiency imply that $h = f$ on the subclass of symmetric games.
+	
+	\noindent Consider a generic game $(C,d)$ and apply invariance wrt admissible transformations iot have $d = (0,0)$ and $f(C,d) = (1,1)$. Then $L(C) \subset A = \{(u,v): u,v \geq 0 \wedge u+v \leq 2\}$.
+	
+	\noindent $(A,0)$ is a symmetric game, then $h(A,0) = f(A,0) = (1,1)$.
+	
+	\noindent IIA entails $h(L(C),0) = f(L(C),0) = (1,1)$.
+	
+	\noindent We can apply again the invariance wrt admissible transformations and we recover $h = f$.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Remark:} the more risk averse a player is, the less he gets from the bargaining.
+
+\noindent Ideed, consider the case in which two players have to divide a good, so that player1 gets $x$ and player2 gets $1-x$. Their utility functions are $u_1(x)$ and $u_2(1-x)$, with $u_i$ increasing, concave, twice differentiable and s.t. $u_i(0) = 0$.\\
+$\implies$\\
+$x$ must maximize $g(z) = u_1(z)u_2(1-z)$, then it must be $g'(x) = 0$.\\
+$\implies$\\
+We have: $\frac{u'_1(x)}{u_1(x)} = \frac{u'_2(1-x)}{u_2(1-x)}$, which means that the two curves $\frac{u'_1(z)}{u_1(z)}$ and $\frac{u'_2(1-z)}{u_2(1-z)}$ must intersect in the unique point with abscissa $x$.
+
+\noindent Suppose now that player2 changes his utility function from $u_2$ to $h \circ u_2$ (he becomes more risk averse), mantaining the same properties, and call $y$ the new quantitiy assigned to player1.
+
+\noindent As before, it must be $\frac{u'_1(y)}{u_1(y)} = \frac{h'(u_2(1-y))u'_2(1-y)}{h(u_2(1-y))}$.
+
+\noindent Since for every $z$ it holds $\frac{u'_2(1-z)}{u_2(1-z)} \geq \frac{h'(u_2(1-z))u'_2(1-z)}{h(u_2(1-z))}$, we have that $y > x$, which means that player1 gets more if player2 is more risk averse.
+
+\bigskip
+\noindent \textbf{Question:}
+
+\noindent Is it possible to change some of the assumptions (1)-(4)? The assumption 
 we often may try to change is the third one: in some situations, it does not 
 appear fair for all the players. The most popular attempt to change this 
 assumption gives another definition of solution (see slide 32).
 
 \bigskip
-\noindent \textbf{Slide 32}
+\noindent \textbf{Alternative assumption:}
 
 \noindent I consider a problem which is described by a closed and convex set. 
 The exact shape of the problem is not relevant as long as what I add are 
 unefficient solutions (the red line in the picture). I consider a point s.t. 
 the intersection between the set of the problem and the cone (green in the 
 picture) is only given by the point. If the intersection is not a single point, 
-then I take $U_2$.
+then I take $U_2$:
+\begin{equation*}
+	g_C(x) = \begin{cases}
+	y \hspace{.5cm} \text{if the intersection is a single point}\\
+	U_2 \hspace{.5cm} \text{otherwise} 
+	\end{cases}
+\end{equation*}
 
-\noindent We define the utopia point as the point in which both the players get 
-the maximum utility (it is usually impossible to reach this point in practice). 
+\bigskip
+\noindent \textbf{Utopia point:} $U = (U_1,U_2)$ is the point in which both the players get 
+the maximum utility (it is usually impossible to reach this point in practice), i.e. $U_i = \max u_i$ on the set $C \cap \{(u_1,u_2): u_1 \geq d_1 \wedge u_2 \geq d_2\}$.
 
+\bigskip
 \noindent We take the disagreement point and the utopia point and we consider 
 a way to connect them and to take the only efficient distribution of utilities 
 which stays on the line that connects $d$ to $U$.
@@ -53,18 +157,25 @@ which stays on the line that connects $d$ to $U$.
 given any problem? Yes and it is weel-defined because there is one and only 
 one possible efficient solution.
 
+\bigskip
+\noindent \textbf{Monotonicity assumption:} let $f: \mathcal{C} \rightarrow \mathbb{R}^2$ be a solution for the bargaining problem. $f$ sarisfies the monotonicity assumption for player1 if for every pair of problems $(C,d)$ and $(\hat{C},d)$ s.t. $U_1(C,d) = U_1(\hat{C},d)$ and $g_C \leq g_{\hat{C}}$ it holds $f_2(\hat{C},d) \geq f_2(C,d)$.
+
+\bigskip
+\noindent \textbf{Kalai-Smorodinski theorem:} there exists one and only one solution $f: \mathcal{C} \rightarrow \mathbb{R}^2$ for the bargaining problem satisfying invariance wrt admissible transformations of the utility functions, symmetry, efficiency and monotonicity for both players. $f$ associates to the game $(C,d)$ the efficient point lying on the line that connects $d$ to $U$.
+
+\bigskip
 \noindent \textbf{Remark:} if the game is symmetric, Nash solution and this 
 solution coincide because Nash solution is the only efficient solution on the 
 diagonal.
 
 \noindent Kalai-Smorodinski solution does not satisfy the third assumption of 
-the Nash theorem, while it fullfills the others: utopia and disagreement do not 
+the Nash theorem, while it fulfills the others: utopia and disagreement do not 
 change if you modify the scale of the problem; moreover, the solution is 
 efficient and symmetric. Which property must we define in place of the third 
 one?
 
 \bigskip
-\noindent \textbf{Slide 34}
+\noindent \textbf{Remark}
 
 \noindent Kind of proof of uniquenes $\implies$ do it as an exercise {(\huge "or 
 ignore it: it will not affect so much your life" - cit.)}
@@ -78,62 +189,9 @@ is related to this...(again cit....oggi stiamo evidentemente dando il meglio
 XD)} 
 See examples on the notebook.
 
-\bigskip
-\noindent {\huge Social choices}
-
-\bigskip
-\noindent \textbf{Slide 2}
-
-\noindent The primitive data for social choice problems are the sets of 
-alternatives of the agents. 
-
-\bigskip
-\noindent \textbf{Slide 7}
-
-\noindent Anonimity means that I can have a permutation of the choices without 
-changing the result, i.e. it is not important if I am labelled as player1 and 
-you as player2 or viceversa. When anonimity is not satisfied? For example, 
-when I have a tie and I have to decide that, for example, between two players 
-with the same score the youngest is the winner (ex. concorsi per assegnazioni di 
-150ore). Another example: between two players with the same score, I choose the 
-woman because I have to fullfill "quote rosa".
-
-\noindent Iot avoid to kill anonimity, people toss a coin.
-
-\bigskip
-\noindent \textbf{Slide 8}
-
-\noindent Neutrality is the same as anonimity, but related on alternatives: you 
-cannot distinguish two alternatives if all the cryteria are the same. 
-
-\bigskip
-\noindent \textbf{Slide 9}
-
-\noindent Example: suppose that I have 3 alternatives:\\
-x 	y 	z (player1)\\
-y 	z	x (player2)\\
-z	x 	y (player3)\\
-and function $f$ selects $x$ as a result. Now suppose that I have another 
-profile:\\
-x 	z 	y (player1)\\
-z 	x 	y (player2)\\
-x 	z 	y (player3)\\
-function $f$ must select again $x$ because $x$ is ranked better in this second 
-case than in the previous one and, since he was winning in the first case, he 
-cannot have a worse result than this.
-
-\bigskip
-\noindent \textbf{Slide 11}
-
-\noindent Remember: simple majority rule means mutual comparison between 
-alternatives. In this case you cannot get a ranking, but a circular argument! 
-This means that simple majority rule cannot be extended to more than two 
-alternatives.
-
-\bigskip
-\noindent \textbf{Slide 12}
-
-\noindent Since the numbers can be totally ordered, in this case I always get 
-a ranking.
+% Social choices ----> moved to the beginning of 051218.tex
+%
+%\bigskip
+%\noindent {\huge Social choices}
 
 %\end{document}
