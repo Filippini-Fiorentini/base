@@ -215,7 +215,22 @@ is $n$ itself.
 \noindent \textbf{Bouton's theorem:} a position $(n_1,...,n_k)$ in the Nim game 
 is a P-position iff $n_1 \oplus n_2 \oplus ... \oplus n_k = 0$.
 
-\noindent \textbf{Proof:}
+\noindent \textbf{Proof:} it is subdivided in different steps:
+\begin{enumerate}
+	\item terminal positions are P positions: obvious because the only terminal position is $(0,...,0)$.
+	
+	\item positions s.t. $n_1 \oplus n_2 \oplus ... \oplus n_k = 0$ go only into positions s.t. $n_1 \oplus n_2 \oplus ... \oplus n_k \neq 0$: we prove this by contradiction.
+	
+	\noindent Suppose that from a position $n_1 \oplus n_2 \oplus ... \oplus n_k = 0$ you can reach another position $n_1' \oplus n_2 \oplus ... \oplus n_k = 0$.
+	
+	\noindent Then we have $n_1 \oplus n_2 \oplus ... \oplus n_k = n_1' \oplus n_2 \oplus ... \oplus n_k = 0$.
+	
+	\noindent By cancelation law, this would entail $n_1' = n_1$, which is not possible $\implies$ CONTRADICTION.
+	
+	\item from a position $n_1 \oplus n_2 \oplus ... \oplus n_k \neq 0$ you can always reach a position $n_1 \oplus n_2 \oplus ... \oplus n_k = 0$: let $z = n_1 \oplus n_2 \oplus ... \oplus n_k \neq 0$.
+	
+	\noindent Take a pile that has 1 in the most left column where the expansion of $z$ has 1, put there 0 and proceed to the right by leaving unchanged the digits where the expansion of $z$ has 0, otherwise put them to 1. $\implies$ the so obtained number is smaller than the previous one.
+\end{enumerate}
 
 \bigskip
 \noindent \textbf{Strategies:}
