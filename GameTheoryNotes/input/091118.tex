@@ -101,18 +101,17 @@ player is present (the veto player is necessary but not sufficient).
 
 \bigskip
 \noindent \textbf{Proof:} first of all, I prove that if there is 
-no veto player, then the core is empty, i.e. $N\setminus\{i\}$ is a winning coalition 
+no veto player, then the core is empty.
+
+\noindent The fact that there is no veto players means that $N\setminus\{i\}$ is a winning coalition 
 $\forall i$ (otherwise $i$ would be a veto player).
 
 \noindent Suppose $(x_1,...,x_n) \in C(v)$ s.t. 
 \[(1) \hspace{1cm} \sum_{j \neq i}{x_j} = 1 ~\forall i=1:n\]
 
-\noindent (1) with $\geq~\implies$ I need to give at least 1 to all the 
-coalitions which exclude $i$.
-
 \noindent We compute $\sum_{i=1}^n$ of the inequality (1) and we get:
 \[
-	\sum_{j=1}^n{x_j} \geq \frac{n}{n-1}
+	(n-1) \sum_{j=1}^n{x_j} = n \implies \sum_{j=1}^n{x_j} = \frac{n}{n-1}
 \]
 which is impossible since the sum at the lhs is actually 1.
 
@@ -277,7 +276,7 @@ They can give whatever value $p$ to the single-player coalitions and $1-p$ to th
 \noindent \textbf{Remark:} the positive coefficients of the vector $\lambda = (\lambda_S)_{S \subseteq N}$ fulfilling the constraints of the dual LP problem are balancing vectors for a balanced family.
 
 \bigskip
-\noindent \textbf{Minimal balanced family:} is a balanced falmily s.t. no subfamilies are balanced.
+\noindent \textbf{Minimal balanced family:} is a balanced family s.t. no subfamilies are balanced.
 
 \bigskip
 \noindent Any partition of $N$ is a minimal balanced family: if I trash one set, some players are not represented by any coalition.
@@ -336,7 +335,7 @@ It is a measure of the dissatisfaction of the coalition.
 
 \subsection{Nucleolus}
 
-\noindent \textbf{Definition:} The \textbf{lexicographic vector} attached to an imputation $x$ is $\theta(x) = (\theta_1(x),...,\theta_1{2^n-1}(x))$ s.t. $\theta_i(x) = e(A_i,x)$ for the coalition $A_i \subseteq N$ and $\theta_1(x) \geq ... \geq \theta_{2^n-1}(x)$.
+\noindent \textbf{Definition:} The \textbf{lexicographic vector} attached to an imputation $x$ is $\theta(x) = (\theta_1(x),...,\theta_{2^n-1}(x))$ s.t. $\theta_i(x) = e(A_i,x)$ for the coalition $A_i \subseteq N$ and $\theta_1(x) \geq ... \geq \theta_{2^n-1}(x)$.
 
 \bigskip
 \noindent \textbf{Nucleolus:} the nucleolus solution is the solution $\nu: \mathcal{G}(N) \rightarrow \mathbb{R}^n$ s.t. $\nu(v)$ is the set of the imputations $x$ s.t. $\theta(x) \leq_L \theta(y)$ for all imputations $y$ of the game $v$ (:it is the set of the imputations that minimize the maximum dissatisfaction of the coalitions).
