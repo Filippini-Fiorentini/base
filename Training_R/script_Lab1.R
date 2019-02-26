@@ -387,6 +387,8 @@ lines(x,z,col='red')
 plot(x,y,type='l',xlim=range(x),ylim=range(cbind(y,z)))
 lines(x,z,col='red')
 
+plot(x,y,xlab="x [-]",pch="*",col="blue")
+# pch: punti in stile *
 
 # provate il comando demo(graphics): rassegna di possibili grafici
 # cliccate sul grafico per passare al successivo
