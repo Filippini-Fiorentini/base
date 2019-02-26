@@ -20,16 +20,16 @@
 # - Esempi di analisi descrittiva di variabili qualitative, quantitative;
 #   esempi di analisi di un campione e di due campioni
 
-# R: linguaggio interpretato; è possibile:
+# R: linguaggio interpretato; ? possibile:
 # - scrivere il codice direttamente sulla console
 # - (preferibile) scrivere il codice su uno script (come questo) e poi eseguirlo
 #   in console, una riga per volta oppure una selezione. Per eseguire il codice in
 #   console: ctrl + r
 
 # Commento: tutto quanto preceduto da '#' non viene letto dalla Console di R
-# è possibile dunque eseguire indistintamente nella Console comandi e commenti
+# ? possibile dunque eseguire indistintamente nella Console comandi e commenti
 # senza dover togliere questi ultimi
-# (è SEMPRE opportuno commentare i propri script come mostrato a laboratorio)
+# (? SEMPRE opportuno commentare i propri script come mostrato a laboratorio)
 
 # MOLTO IMPORTANTE: come Matlab, R deve avere una DIRECTORY DI LAVORO,
 # ovvero una cartella dove di default verranno cercati o salvati i file utilizzati da R
@@ -40,7 +40,7 @@
 # per selezionare la directory di lavoro:
 # seleziono la finestra della Console, e poi bottone 'file' -> 'cambia directory',
 # oppure con un comando da tastiera
-setwd('C:/USER_DATA/script_Lab1')
+#setwd('C:/USER_DATA/script_Lab1')
 # setwd('E:/Didattica/Statistica A (MAT)/laboratori/lab 1')  
 # se non mi ricordo la directory di lavoro:
 getwd()
@@ -48,7 +48,7 @@ getwd()
 
 ### R come calcolatore
 
-# è possibile utilizzare R per eseguire operazioni semplicissime
+# ? possibile utilizzare R per eseguire operazioni semplicissime
 
 (17*0.35)^(1/3)
 
@@ -90,11 +90,11 @@ b
 ## vettori
 
 v <- c(2,3,7,10)
-# c() è la funzione che serve a concatenare: un vettore è un insieme di numeri concatenati!
+# c() ? la funzione che serve a concatenare: un vettore ? un insieme di numeri concatenati!
 v
 
 # vettori costituiti da sequenze ordinate di numeri:
-# è possibile automatizzare la procedura
+# ? possibile automatizzare la procedura
 
 # posso imporre il passo
 u <- seq(0,0.5,by=0.1)
@@ -113,7 +113,7 @@ u1
 u2 <- 1:5
 
 # vettori costituiti da ripetizioni di numeri:
-# è possibile automatizzare la procedura
+# ? possibile automatizzare la procedura
 
 w <- rep(1,10)
 w
@@ -125,7 +125,7 @@ w
 w1 <- rep(c(1,2,3,4),3)
 w1
 
-# quale sarà la lunghezza di w1?
+# quale sar? la lunghezza di w1?
 # ...
 length(w1)
 
@@ -149,7 +149,7 @@ W
 W <- rbind(c(1,5,9),c(2,6,10),c(3,7,11),c(4,8,12))
 W
 
-# oppure (più furbo..)
+# oppure (pi? furbo..)
 W <- cbind(1:4,5:8,9:12)
 W
 
@@ -218,15 +218,15 @@ c(c,d,e) # la funzione c() serve a concatenare qualsiasi tipo di oggetti, anche 
 
 # ATTENZIONE!!!
 # cosa succede se compio operazioni componente per componente su vettori di dimensione diversa?
-# R può giocare dei bruttissimi scherzi: a volte infatti si viene avvisati con un warning,
-# ma in altri casi trovare incongruenze nelle dimensioni è più sottile..
+# R pu? giocare dei bruttissimi scherzi: a volte infatti si viene avvisati con un warning,
+# ma in altri casi trovare incongruenze nelle dimensioni ? pi? sottile..
 
 c+e # warning ma NON errore: i due vettori hanno dimensioni diverse ma R calcola comunque la loro somma..
-    # come? somma per componente fino all'ultimo elemento del più corto, poi 'ricicla'
-    # gli elementi del più corto dall'inizio fino a quando non esaurisce il vettore più lungo
-    # quindi: warning perché i due vettori non hanno lunghezze una multipla dell'altra
+    # come? somma per componente fino all'ultimo elemento del pi? corto, poi 'ricicla'
+    # gli elementi del pi? corto dall'inizio fino a quando non esaurisce il vettore pi? lungo
+    # quindi: warning perch? i due vettori non hanno lunghezze una multipla dell'altra
 
-c+f # f è lungo il doppio di c: R non dà neanche un warning e calcola la somma
+c+f # f ? lungo il doppio di c: R non d? neanche un warning e calcola la somma
     # riciclando gli elementi di c
 
 # operazioni su matrici
@@ -246,7 +246,7 @@ prod(Z) # prodotto componenti matrice Z (come sopra)
 
 
 V <- t(W) # trasposizione di matrice
-          # V è una matrice 3x4
+          # V ? una matrice 3x4
 V
 
 V*W # matrice * matrice (componente per componente)
@@ -261,7 +261,7 @@ W+a # matrice + scalare
 
 W
 c
-W+c # matrice + vettore ... ATTENZIONE! Recicling "column-major", cioè per colonne
+W+c # matrice + vettore ... ATTENZIONE! Recicling "column-major", cio? per colonne
 
 #Calcolo dell'inversa di una matrice (da usare con MOLTA parsimonia)
 S = matrix( c(1,2,3,6,4,2,7,8,5), ncol = 3, byrow = T);
@@ -274,12 +274,12 @@ S.inv %*% S
 # Non calcola l'inversa, ma la matrice dei reciproci degli elementi di partenza
 S^(-1)
 
-#Infatti controllando il prodotto con S non ottengo l'identità.
+#Infatti controllando il prodotto con S non ottengo l'identit?.
 S^(-1) %*% S
-#Se però calcolo il prodotto elemento per elemento, me ne rendo conto.
+#Se per? calcolo il prodotto elemento per elemento, me ne rendo conto.
 S^(-1) * S 
 
-# Solve può essere usato anche per risolvere sistemi lineari (interfaccia a routines LAPACK):
+# Solve pu? essere usato anche per risolvere sistemi lineari (interfaccia a routines LAPACK):
 # Dato S x = b, vogliamo trovare x:
 
 b = c(1,1,1);
@@ -319,12 +319,12 @@ scritto[[6]] # infatti ho chiamato 'voti' la sesta componente della lista
 
 # N.B. posso anche scrivere:
 scritto[6] 
-# ma questo non è un vettore, è ancora una lista..infatti:
+# ma questo non ? un vettore, ? ancora una lista..infatti:
 scritto[[6]][2] # ok
 scritto[6][2] # non trova nulla.. devo invece scrivere:
-scritto[6]$voti[2] # ma è sconveniente!
+scritto[6]$voti[2] # ma ? sconveniente!
 
-dim(scritto)	# non è ben definito!
+dim(scritto)	# non ? ben definito!
 
 ## data.frame: oggetti costituiti da vettori di ugual lunghezza, anche di tipo diverso.
 
@@ -339,12 +339,12 @@ esame <- data.frame(
 esame
 
 # agli elementi di un dataframe si accede come a quelli di una lista
-# altrimenti R non li può vedere..
+# altrimenti R non li pu? vedere..
 voti_S
 esame$voti_S
 esame[[2]]
 
-# è possibile però fare in modo che anche le variabili contenute in un dataframe risultino visibili
+# ? possibile per? fare in modo che anche le variabili contenute in un dataframe risultino visibili
 attach(esame) 
 voti_S
 detach(esame)
@@ -369,7 +369,7 @@ x <- seq(0,3,by=0.01)
 y <- x^2
 plot(x,y)
 
-# anziché punti, tracciare una linea che passa per i vari punti
+# anzich? punti, tracciare una linea che passa per i vari punti
 plot(x,y,type='l')
 
 
@@ -377,7 +377,7 @@ plot(x,y,type='l')
 z <- x^3
 points(x,z,type='l',col='red')
 
-# alternativamente è possibile utilizzare direttamente il comando lines
+# alternativamente ? possibile utilizzare direttamente il comando lines
 plot(x,y,type='l')
 lines(x,z,col='red')
 
@@ -404,12 +404,12 @@ graphics.off()
 # ad esempio:
 help(hist)
 
-# quando invece non ci si ricorda nome del comando si può utilizzare
+# quando invece non ci si ricorda nome del comando si pu? utilizzare
 # help.search("KEYWORD")
 help.search("histogram")
 ??histogram
 
-# resituisce un elenco di pacchetti::comandi nel cui help è contenuta la keyword
+# resituisce un elenco di pacchetti::comandi nel cui help ? contenuta la keyword
 # specificata. A destra compare anche una brevissima spiegazione del comando.
 
 # oppure 
@@ -418,7 +418,7 @@ help.start()
 ### PACCHETTI
 
 # cosa sono i 'pacchetti' di R?
-# per questo laboratorio non è necessario alcun pacchetto; in generale, come dice il nome,
+# per questo laboratorio non ? necessario alcun pacchetto; in generale, come dice il nome,
 # essi sono degli archivi di file .R (o file programmati in altri linguaggi come C o Fortran),
 # e di dati, che permettono di definire particolari tipi di funzioni o di effettuare specifiche
 # analisi dei dati.
@@ -426,8 +426,8 @@ help.start()
 # (accedendo direttamente al sito CRAN se si dispone di una connessione), oppure tramite
 # 'Pacchetti' -> 'Installa Pacchetti da file zip locali' se si dispone del pacchetto salvato
 # sul proprio pc in formato di archivio zip (soluzione che adotteremo nei prossimi lab).
-# A questo punto il pacchetto desiderato è nella propria versione di R.
-# è necessario però caricare i pacchetti necessari per l'analisi ogni volta che si accede ad R
+# A questo punto il pacchetto desiderato ? nella propria versione di R.
+# ? necessario per? caricare i pacchetti necessari per l'analisi ogni volta che si accede ad R
 # tramite il comando library
 # es.
 library(MASS) # contiene molti dataset
@@ -452,10 +452,10 @@ W
 W <- read.table('la-mia-matrice.txt')
 W
 
-# oppure è possibile salvare i dati direttamente come variabili di R, in un file .RData
+# oppure ? possibile salvare i dati direttamente come variabili di R, in un file .RData
 save(W,file='la-mia-matrice.RData')
 # evitate se non strettamente necessario (es. matrici enormi)
-# perché i .RData occupano molto più spazio dei .txt
+# perch? i .RData occupano molto pi? spazio dei .txt
 
 rm(W)
 W
@@ -463,7 +463,7 @@ load('la-mia-matrice.RData')
 W
 
 # ATTENZIONE:
-# la tabella o il file .RData verrà salvata nella directory di lavoro che avete selezionato
+# la tabella o il file .RData verr? salvata nella directory di lavoro che avete selezionato
 # (se ne avete selezionata una), altrimenti in quella di default (MAI USARE QUELLA DI DEFAULT!!)
 
 write.table(W, 'la-mia-matrice.txt') # controllate nella vostra directory!
@@ -476,7 +476,7 @@ write.table(W, 'la-mia-matrice.txt') # controllate nella vostra directory!
 
 ### ANALISI DESCRITTIVA DI UNA VARIABILE ALEATORIA QUALITATIVA (DATI CATEGORICI)
 
-### Le variabili qualitative non possono essere descritte numericamente; è possibile
+### Le variabili qualitative non possono essere descritte numericamente; ? possibile
 ### solamente trovare la tabella di distribuzione di frequenze per le categorie della 
 ### variabile, e tracciare grafici (diagrammi a barre e a torta).
 ### Nei prossimi due esercizi cercheremo di prendere confidenza con questi strumenti.
@@ -514,7 +514,7 @@ provRELATIVE
 prop.table(provASSOLUTE)
 barplot(prop.table(provASSOLUTE),xlab="province",ylab="proporzioni",main="Bar plot delle province")
 
-# Per creare un nuovo device grafico, e tenere aperti più grafici contemporaneamente
+# Per creare un nuovo device grafico, e tenere aperti pi? grafici contemporaneamente
  x11() #Linux
 # windows() #Solo per Windows
 # quartz() #Solo per Mac
@@ -523,7 +523,7 @@ pie(provRELATIVE)  # grafico a torta
 help(pie)
 pie(provRELATIVE,labels=c('MI','LO','BG','CR','VA','Alt'),radius=1,
   col=c('red','orange','yellow','green','lightblue','violet'),main='Grafico a torta Province')
-# anche qui si può giocare un po' con le opzioni grafiche per abbellire il grafico
+# anche qui si pu? giocare un po' con le opzioni grafiche per abbellire il grafico
 
 
 
@@ -554,7 +554,7 @@ pestRELATIVE <- table(pesticide)/length(pesticide) #tabella delle frequenze real
 pestRELATIVE
 
 x11()
-#windos()  # serve per creare un nuovo device grafico, e tenere aperti più grafici contemporaneamente
+#windos()  # serve per creare un nuovo device grafico, e tenere aperti pi? grafici contemporaneamente
 pie(pestRELATIVE )  # grafico a torta
 
 
@@ -600,17 +600,17 @@ mean(Vitamina_D) # media
 
 var(Vitamina_D) # varianza campionaria (attenzione: formula incorpora correzione di Bessel)
 
-# N.B. la varianza campionaria è la somma degli scarti quadratici dalla media campionaria,
+# N.B. la varianza campionaria ? la somma degli scarti quadratici dalla media campionaria,
 #      diviso per (n - 1). Non esiste un comando in R per calcolare la varianza della popolazione,
 #      ovvero la somma degli scarti quadratici dalla media campionaria, diviso per n. Per ottenere
-#      la varianza della popolazione è dunque necessario calcolare:
+#      la varianza della popolazione ? dunque necessario calcolare:
 n <- length(Vitamina_D)
 (n-1)/n * var(Vitamina_D) # varianza della popolazione
 # oppure, dalla definizione:
 mean( (Vitamina_D - mean(Vitamina_D))^2 )
 
       
-sd(Vitamina_D) # deviazione standard campionaria (è la radice quadrata del risultato ottenuto con var)
+sd(Vitamina_D) # deviazione standard campionaria (? la radice quadrata del risultato ottenuto con var)
 sqrt((n-1)/n)*sd(Vitamina_D) # deviazione standard della popolazione 
 
 min(Vitamina_D) # minimo
@@ -621,7 +621,7 @@ range(Vitamina_D)[2] - range(Vitamina_D)[1] # range
 ## N.B. la funzione range ritorna un vettore contenente max e min!
 
 median(Vitamina_D) # mediana
-# la media è maggiore della mediana: possibile asimmetria verso destra della distribuzione
+# la media ? maggiore della mediana: possibile asimmetria verso destra della distribuzione
 # e/o presenza di outlier
 
 quantile(Vitamina_D,probs=0.25) # primo quartile
@@ -642,40 +642,40 @@ quantile(Vitamina_D)
 hist(Vitamina_D) # in ordinata ci sono le frequenze assolute
 # dall'istogramma si rileva un'asimmetria destra e la possibile esistenza di potenziali valori estremi
 
-hist(Vitamina_D,prob=TRUE) # in ordinata ci sono le densità
+hist(Vitamina_D,prob=TRUE) # in ordinata ci sono le densit?
 
-hist(Vitamina_D,prob=TRUE,main='Istogramma Vitamina D',xlab='Concentrazione',ylab='Densità')
+hist(Vitamina_D,prob=TRUE,main='Istogramma Vitamina D',xlab='Concentrazione',ylab='Densit?')
 
 # l'argomento breaks serve ad imporre un certo numero di classi: R in questo
 # caso ne sceglie 8 in automatico (quindi se scriviamo breaks=8 non cambia niente rispetto a prima!)
 hist(Vitamina_D,prob=TRUE,main='Istogramma Vitamina D',
-    xlab='Concentrazione',ylab='Densità',breaks=8)
+    xlab='Concentrazione',ylab='Densit?',breaks=8)
 
 # posso giocare con il numero di classi: non esiste un numero di classi
-# 'giusto', la scelta sta alla sensibilità dello statistico
+# 'giusto', la scelta sta alla sensibilit? dello statistico
 
-hist(Vitamina_D,prob=TRUE,main='Istogramma Vitamina D',xlab='Concentrazione',ylab='Densità',breaks=15)
+hist(Vitamina_D,prob=TRUE,main='Istogramma Vitamina D',xlab='Concentrazione',ylab='Densit?',breaks=15)
 
 # si possono imporre classi di ampiezza diversa
 # N.B. in questo caso il grafico ha comunque area 1!
-hist(Vitamina_D,prob=TRUE,main='Istogramma Vitamina D',xlab='Concentrazione',ylab='Densità',xlim=c(min(Vitamina_D)-5,max(Vitamina_D)+5),
+hist(Vitamina_D,prob=TRUE,main='Istogramma Vitamina D',xlab='Concentrazione',ylab='Densit?',xlim=c(min(Vitamina_D)-5,max(Vitamina_D)+5),
     breaks=c(min(Vitamina_D),20,26,32,38,44,56,68,max(Vitamina_D)))
 
 
 ## costruire la tabella di distribuzione di frequenze
 
-# per avere la tabella in automatico è possibile utilizzare ancora hist,
+# per avere la tabella in automatico ? possibile utilizzare ancora hist,
 # con l'opzione 'plot' impostata su FALSE. La funzione restituisce:
 # breaks: estremi delle classi
 # counts: frequenze assolute delle classi
-# intensities & density: densità associate alle classi
+# intensities & density: densit? associate alle classi
 # mids: valori centrali delle classi
 # xname: nome della variabile
 # equidist: booleano. Le classi hanno tutte la stessa ampiezza?
 
 hist(Vitamina_D,plot=FALSE)
 
-# naturalmente è possibile salvare la tabella in una variabile di R
+# naturalmente ? possibile salvare la tabella in una variabile di R
 istogramma <- hist(Vitamina_D,plot=FALSE,breaks=8)
 estremiclassi <- istogramma$breaks
 estremiclassi
@@ -704,14 +704,14 @@ boxplot(Vitamina_D,horizontal=FALSE)
 
 boxplot(Vitamina_D,horizontal=FALSE, main="Boxplot Vitamina D",ylab="Concentrazione",ylim=c(0,90))
 # COMMENTO AL BOXPLOT:
-# possiamo osservare che il 50% dei valori centrali è compreso nell'intervallo [25.5,47.5]
+# possiamo osservare che il 50% dei valori centrali ? compreso nell'intervallo [25.5,47.5]
 # il fatto che la linea che rappresenta la mediana sia spostata verso il basso della scatola
 # evidenzia un'asimmetria destra nella distribuzione dei dati (la coda destra della distribuzione
-# è più estesa di quella sinistra). Inoltre, è possibile notare la presenza di un outlier superiore.
+# ? pi? estesa di quella sinistra). Inoltre, ? possibile notare la presenza di un outlier superiore.
 
 
 ## ricordarsi SEMPRE alla fine di un esercizio di eseguire il detach del dataframe!
-## (non è improbabile che dataframe diversi contengano variabili con lo stesso nome..)
+## (non ? improbabile che dataframe diversi contengano variabili con lo stesso nome..)
 detach(vitaminaD)
 
 ##########################################
@@ -757,17 +757,17 @@ Q3 - Q1 # IQR
 
 ## istogramma
 
-hist(Magnesio,prob=TRUE,main='Istogramma Magnesio',xlab='Concentrazione [mmol/l]',ylab='Densità')
+hist(Magnesio,prob=TRUE,main='Istogramma Magnesio',xlab='Concentrazione [mmol/l]',ylab='Densit?')
 # l'istogramma sembra abbastanza simmetrico: classe modale intervallo (0.75;0.8]
 
 # R ha costruito automaticamente un istogramma a sei classi.. sembrano un po' poche.
-# regola euristica: numero di classi circa uguale alla radice quadrata di n, dove n è la dimensione
+# regola euristica: numero di classi circa uguale alla radice quadrata di n, dove n ? la dimensione
 # del campione; nel nostro caso n=140, dunque sembra ragionevole raddoppiare l'ampiezza delle classi
 # e sceglierne 12 (quindi impongo breaks = seq(0.65,0.95,.025))
 
-hist(Magnesio,prob=TRUE,main='Istogramma Magnesio',xlab='Concentrazione [mmol/l]',ylab='Densità',breaks=seq(0.65,0.95,.025))
+hist(Magnesio,prob=TRUE,main='Istogramma Magnesio',xlab='Concentrazione [mmol/l]',ylab='Densit?',breaks=seq(0.65,0.95,.025))
 
-# si osservi come una ripartizione più fine metta in evidenza una possibile bimodalità della distribuzione
+# si osservi come una ripartizione pi? fine metta in evidenza una possibile bimodalit? della distribuzione
 
 ## tabella di distribuzione di frequenze
 
@@ -845,7 +845,7 @@ Q3 - Q1 # IQR
 
 ## istogramma
 
-hist(Temperatura,prob=TRUE,main='Istogramma Temperatura',xlab='temperatura corporea [gradi F]',ylab='Densità')
+hist(Temperatura,prob=TRUE,main='Istogramma Temperatura',xlab='temperatura corporea [gradi F]',ylab='Densit?')
 
 # leggera asimmetria sinistra della distribuzione
 
@@ -877,12 +877,12 @@ boxplot(Temperatura,horizontal=FALSE, main='Boxplot Temperatura',ylab='temperatu
 ## indici di posizione e di dispersione
 
 # per calcolare gli indici di posizione e dispersione separatamente per ogni sottocampione,
-# individuato dal sesso, è comodo utilizzare la funzione tapply: essa applica una certa funzione
+# individuato dal sesso, ? comodo utilizzare la funzione tapply: essa applica una certa funzione
 # (terzo argomento) a ciascuno dei sottoinsiemi - non vuoti - di valori di una variabile (primo argomento)
 # individuati da un fattore di raggruppamento (secondo argomento).
-# quindi per noi il primo argomento è la variabile Temperatura, il secondo è la variabile Sesso (categorica!)
-# metre il terzo sarà di volta in volta la funzione che dobbiamo applicare per ottenere l'indice cercato
-# N.B. attenzione alle funzioni a valori vettoriali (come range) o a più argomenti (come quantile)
+# quindi per noi il primo argomento ? la variabile Temperatura, il secondo ? la variabile Sesso (categorica!)
+# metre il terzo sar? di volta in volta la funzione che dobbiamo applicare per ottenere l'indice cercato
+# N.B. attenzione alle funzioni a valori vettoriali (come range) o a pi? argomenti (come quantile)
 
 tapply(Temperatura,Sesso,mean) # media
 tapply(Temperatura,Sesso,var) # varianza
@@ -915,16 +915,16 @@ Q_90
 ## istogramma
 
 par(mfrow=c(1,2)) # serve ad affiancare i due istogrammi
-# traccio i due istogrammi uno di fianco all'altro in modo da poter effettuare più facilmente
+# traccio i due istogrammi uno di fianco all'altro in modo da poter effettuare pi? facilmente
 # un confronto (per poter confrontare i due grafici: stessa scala
 # sull'asse delle ascisse, stesse classi e (possibilmente) stessa scala sulle ordinate!)
 hist(Temperatura[Sesso=='D'],prob=TRUE,main='Istogramma Temperatura Donne',xlab='temperatura corporea [gradi F]',
-   ylab='Densità',col='pink',xlim=range(Temperatura),breaks=seq(96,101,.25), ylim = c(0,1))
+   ylab='Densit?',col='pink',xlim=range(Temperatura),breaks=seq(96,101,.25), ylim = c(0,1))
 hist(Temperatura[Sesso=='U'],prob=TRUE,main='Istogramma Temperatura Uomini',xlab='temperatura corporea [gradi F]',
-   ylab='Densità',col='lightblue',xlim=range(Temperatura),breaks=seq(96,101,.25), ylim = c(0,1))
+   ylab='Densit?',col='lightblue',xlim=range(Temperatura),breaks=seq(96,101,.25), ylim = c(0,1))
 
-# anche l'istogramma evidenzia una tendenza delle donne ad avere una temperatura corporea più alta rispetto
-# agli uomini. Il confronto tra i due istogrammi affiancati è comunque difficoltoso: meglio confrontare i boxplot.
+# anche l'istogramma evidenzia una tendenza delle donne ad avere una temperatura corporea pi? alta rispetto
+# agli uomini. Il confronto tra i due istogrammi affiancati ? comunque difficoltoso: meglio confrontare i boxplot.
 
 ## boxplot
 
