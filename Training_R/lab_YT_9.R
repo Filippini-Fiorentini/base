@@ -4,66 +4,70 @@ source("clean.R")
 # Lab 9 on YT Part 1
 ####################
 
-#PCA
-dimnames(USArrests)
-apply(USArrests, 2, mean)
-apply(USArrests, 2, var)
+set.seed(10111)
+x = matrix(rnorm(40), 20, 2)
+y = rep(c(-1,1),c(10,10))
+x[y==1,]=x[y==1,]+1
+plot(x,col=y+3,pch=19)
+
+library(e1071)
+dat = data.frame(x, y=as.factor(y))
+svmfit = svm(y~.,data = dat, kernel = "linear", cost = 10, scale = F)
+print(svmfit)
+plot(svmfit,dat)
+
+make.grid = function(x, n=75)
+{
+  grange = apply(x,2,range)
+  x1 = seq(from=grange[1,1], to=grange[2,1], length=n)
+  x2 = seq(from=grange[1,2], to=grange[2,2], length=n)
+  expand.grid(X1=x1,X2=x2)
+}
+
+xgrid=make.grid(x)
+ygrid=predict(svmfit,xgrid)
+x11()
+plot(xgrid,col=c("red","blue")[as.numeric(ygrid)], pch=20, cex=.2)
+points(x,col=y+3,pch=19)
+points(x[svmfit$index,],pch=5,cex=.2)
+
+x11()
+beta = drop(t(svmfit$coefs)%*%x[svmfit$index,])
+beta0 = svmfit$rho
+plot(xgrid,col=c("red","blue")[as.numeric(ygrid)], pch=20, cex=.2)
+points(x,col=y+3,pch=19)
+points(x[svmfit$index,],pch=5,cex=.2)
+abline(beta0/beta[2],-beta[1]/beta[2])
+abline((beta0-1)/beta[2],-beta[1]/beta[2],lty=2)
+abline((beta0+1)/beta[2],-beta[1]/beta[2],lty=2)
 
 
-#We decide to standardize variables since they have different variances and then apply PCA
-#and prcomp do everything together
-pca.out = prcomp(USArrests, scale = TRUE)
-pca.out #to see the components of the PC's
-names(pca.out)
-#We can now do a biplot that will show in red the loading vectors and in black the observations
-biplot(pca.out, scale = 0, cex = 6)
+##################################################
+# PART 2
+##################################################
 
+load(url("http://www-stat.stanford.edu/~tibs/ElemStatLearn/datasets/ESL.mixture.rda"))
 
-####################
-# Lab 9 on YT Part 2
-####################
+names(ESL.mixture)
+rm(x,y)
+attach(ESL.mixture)
+x11()
+plot(x,col=y+1)
+dat = data.frame(x, y=as.factor(y))
+svmfit = svm(y~.,data = dat, kernel = "radial", cost = 5)
+xgrid = expand.grid(X1=px1,X2=px2)
+ygrid = predict(svmfit, xgrid)
+plot(xgrid,col=as.numeric(ygrid), pch=20, cex=.2)
+points(x,col=y+1,pch=19)
 
-#K-means clustering
-#Example in 2D so that we can represent it
-#We create some fake data
-set.seed(101)
-x = matrix(rnorm(100,2), 100, 2)
-# I want to generate also some random mean with a bigger std deviation
-xmean = matrix(rnorm(8, sd = 4), 4, 2)
-# randomly assign some indices
-which = sample(1:4, 100, replace = TRUE)
-x = x +  xmean[which,]
-plot(x, col = which, pch = 19)
+func = predict(svmfit,xgrid,decision.value = T)
+func = attributes(func)$decision
 
-#nstart = 15 <=> tries with 15 different random starts
-km.out = kmeans(x, 5, nstart = 15)
-km.out
-#plot clusters found
-plot(x, col = km.out$cluster, cex = 2, pch = 1, lwd = 2)
-#real clusters
-points(x, col = which, pch = 19) #order is not the same => we modify it
-points(x, col = c(4,3,2,1), pch = 19)
-####################
-# Lab 9 on YT Part 3
-####################
+#xgrid = expand.grid(X1=px1,X2=px2)
+#ygrid = predict(svmfit, xgrid)
 
-#Hierarchical clustering
-#we use the same random data as before 
-#hclust is a tool to perform Hierarchical clustering
-
-hc.complete = hclust(dist(x), method = "complete")
-plot(hc.complete)
-hc.single = hclust(dist(x), method = "single")
-plot(hc.single) 
-hc.average = hclust(dist(x), method = "average")
-plot(hc.average) 
-
-#we decide that the first one is the best one and we use the fct
-#cutree that cuts at the level (4) and gives back a vector of assignements
-hc.cut = cutree(hc.complete, 4)
-table(hc.cut, which)
-table(hc.cut, km.out$cluster)
-plot(hc.complete, labels = which)
-
-#Rmd document can be used to generate html document with the results => very useful
-#but the code must be written inside ```{r} djahsdks ```
+x11()
+plot(xgrid,col=as.numeric(ygrid), pch=20, cex=.2)
+points(x,col=y+1,pch=19)
+contour(px1,px2,matrix(func,69,69),levels = 0,add = T)
+contour(px1,px2,matrix(func,69,69),levels = .5,add = T,col="blue",lwd = 2)
