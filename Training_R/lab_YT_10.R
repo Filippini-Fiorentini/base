@@ -1,7 +1,7 @@
 source("clean.R")
 
 ####################
-# Lab 9 on YT Part 1
+# Lab 10 on YT Part 1
 ####################
 
 #PCA
@@ -20,7 +20,7 @@ biplot(pca.out, scale = 0, cex = 6)
 
 
 ####################
-# Lab 9 on YT Part 2
+# Lab 10 on YT Part 2
 ####################
 
 #K-means clustering
@@ -44,7 +44,7 @@ plot(x, col = km.out$cluster, cex = 2, pch = 1, lwd = 2)
 points(x, col = which, pch = 19) #order is not the same => we modify it
 points(x, col = c(4,3,2,1), pch = 19)
 ####################
-# Lab 9 on YT Part 3
+# Lab 10 on YT Part 3
 ####################
 
 #Hierarchical clustering
