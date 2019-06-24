@@ -1,0 +1,11 @@
+conditional probabilities and ellipses (lab 5 end)
+
+pc and graphs (lab 3)
+
+mahalanobis distance and outliers
+
+basic tests (lab 3/4/5 gaussianity lab 6 else)
+
+(M)ANOVA lab 8
+
+
